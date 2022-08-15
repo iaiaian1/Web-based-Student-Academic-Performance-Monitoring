@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import AddStudentModal from "./AddStudentModal";
 import AddActivityModal from "./AddActivityModal";
 import StudentFocusModal from "./StudentFocusModal";
+import GradingScaleModal from "./GradingScaleModal";
 
 const Section = () => {
 
@@ -22,6 +23,7 @@ const Section = () => {
     const [isOpen, setIsOpen] = useState(false)
     const [isOpen2, setIsOpen2] = useState(false)
     const [isOpen3, setIsOpen3] = useState(false)
+    const [isOpen4, setIsOpen4] = useState(false)
 
     //Load accounts
     const getAccounts = async () => {
@@ -107,7 +109,7 @@ const Section = () => {
                     <div className="w-full h-1/6 flex justify-around p-5">
                         <button className="w-1/4 font-bold break-words text-sm sm:text-xl bg-green-500" onClick={() => setIsOpen(true)}>Add student</button>
                         <button className="w-1/4 font-bold break-words text-sm sm:text-xl bg-green-500" onClick={() => setIsOpen2(true)}>Add activity</button>
-                        <button className="w-1/4 font-bold break-words text-sm sm:text-xl bg-green-500">Grading Scale</button>
+                        <button className="w-1/4 font-bold break-words text-sm sm:text-xl bg-green-500" onClick={() => setIsOpen4(true)}>Grading Scale</button>
                     </div>
                 </div>
             </div>
@@ -120,6 +122,9 @@ const Section = () => {
             <StudentFocusModal open={isOpen3} activities={activities} onClose={() => setIsOpen3(false)} populateActivities={() => getActivities()} populateStudents={ () => getStudents() }>
                 { activities }
             </StudentFocusModal>
+            <GradingScaleModal open={isOpen4} onClose={() => setIsOpen4(false)}>
+
+            </GradingScaleModal>
         </>
      );
 }
