@@ -23,22 +23,22 @@ const AddStudentModal = ({ open, children, onClose, populateStudents }) => {
     }else{
       children[0].some(account => {
         //Check if exists
-        if(account.username === studentId){
+        if(account.username === studentId.toLowerCase()){
           //Check if not null
           if(children[1]){
             //Continue, check if enrolled.
-            if(children[1].includes(studentId)){
+            if(children[1].includes(studentId.toLowerCase())){
               setStatus('Already enrolled')
               return true
             }else{
-              updateDoc(sectionArrayRef, { students: arrayUnion(studentId) })
+              updateDoc(sectionArrayRef, { students: arrayUnion(studentId.toLowerCase()) })
               setStatus('Student enrolled')
               setStudentId('')
               populateStudents()
               return true
             }
           }else{
-            updateDoc(sectionArrayRef, { students: arrayUnion(studentId) })
+            updateDoc(sectionArrayRef, { students: arrayUnion(studentId.toLowerCase()) })
             setStatus('Student enrolled')
             setStudentId('')
             populateStudents()

@@ -13,7 +13,7 @@ const AddSectionModal = ({ open, children, onClose, populateSection }) => {
   const sectionsColRef = collection(db, "sections")
 
   //Add student
-  const addStudent = async () => {
+  const addSection = async () => {
     if (level === "" || section === "" || subject === "") {
       setStatus("Please fill up required fields");
     }else{
@@ -70,7 +70,7 @@ const AddSectionModal = ({ open, children, onClose, populateSection }) => {
                 type="submit"
                 value="ADD"
                 className="w-2/3 sm:w-1/4 self-center rounded-lg bg-green-300 py-2 px-5 font-bold"
-                onClick={() => addStudent()}
+                onClick={() => addSection()}
               />
               <button onClick={() => {onClose();Clear();}} className="w-2/3 sm:w-1/4 self-center rounded-lg bg-green-300 py-2 px-5 font-bold">CLOSE</button>
             </div>
