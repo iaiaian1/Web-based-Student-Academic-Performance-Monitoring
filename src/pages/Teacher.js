@@ -57,7 +57,7 @@ const Teacher = () => {
   }
   
   useEffect(() => {
-    if(localStorage.getItem("user_name") === null || localStorage.getItem("user_id") === null || localStorage.getItem("type") === null || localStorage.getItem("account_id") === null){
+    if(localStorage.getItem("user_name") === null || localStorage.getItem("user_id") === null || localStorage.getItem("type") !== "teacher" || localStorage.getItem("account_id") === null){
       navigate('/')
     }
     getSections();

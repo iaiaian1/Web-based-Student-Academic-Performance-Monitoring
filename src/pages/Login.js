@@ -32,7 +32,7 @@ const Login = () => {
           }else if(doc.data().type === 'student'){
             navigate("/student");
           }else if(doc.data().type === 'admin'){
-            console.log('bruh')
+            navigate("/trackeradmin");
           }
           
         } else {
