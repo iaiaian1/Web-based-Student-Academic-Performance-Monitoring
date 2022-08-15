@@ -43,6 +43,9 @@ const Student = () => {
       }
 
     useEffect(() => {
+        if(localStorage.getItem("user_name") === null || localStorage.getItem("user_id") === null || localStorage.getItem("type") === null || localStorage.getItem("account_id") === null){
+            navigate('/')
+        }
         getActivities()
         getSections()
     }, [])

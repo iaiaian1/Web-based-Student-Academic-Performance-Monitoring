@@ -57,9 +57,9 @@ const Teacher = () => {
   }
   
   useEffect(() => {
-    // if(localStorage.getItem("teacher_username") === null || localStorage.getItem("teacher_name") === null || localStorage.getItem("type") === null){
-    //   navigate('/')
-    // }
+    if(localStorage.getItem("user_name") === null || localStorage.getItem("user_id") === null || localStorage.getItem("type") === null || localStorage.getItem("account_id") === null){
+      navigate('/')
+    }
     getSections();
     getAccounts();
   }, [])
