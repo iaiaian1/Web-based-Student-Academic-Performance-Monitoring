@@ -85,6 +85,7 @@ const SettingsModal = ({ open, onClose }) => {
                     await updateDoc(accountRef, {
                         name : newName,
                     })
+                    localStorage.setItem("user_name", newName)
                     setStatus('Name updated')
                     clear()
                 }else if(oldPassword === newPassword){
@@ -96,6 +97,7 @@ const SettingsModal = ({ open, onClose }) => {
                         name : newName,
                         password : newPassword
                     })
+                    localStorage.setItem("user_name", newName)
                     setStatus('Name and password updated!')
                     clear()
                 }else{
@@ -110,6 +112,7 @@ const SettingsModal = ({ open, onClose }) => {
                         name : newName,
                         username : newId
                     })
+                    localStorage.setItem("user_name", newName)
                     setStatus('ID and name updated')
                     clear()
                 }else if(oldPassword === newPassword){
@@ -122,6 +125,7 @@ const SettingsModal = ({ open, onClose }) => {
                         username : newId,
                         password : newPassword
                     })
+                    localStorage.setItem("user_name", newName)
                     setStatus('ID, username and password updated!')
                     clear()
                 }else{
