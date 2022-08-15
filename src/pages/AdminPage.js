@@ -32,7 +32,7 @@ const AdminPage = () => {
                     name : name,
                     password  : password,
                     type : "teacher",
-                    username : id
+                    username : id.toLowerCase()
                 })
                 setStatus('Teacher account added!')
                 clear()

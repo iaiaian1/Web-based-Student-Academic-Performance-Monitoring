@@ -57,7 +57,7 @@ const SettingsModal = ({ open, onClose }) => {
                 if(oldPassword === "" || newPassword === ""){
                     //Update ID only!
                     await updateDoc(accountRef, {
-                        username : newId
+                        username : newId.toLowerCase()
                     })
                     setStatus('ID updated')
                     clear()
@@ -67,7 +67,7 @@ const SettingsModal = ({ open, onClose }) => {
                 }else if(oldPassword === account.password){
                     //Update ID and password.
                     await updateDoc(accountRef, {
-                        username : newId,
+                        username : newId.toLowerCase(),
                         password : newPassword
                     })
                     setStatus('ID and password updated!')
@@ -110,7 +110,7 @@ const SettingsModal = ({ open, onClose }) => {
                     //Update ID and name only!
                     await updateDoc(accountRef, {
                         name : newName,
-                        username : newId
+                        username : newId.toLowerCase()
                     })
                     localStorage.setItem("user_name", newName)
                     setStatus('ID and name updated')
@@ -122,7 +122,7 @@ const SettingsModal = ({ open, onClose }) => {
                     //Update ID, name and password.
                     await updateDoc(accountRef, {
                         name : newName,
-                        username : newId,
+                        username : newId.toLowerCase(),
                         password : newPassword
                     })
                     localStorage.setItem("user_name", newName)
