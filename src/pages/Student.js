@@ -6,6 +6,7 @@ import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import 'react-tabs/style/react-tabs.css';
 import { db } from "../util/firebase-config";
 import GradeModal from "./GradeModal";
+import GradingScaleModal from "./GradingScaleModal";
 import SettingsModal from "./SettingsModal";
 
 const Student = () => {
@@ -18,6 +19,7 @@ const Student = () => {
     //Modal
     const [isOpen, setIsOpen] = useState(false)
     const [isOpen2, setIsOpen2] = useState(false)
+    const [isOpen3, setIsOpen3] = useState(false)
 
     const navigate = useNavigate()
 
@@ -165,6 +167,7 @@ const Student = () => {
                     {/* Buttons */}
                     <div className="w-full h-1/6 flex justify-around p-5">
                         <button className="w-1/4 font-bold break-words text-sm sm:text-xl bg-green-500" onClick={() => setIsOpen(true)}>GRADES</button>
+                        <button className="w-1/4 font-bold break-words text-sm sm:text-xl bg-green-500" onClick={() => setIsOpen3(true)}>GRADING SCALE</button>   
                         <button className="w-1/4 font-bold break-words text-sm sm:text-xl bg-red-500" onClick={() => Logout()}>LOGOUT</button>
                     </div>
                 </div>
@@ -175,6 +178,9 @@ const Student = () => {
             <SettingsModal open={isOpen2} onClose={() => setIsOpen2(false)}>
 
             </SettingsModal>
+            <GradingScaleModal open={isOpen3} onClose={() => setIsOpen3(false)}>
+
+            </GradingScaleModal>
         </>
      );
 }
