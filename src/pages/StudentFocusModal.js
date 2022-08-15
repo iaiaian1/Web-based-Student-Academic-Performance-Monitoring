@@ -9,7 +9,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 import ChangeScoreModal from "./ChangeScoreModal";
 import GradeModal from "./GradeModal";
 
-const StudentFocusModal = ({ open, children, onClose, populateActivities, populateStudents }) => {
+const StudentFocusModal = ({ open, children, onClose, populateActivities, populateStudents, activities }) => {
 
   const [isOpen, setIsOpen] = useState(false)
   const [isOpen2, setIsOpen2] = useState(false)
@@ -167,7 +167,7 @@ const StudentFocusModal = ({ open, children, onClose, populateActivities, popula
       <ChangeScoreModal open={isOpen} onClose={() => setIsOpen(false)} populateActivities={ () => populateActivities()}>
         { children }
       </ChangeScoreModal>
-      <GradeModal open={isOpen2} quarter={quarter} section={localStorage.getItem("section_id")} onClose={() => setIsOpen2(false)}>
+      <GradeModal open={isOpen2} quarter={quarter} activities={activities} section={localStorage.getItem("section_id")} onClose={() => setIsOpen2(false)}>
         { children }
       </GradeModal>
     </>,

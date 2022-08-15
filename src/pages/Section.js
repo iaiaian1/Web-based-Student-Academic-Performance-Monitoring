@@ -117,7 +117,7 @@ const Section = () => {
             <AddActivityModal open={isOpen2} onClose={() => setIsOpen2(false)} populateActivities={() => getActivities()}>
                 { students }
             </AddActivityModal>
-            <StudentFocusModal open={isOpen3} onClose={() => setIsOpen3(false)} populateActivities={() => getActivities()} populateStudents={ () => getStudents() }>
+            <StudentFocusModal open={isOpen3} activities={activities} onClose={() => setIsOpen3(false)} populateActivities={() => getActivities()} populateStudents={ () => getStudents() }>
                 { activities }
             </StudentFocusModal>
         </>

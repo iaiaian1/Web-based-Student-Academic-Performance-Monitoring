@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 
-const GradeModal = ({ open, children, onClose, quarter, section }) => {
+const GradeModal = ({ open, children, onClose, quarter, section, activities }) => {
 
     const [finalGrade, setFinalGrade] = useState(0)
     const [remarks, setRemarks] = useState('')
@@ -71,7 +71,7 @@ const GradeModal = ({ open, children, onClose, quarter, section }) => {
 
     useEffect(() => {
         calculateGrades()
-    }, [quarter, section])
+    }, [quarter, section, activities])
 
     useEffect(() => {
         if(finalGrade >= 90){
