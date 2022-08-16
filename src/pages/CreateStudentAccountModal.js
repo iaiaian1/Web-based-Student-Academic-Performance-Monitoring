@@ -39,7 +39,7 @@ const CreateStudentAccountModal = ({ open, children, onClose, getAccounts }) => 
 
     return ReactDOM.createPortal(
         <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-black/[.54]">
-            <div className="flex flex-col items-start justify-center h-2/5 sm:h-1/3 w-2/3 rounded-lg bg-blue-400 p-5">
+            <div className="flex flex-col items-start justify-center h-2/4 sm:h-1/3 w-2/3 rounded-lg bg-blue-400 p-5">
                 <p className="text-xl sm:text-2xl font-bold mb-5">Create student account</p>
                 <p>{status}</p>
                 <form id="addSectionForm" onSubmit={(e) => e.preventDefault()} className="w-full">
