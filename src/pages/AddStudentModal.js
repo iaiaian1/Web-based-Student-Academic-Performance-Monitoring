@@ -55,7 +55,7 @@ const AddStudentModal = ({ open, children, onClose, populateStudents }) => {
 
   return ReactDOM.createPortal(
   <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-black/[.54]">
-      <div className="flex flex-col items-start justify-center h-1/3 w-2/3 rounded-lg bg-blue-400 p-5">
+      <div className="flex flex-col items-start justify-center w-2/4 lg:w-1/4 rounded-lg bg-blue-400 p-5">
         <p className="text-2xl font-bold mb-5">Add student</p>
         <p>{ status }</p>
         <form id="addSectionForm" onSubmit={(e) => e.preventDefault()} className="w-full">
@@ -71,10 +71,10 @@ const AddStudentModal = ({ open, children, onClose, populateStudents }) => {
               <input
                 type="submit"
                 value="ADD"
-                className="w-2/3 sm:w-1/4 self-center rounded-lg bg-green-300 py-2 px-5 font-bold"
+                className="w-2/3 sm:w-1/4 self-center rounded-lg bg-green-300 py-1 px-1 font-bold"
                 onClick={() => addStudent()}
               />
-              <button onClick={() => {onClose();}} className="w-2/3 sm:w-1/4 self-center rounded-lg bg-green-300 py-2 px-5 font-bold">CLOSE</button>
+              <button onClick={() => {onClose();}} className="w-2/3 sm:w-1/4 self-center rounded-lg bg-green-300 py-1 px-1 font-bold">CLOSE</button>
             </div>
         </form>
       </div>

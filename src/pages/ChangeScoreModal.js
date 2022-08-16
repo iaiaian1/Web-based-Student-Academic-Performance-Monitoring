@@ -75,7 +75,7 @@ const ChangeScoreModal = ({ open, children, onClose, populateActivities }) => {
 
     return ReactDOM.createPortal(
     <div className="fixed inset-0 z-20 flex h-full w-full items-center justify-center bg-black/[.2]">
-        <div className="flex flex-col items-start justify-start h-2/5 w-1/3 rounded-lg bg-blue-400 p-1">
+        <div className="flex flex-col items-start justify-start rounded-lg bg-blue-400 p-1">
             <p className="text-lg self-center font-bold sm:text-2xl">Edit Activity</p>
             <form id="addSectionForm" onSubmit={(e) => e.preventDefault()} className="flex flex-col justify-between w-full h-full p-2">
                 { children && children.map((activity) => {
@@ -95,7 +95,7 @@ const ChangeScoreModal = ({ open, children, onClose, populateActivities }) => {
                     }
                 }) }
                 <p>{ status }</p>
-                <div className="flex justify-around items-center flex-col gap-1 sm:flex-row">
+                <div className="flex justify-around items-center flex-col gap-1 sm:flex-row mt-2">
                     <input
                         type="submit"
                         value="CHANGE"

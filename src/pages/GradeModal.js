@@ -93,7 +93,7 @@ const GradeModal = ({ open, children, onClose, quarter, section, activities }) =
 
     return ReactDOM.createPortal(
     <div className="fixed inset-0 z-20 flex h-full w-full items-center justify-center bg-black/[.2]">
-        <div className="flex flex-col items-center justify-between h-1/4 w-1/3 rounded-lg bg-blue-400 p-2">
+        <div className="flex flex-col items-center justify-between h-1/4 rounded-lg bg-blue-400 p-2">
             <p className="text-xl font-bold sm:text-2xl">Grades</p>
             <p className="text-xl sm:text-2xl">Average - { finalGrade && finalGrade.toFixed(1) }</p>
             <p className="text-base sm:text-xl">Remarks - { remarks }</p>

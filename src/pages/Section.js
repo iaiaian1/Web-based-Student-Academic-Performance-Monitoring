@@ -89,7 +89,7 @@ const Section = () => {
                     
 
                         {/* Section box */}
-                        <div className="grid grid-cols-2 sm:grid-cols-5 h-full w-full gap-1 rounded-lg border bg-blue-500 p-5 overflow-auto">
+                        <div className="grid grid-cols-2 sm:grid-cols-5 h-full w-full gap-1 rounded-lg border bg-blue-500 p-2 overflow-auto">
                             {students && accounts.map((account) => {
                                 //Render data ONLY if the student is enrolled in sections' students.
                                 if(students.includes(account.username)){
@@ -106,7 +106,7 @@ const Section = () => {
                     </div>
 
                     {/* Buttons */}
-                    <div className="w-full h-1/6 flex justify-around p-5">
+                    <div className="w-full h-1/6 flex justify-around m-1">
                         <button className="w-1/4 font-bold break-words text-sm sm:text-xl bg-green-500" onClick={() => setIsOpen(true)}>Add student</button>
                         <button className="w-1/4 font-bold break-words text-sm sm:text-xl bg-green-500" onClick={() => setIsOpen2(true)}>Add activity</button>
                         <button className="w-1/4 font-bold break-words text-sm sm:text-xl bg-green-500" onClick={() => setIsOpen4(true)}>Grading Scale</button>

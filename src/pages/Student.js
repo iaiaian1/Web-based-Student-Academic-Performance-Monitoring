@@ -165,7 +165,7 @@ const Student = () => {
                         </TabPanel>
                     </Tabs>
                     {/* Buttons */}
-                    <div className="w-full h-1/6 flex justify-around p-5">
+                    <div className="w-full h-1/6 flex justify-around m-1">
                         <button className="w-1/4 font-bold break-words text-sm sm:text-xl bg-green-500" onClick={() => setIsOpen(true)}>GRADES</button>
                         <button className="w-1/4 font-bold break-words text-sm sm:text-xl bg-green-500" onClick={() => setIsOpen3(true)}>GRADING SCALE</button>   
                         <button className="w-1/4 font-bold break-words text-sm sm:text-xl bg-red-500" onClick={() => Logout()}>LOGOUT</button>

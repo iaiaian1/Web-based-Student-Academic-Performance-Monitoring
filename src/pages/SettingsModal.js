@@ -144,7 +144,7 @@ const SettingsModal = ({ open, onClose }) => {
 
     return ReactDOM.createPortal( 
         <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-black/[.54]">
-            <div className="flex flex-col items-start justify-center h-2/5 w-2/3 rounded-lg bg-blue-400 p-5">
+            <div className="flex flex-col items-start justify-center h-2/4 sm:h-2/5 w-2/3 rounded-lg bg-blue-400 p-3">
                 <p className="text-xl sm:text-2xl font-bold mb-2">Edit account</p>
                 <p>{ status }</p>
                 <form onSubmit={(e) => e.preventDefault()} className="w-full">
