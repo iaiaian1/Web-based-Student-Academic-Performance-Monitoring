@@ -165,10 +165,10 @@ const Student = () => {
                         </TabPanel>
                     </Tabs>
                     {/* Buttons */}
-                    <div className="w-full h-1/6 flex justify-around m-1">
-                        <button className="w-1/4 font-bold break-words text-sm sm:text-xl bg-green-500" onClick={() => setIsOpen(true)}>GRADES</button>
-                        <button className="w-1/4 font-bold break-words text-sm sm:text-xl bg-green-500" onClick={() => setIsOpen3(true)}>GRADING SCALE</button>   
-                        <button className="w-1/4 font-bold break-words text-sm sm:text-xl bg-red-500" onClick={() => Logout()}>LOGOUT</button>
+                    <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-1 m-1">
+                        <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500" onClick={() => setIsOpen(true)}>GRADES</button>
+                        <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500" onClick={() => setIsOpen3(true)}>GRADING SCALE</button>   
+                        <button className="font-bold break-words text-sm sm:text-xl p-2 bg-red-500" onClick={() => Logout()}>LOGOUT</button>
                     </div>
                 </div>
             </div>
