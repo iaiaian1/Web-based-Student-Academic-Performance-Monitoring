@@ -92,10 +92,10 @@ const Teacher = () => {
             </div>
 
             {/* Buttons */}
-            <div className="w-full h-1/6 flex justify-around m-1">
-              <button className="w-1/4 font-bold break-words text-sm sm:text-xl bg-green-500" onClick={() => setIsOpen(true)}>Add a section</button>
-              <button className="w-1/4 font-bold break-words text-xs sm:text-lg bg-green-500" onClick={() => setIsOpen2(true)}>Create student account</button>
-              <button className="w-1/4 font-bold break-words text-sm sm:text-xl bg-red-500" onClick={() => Logout()}>Logout</button>
+            <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-1 m-1">
+              <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500" onClick={() => setIsOpen(true)}>Add a section</button>
+              <button className="font-bold break-words text-xs sm:text-lg p-2 bg-green-500" onClick={() => setIsOpen2(true)}>Create student account</button>
+              <button className="font-bold break-words text-sm sm:text-xl p-2 bg-red-500" onClick={() => Logout()}>Logout</button>
             </div>
           </div>
         </div>

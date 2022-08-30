@@ -8,6 +8,7 @@ import AddStudentModal from "./AddStudentModal";
 import AddActivityModal from "./AddActivityModal";
 import StudentFocusModal from "./StudentFocusModal";
 import GradingScaleModal from "./GradingScaleModal";
+import ActivityTracker from "./ActivityTracker";
 
 const Section = () => {
 
@@ -24,6 +25,7 @@ const Section = () => {
     const [isOpen2, setIsOpen2] = useState(false)
     const [isOpen3, setIsOpen3] = useState(false)
     const [isOpen4, setIsOpen4] = useState(false)
+    const [isOpen5, setIsOpen5] = useState(false)
 
     //Load accounts
     const getAccounts = async () => {
@@ -106,10 +108,11 @@ const Section = () => {
                     </div>
 
                     {/* Buttons */}
-                    <div className="w-full h-1/6 flex justify-around m-1">
-                        <button className="w-1/4 font-bold break-words text-sm sm:text-xl bg-green-500" onClick={() => setIsOpen(true)}>Add student</button>
-                        <button className="w-1/4 font-bold break-words text-sm sm:text-xl bg-green-500" onClick={() => setIsOpen2(true)}>Add activity</button>
-                        <button className="w-1/4 font-bold break-words text-sm sm:text-xl bg-green-500" onClick={() => setIsOpen4(true)}>Grading Scale</button>
+                    <div className="w-full grid grid-cols-2 sm:grid-cols-4 gap-1 m-1">
+                        <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500" onClick={() => setIsOpen(true)}>Add student</button>
+                        <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500" onClick={() => setIsOpen2(true)}>Add activity</button>
+                        <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500" onClick={() => setIsOpen4(true)}>Grading Scale</button>
+                        <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500" onClick={() => setIsOpen5(true)}>Activities</button>
                     </div>
                 </div>
             </div>
@@ -125,6 +128,9 @@ const Section = () => {
             <GradingScaleModal open={isOpen4} onClose={() => setIsOpen4(false)}>
 
             </GradingScaleModal>
+            <ActivityTracker open={isOpen5} onClose={() => setIsOpen5(false)} activities={activities}>
+
+            </ActivityTracker>
         </>
      );
 }
