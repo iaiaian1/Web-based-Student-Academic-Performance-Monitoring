@@ -14,6 +14,7 @@ const StudentFocusModal = ({ open, children, onClose, populateActivities, popula
   const [isOpen, setIsOpen] = useState(false)
   const [isOpen2, setIsOpen2] = useState(false)
   const [quarter, setQuarter] = useState('1')
+  const [subject, setSubject] = useState('filipino')
 
   function dropStudent(){
     const remove = async() => {
@@ -58,10 +59,17 @@ const StudentFocusModal = ({ open, children, onClose, populateActivities, popula
   return ReactDOM.createPortal(
   <>
     <div className="fixed inset-0 z-10 flex h-full w-full items-center justify-center bg-black/[.54]">
-        <div className="flex flex-col items-center justify-center h-3/4 w-5/6 sm:w-2/3 rounded-lg bg-blue-400 p-5">
+        <div className="flex flex-col items-center justify-center h-5/6 w-5/6 sm:w-2/3 rounded-lg bg-blue-400 p-5">
           <p className="text-lg sm:text-2xl self-center font-bold">{ localStorage.getItem("student_id").toUpperCase() } - { localStorage.getItem("student_name").toUpperCase() }</p>
           <form id="addSectionForm" onSubmit={(e) => e.preventDefault()} className="flex flex-col justify-between w-full h-full p-2">
               <div className="bg-blue-500 rounded-lg p-2">
+                <p className="font-bold">Subject</p>
+                <select className="text-sm w-full p-1" value={subject} onChange={(e) => {setSubject(e.target.value);populateActivities();}}>
+                  <option value="filipino">Filipino</option>
+                  <option value="english">English</option>
+                  <option value="mathematics">Mathematics</option>
+                  <option value="makabayan">Makabayan</option>
+                </select>
                 <p className="font-bold">Quarter</p>
                 <select className="text-sm w-full p-1" value={quarter} onChange={(e) => {setQuarter(e.target.value);populateActivities();}}>
                   <option value="1">1st grading</option>
@@ -83,7 +91,7 @@ const StudentFocusModal = ({ open, children, onClose, populateActivities, popula
                   {/* Performance */}
                   <div>
                     { children.map((activity) => {
-                      if(activity.quarter === quarter && activity.type === "performance" && activity.section === localStorage.getItem("section_id")){
+                      if(activity.quarter === quarter && activity.type === "performance" && activity.section === localStorage.getItem("section_id") && activity.subject === subject){
                         return(
                           <div key={ activity.id } className="flex justify-between px-10 mb-1 w-full rounded-lg py-1 bg-blue-500">
                             <p className="break-words">{ activity.name } - { activity.scores[localStorage.getItem("student_id")] }/{ activity.total }</p>                                                                                                                                
@@ -98,7 +106,7 @@ const StudentFocusModal = ({ open, children, onClose, populateActivities, popula
                   {/* Periodical Test */}
                   <div>
                     { children.map((activity) => {
-                      if(activity.quarter === quarter && activity.type === "periodical" && activity.section === localStorage.getItem("section_id")){
+                      if(activity.quarter === quarter && activity.type === "periodical" && activity.section === localStorage.getItem("section_id") && activity.subject === subject){
                         return(
                           <div key={ activity.id } className="flex justify-between px-10 mb-1 w-full rounded-lg py-1 bg-blue-500">
                             <p>{ activity.name } - { activity.scores[localStorage.getItem("student_id")] }/{ activity.total }</p>                                                                                                                                
@@ -113,7 +121,7 @@ const StudentFocusModal = ({ open, children, onClose, populateActivities, popula
                   {/* Project */}
                   <div>
                     { children.map((activity) => {
-                      if(activity.quarter === quarter && activity.type === "project" && activity.section === localStorage.getItem("section_id")){
+                      if(activity.quarter === quarter && activity.type === "project" && activity.section === localStorage.getItem("section_id") && activity.subject === subject){
                         return(
                           <div key={ activity.id } className="flex justify-between px-10 mb-1 w-full rounded-lg py-1 bg-blue-500">
                             <p>{ activity.name } - { activity.scores[localStorage.getItem("student_id")] }/{ activity.total }</p>                                                                                                                                
@@ -128,7 +136,7 @@ const StudentFocusModal = ({ open, children, onClose, populateActivities, popula
                   {/* Recitations */}
                   <div>
                     { children.map((activity) => {
-                      if(activity.quarter === quarter && activity.type === "recitation" && activity.section === localStorage.getItem("section_id")){
+                      if(activity.quarter === quarter && activity.type === "recitation" && activity.section === localStorage.getItem("section_id") && activity.subject === subject){
                         return(
                           <div key={ activity.id } className="flex justify-between px-10 mb-1 w-full rounded-lg py-1 bg-blue-500">
                             <p>{ activity.name } - { activity.scores[localStorage.getItem("student_id")] }/{ activity.total }</p>                                                                                                                                
@@ -143,7 +151,7 @@ const StudentFocusModal = ({ open, children, onClose, populateActivities, popula
                   {/* Summative Test */}
                   <div>
                     { children.map((activity) => {
-                      if(activity.quarter === quarter && activity.type === "summative" && activity.section === localStorage.getItem("section_id")){
+                      if(activity.quarter === quarter && activity.type === "summative" && activity.section === localStorage.getItem("section_id") && activity.subject === subject){
                         return(
                           <div key={ activity.id } className="flex justify-between px-10 mb-1 w-full rounded-lg py-1 bg-blue-500">
                             <p>{ activity.name } - { activity.scores[localStorage.getItem("student_id")] }/{ activity.total }</p>                                                                                                                                
@@ -167,7 +175,7 @@ const StudentFocusModal = ({ open, children, onClose, populateActivities, popula
       <ChangeScoreModal open={isOpen} onClose={() => setIsOpen(false)} populateActivities={ () => populateActivities()}>
         { children }
       </ChangeScoreModal>
-      <GradeModal open={isOpen2} quarter={quarter} activities={activities} section={localStorage.getItem("section_id")} onClose={() => setIsOpen2(false)}>
+      <GradeModal open={isOpen2} quarter={quarter} activities={activities} section={localStorage.getItem("section_id")} subject={subject} onClose={() => setIsOpen2(false)}>
         { children }
       </GradeModal>
     </>,

@@ -7,6 +7,7 @@ const AddActivityModal = ({ open, children, onClose, populateActivities }) => {
 
   const [term, setTerm] = useState('1')
   const [type, setType] = useState('performance')
+  const [subject, setSubject] = useState('filipino')
   const [activity, setActivity] = useState('')
   const [total, setTotal] = useState('')
   const [status, setStatus] = useState('')
@@ -14,7 +15,7 @@ const AddActivityModal = ({ open, children, onClose, populateActivities }) => {
   const colRef = collection(db, "activities")
 
   const addActivity = async() =>{
-    if (term === "" || type === "" || activity === "" || total === "") {
+    if (subject == "" || term === "" || type === "" || activity === "" || total === "") {
       setStatus("Please fill up required fields");
     }else{
       //Check if null
@@ -24,7 +25,7 @@ const AddActivityModal = ({ open, children, onClose, populateActivities }) => {
         await children.forEach((element) => {
           scores[element] = 0
         })
-        await addDoc(colRef, { quarter: term, type: type, name: activity, total: parseInt(total), section: localStorage.getItem("section_id"), scores: scores })
+        await addDoc(colRef, { subject: subject, quarter: term, type: type, name: activity, total: parseInt(total), section: localStorage.getItem("section_id"), scores: scores })
         alert('Added')
         setActivity('')
         setTotal('')
@@ -45,8 +46,15 @@ const AddActivityModal = ({ open, children, onClose, populateActivities }) => {
         <p>{ status }</p>
         <form id="addSectionForm" onSubmit={(e) => e.preventDefault()} className="w-full">
             {/* QUARTER */}
+            <p className="font-bold">Subject</p>
+            <select id="countries" className="text-sm w-full p-1" value={subject} onChange={(e) => setSubject(e.target.value)}>
+              <option value="filipino">Filipino</option>
+              <option value="english">English</option>
+              <option value="mathematics">Mathematics</option>
+              <option value="makabayan">Makabayan</option>
+            </select>
             <p className="font-bold">Quarter</p>
-              <select id="countries" className="text-sm w-full p-1" value={term} onChange={(e) => setTerm(e.target.value)}>
+            <select id="countries" className="text-sm w-full p-1" value={term} onChange={(e) => setTerm(e.target.value)}>
               <option value="1">1st grading</option>
               <option value="2">2nd grading</option>
               <option value="3">3rd grading</option>

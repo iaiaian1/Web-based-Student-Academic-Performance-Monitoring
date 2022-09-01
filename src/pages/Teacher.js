@@ -48,9 +48,7 @@ const Teacher = () => {
     sections.map((section) => {
       if (section.id === id){
         localStorage.setItem("section_id", id);
-        localStorage.setItem("level", section.level);
         localStorage.setItem("section", section.section);
-        localStorage.setItem("subject", section.subject);
       }
     })
     navigate('section')
@@ -83,7 +81,7 @@ const Teacher = () => {
                   return(
                     <div key={section.id} className="flex h-14 w-full items-center justify-center rounded-lg bg-green-400 p-1 text-sm sm:text-base" onClick={() => openSection(section.id)}>
                       <p className="break-words font-bold">
-                        {section.level} - {section.section} - {section.subject}
+                        {section.section}
                       </p>
                     </div>
                   )
