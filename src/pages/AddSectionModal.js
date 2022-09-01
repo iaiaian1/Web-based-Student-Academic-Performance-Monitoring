@@ -6,18 +6,17 @@ import { db } from "../util/firebase-config";
 const AddSectionModal = ({ open, children, onClose, populateSection }) => {
   //TODO add animation
 
-  const [level, setLevel] = useState('')
-  const [section, setSection] = useState('')
-  const [subject, setSubject] = useState('')
+  //Set a default section
+  const [section, setSection] = useState('1 - Rose')
   const [status, setStatus] = useState('')
   const sectionsColRef = collection(db, "sections")
 
   //Add student
   const addSection = async () => {
-    if (level === "" || section === "" || subject === "") {
+    if (section === "") {
       setStatus("Please fill up required fields");
     }else{
-      await addDoc(sectionsColRef, {level: level, section: section, subject: subject, teacher: localStorage.getItem('user_id')})
+      await addDoc(sectionsColRef, {section: section, teacher: localStorage.getItem('user_id')})
       Clear()
       alert('Added')
       populateSection()
@@ -26,9 +25,7 @@ const AddSectionModal = ({ open, children, onClose, populateSection }) => {
 
   //Clear fields
   function Clear(){
-    setLevel('')
     setSection('')
-    setSubject('')
     setStatus('')
   }
   
@@ -40,31 +37,16 @@ const AddSectionModal = ({ open, children, onClose, populateSection }) => {
         <p className="text-2xl font-bold mb-5">Add section</p>
         <p>{status}</p>
         <form id="addSectionForm" onSubmit={(e) => e.preventDefault()} className="w-full">
-            <p className="font-bold">Grade level</p>
-            <input 
-              type="number"
-              min="1"
-              value={level}
-              onChange={(e) => setLevel(e.target.value)}
-              required
-              className="w-full"
-            />
-            <p className="font-bold">Section name</p>
-            <input 
-              type="text"
-              value={section}
-              onChange={(e) => setSection(e.target.value)}
-              required
-              className="w-full"
-            />
-            <p className="font-bold">Subject</p>
-            <input 
-              type="text"
-              value={subject}
-              onChange={(e) => setSubject(e.target.value)}
-              required
-              className="w-full"
-            />
+            <p className="font-bold">Select a section</p>
+            <select className="text-sm w-full p-1" value={section} onChange={(e) => setSection(e.target.value)}>
+              <option value="1 - Rose">1 - Rose</option>
+              <option value="2 - Mango">2 - Mango</option>
+              <option value="3 - Narra">3 - Narra</option>
+              <option value="4 - Pluto">4 - Pluto</option>
+              <option value="5 - Diamond">5 - Diamond</option>
+              <option value="6 - Rizal">6 - Rizal</option>
+              <option value="Kindergarten">Kindergarten</option>
+            </select>
             <div className="mt-3 flex justify-around flex-col gap-y-2 sm:flex-row">
               <input
                 type="submit"

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 
-const GradeModal = ({ open, children, onClose, quarter, section, activities }) => {
+const GradeModal = ({ open, children, onClose, quarter, section, activities, subject }) => {
 
     const [finalGrade, setFinalGrade] = useState(0)
     const [remarks, setRemarks] = useState('')
@@ -23,37 +23,39 @@ const GradeModal = ({ open, children, onClose, quarter, section, activities }) =
             if(activity.quarter === quarter){
                 //Check if its the same section id youre in
                 if(activity.section === section){
-                    //GET TOTALS
-                    //Add to performance, 50% weight
-                    if(activity.type === "performance" || activity.type === "project" || activity.type === "recitation"){
-                        performanceTotal += activity.total
-                    }
-                    //Add to summative, 30% weight
-                    if(activity.type === "summative"){
-                        summativeTotal += activity.total
-                    }
-                    //Add to quarterly (periodical), 30% weight
-                    if(activity.type === "periodical"){
-                        periodicalTotal += activity.total
-                    }
-
-                    //GET TOTAL SCORE
-                    for (let [key, value] of Object.entries(activity.scores)) {
-                        //Change id getter method depending on account type
-                        let student_id = ""
-                        if(localStorage.getItem("type") === "student"){
-                            student_id = localStorage.getItem("user_id")
-                        }else if(localStorage.getItem("type") === "teacher"){
-                            student_id = localStorage.getItem("student_id")
+                    if(activity.subject === subject) {
+                        //GET TOTALS
+                        //Add to performance, 50% weight
+                        if(activity.type === "performance" || activity.type === "project" || activity.type === "recitation"){
+                            performanceTotal += activity.total
+                        }
+                        //Add to summative, 30% weight
+                        if(activity.type === "summative"){
+                            summativeTotal += activity.total
+                        }
+                        //Add to quarterly (periodical), 30% weight
+                        if(activity.type === "periodical"){
+                            periodicalTotal += activity.total
                         }
 
-                        if(key === student_id){
-                            if(activity.type === "performance" || activity.type === "project" || activity.type === "recitation"){
-                                performanceScore += value
-                            }else if(activity.type === "summative"){
-                                summativeScore += value
-                            }else if(activity.type === "periodical"){
-                                periodicalScore += value
+                        //GET TOTAL SCORE
+                        for (let [key, value] of Object.entries(activity.scores)) {
+                            //Change id getter method depending on account type
+                            let student_id = ""
+                            if(localStorage.getItem("type") === "student"){
+                                student_id = localStorage.getItem("user_id")
+                            }else if(localStorage.getItem("type") === "teacher"){
+                                student_id = localStorage.getItem("student_id")
+                            }
+
+                            if(key === student_id){
+                                if(activity.type === "performance" || activity.type === "project" || activity.type === "recitation"){
+                                    performanceScore += value
+                                }else if(activity.type === "summative"){
+                                    summativeScore += value
+                                }else if(activity.type === "periodical"){
+                                    periodicalScore += value
+                                }
                             }
                         }
                     }
