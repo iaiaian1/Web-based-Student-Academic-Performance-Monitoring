@@ -68,7 +68,10 @@ const StudentFocusModal = ({ open, children, onClose, populateActivities, popula
                   <option value="filipino">Filipino</option>
                   <option value="english">English</option>
                   <option value="mathematics">Mathematics</option>
-                  <option value="makabayan">Makabayan</option>
+                  <option value="ap">Araling Panlipunan</option>
+                  <option value="mapeh">MAPEH</option>
+                  <option value="science">Science</option>
+                  <option value="mtb">MTB</option>
                 </select>
                 <p className="font-bold">Quarter</p>
                 <select className="text-sm w-full p-1" value={quarter} onChange={(e) => {setQuarter(e.target.value);populateActivities();}}>
