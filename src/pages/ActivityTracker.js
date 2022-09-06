@@ -1,31 +1,222 @@
+import { useState } from "react";
+import { useReactToPrint } from 'react-to-print'
 import ReactDOM from "react-dom";
+import { useRef } from "react";
 
-const ActivityTracker = ({ open, children, onClose, activities }) => {
+const ActivityTracker = ({ open, children, onClose, activities, students, accounts }) => {
 
-    
+    const [subject, setSubject] = useState('filipino')
+    let componentRef = useRef()
+    const handlePrint = useReactToPrint({
+        content: () => componentRef.current,
+    });
 
     if (!open) return null;
     console.log(activities)
 
-    return ReactDOM.createPortal( 
+    return ReactDOM.createPortal(
+        <>    
         <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-black/[.54]">
             <div className="w-5/6 h-2/3 flex flex-col items-center justify-center rounded-lg bg-blue-400 p-5">
-                <p className="text-2xl font-bold mb-5">Activities</p>
-                { activities.map((activity) => {
-                    if(activity.section === localStorage.getItem("section_id")){
-                        return(
-                            <div key={activity.id}>
-                                <table>
-                                    
-                                </table>
-                            </div>
-                        )
-                    }
-                }) }
-                
-                <button className="bg-green-400 py-1 px-5 rounded-lg font-bold mt-2" onClick={onClose}>CLOSE</button>
+                <select className="text-sm w-full p-1" value={subject} onChange={(e) => {setSubject(e.target.value);}}>
+                    <option value="filipino">Filipino</option>
+                    <option value="english">English</option>
+                    <option value="mathematics">Mathematics</option>
+                    <option value="ap">Araling Panlipunan</option>
+                    <option value="mapeh">MAPEH</option>
+                    <option value="science">Science</option>
+                    <option value="mtb">MTB</option>
+                </select>
+                <p className="text-2xl font-bold">Activities</p>
+                <div className="overflow-auto bg-white w-full h-full" ref={componentRef}>
+                    <p className="font-bold text-lg">Performance</p>
+                    <table className=" border border-black w-full">
+                        <thead>
+                            <tr className="border border-black">
+                                <th className="border border-black p-1" key="name">Name</th>
+                                {activities.map((activity) => {
+                                    if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "performance"){
+                                        return(                                        
+                                                <th className="border border-black p-1" key={activity.id}>{ activity.name }</th>                                     
+                                        )
+                                    }
+                                })}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {accounts.map((account) => {
+                                if(students){
+                                    if(students.includes(account.username)){
+                                        return(
+                                            <tr key={account.id}>
+                                                <td key={account.id} className="border border-black">{account.name}</td>
+                                                {activities.map((activity) => {
+                                                    if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "performance"){
+                                                        return(                                                   
+                                                                <td className="text-center border border-black" key={activity.id}>{activity.scores[account.username] ? activity.scores[account.username] : 0}</td>
+                                                                
+                                                        )
+                                                    }                                      
+                                                })}
+                                            </tr>
+                                        )
+                                    }
+                                }
+                            })}
+                        </tbody>
+                    </table>
+                    <p className="font-bold text-lg">Periodical test</p>
+                    <table className=" border border-black w-full">
+                        <thead>
+                            <tr className="border border-black">
+                                <th className="border border-black p-1" key="name">Name</th>
+                                {activities.map((activity) => {
+                                    if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "periodical"){
+                                        return(                                        
+                                                <th className="border border-black p-1" key={activity.id}>{ activity.name }</th>                                     
+                                        )
+                                    }
+                                })}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {accounts.map((account) => {
+                                if(students){
+                                    if(students.includes(account.username)){
+                                        return(
+                                            <tr key={account.id}>
+                                                <td key={account.id} className="border border-black">{account.name}</td>
+                                                {activities.map((activity) => {
+                                                    if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "periodical"){
+                                                        return(                                                   
+                                                                <td className="text-center border border-black" key={activity.id}>{activity.scores[account.username] ? activity.scores[account.username] : 0}</td>
+                                                                
+                                                        )
+                                                    }                                      
+                                                })}
+                                            </tr>
+                                        )
+                                    }
+                                }
+                            })}
+                        </tbody>
+                    </table>
+                    <p className="font-bold text-lg">Project</p>
+                    <table className=" border border-black w-full">
+                        <thead>
+                            <tr className="border border-black">
+                                <th className="border border-black p-1" key="name">Name</th>
+                                {activities.map((activity) => {
+                                    if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "project"){
+                                        return(                                        
+                                                <th className="border border-black p-1" key={activity.id}>{ activity.name }</th>                                     
+                                        )
+                                    }
+                                })}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {accounts.map((account) => {
+                                if(students){
+                                    if(students.includes(account.username)){
+                                        return(
+                                            <tr key={account.id}>
+                                                <td key={account.id} className="border border-black">{account.name}</td>
+                                                {activities.map((activity) => {
+                                                    if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "project"){
+                                                        return(                                                   
+                                                                <td className="text-center border border-black" key={activity.id}>{activity.scores[account.username] ? activity.scores[account.username] : 0}</td>
+                                                                
+                                                        )
+                                                    }                                      
+                                                })}
+                                            </tr>
+                                        )
+                                    }
+                                }
+                            })}
+                        </tbody>
+                    </table>
+                    <p className="font-bold text-lg">Recitation</p>
+                    <table className=" border border-black w-full">
+                        <thead>
+                            <tr className="border border-black">
+                                <th className="border border-black p-1" key="name">Name</th>
+                                {activities.map((activity) => {
+                                    if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "recitation"){
+                                        return(                                        
+                                                <th className="border border-black p-1" key={activity.id}>{ activity.name }</th>                                     
+                                        )
+                                    }
+                                })}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {accounts.map((account) => {
+                                if(students){
+                                    if(students.includes(account.username)){
+                                        return(
+                                            <tr key={account.id}>
+                                                <td key={account.id} className="border border-black">{account.name}</td>
+                                                {activities.map((activity) => {
+                                                    if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "recitation"){
+                                                        return(                                                   
+                                                                <td className="text-center border border-black" key={activity.id}>{activity.scores[account.username] ? activity.scores[account.username] : 0}</td>
+                                                                
+                                                        )
+                                                    }                                      
+                                                })}
+                                            </tr>
+                                        )
+                                    }
+                                }
+                            })}
+                        </tbody>
+                    </table>
+                    <p className="font-bold text-lg">Summative test</p>
+                    <table className=" border border-black w-full">
+                        <thead>
+                            <tr className="border border-black">
+                                <th className="border border-black p-1" key="name">Name</th>
+                                {activities.map((activity) => {
+                                    if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "summative"){
+                                        return(                                        
+                                                <th className="border border-black p-1" key={activity.id}>{ activity.name }</th>                                     
+                                        )
+                                    }
+                                })}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {accounts.map((account) => {
+                                if(students){
+                                    if(students.includes(account.username)){
+                                        return(
+                                            <tr key={account.id}>
+                                                <td key={account.id} className="border border-black">{account.name}</td>
+                                                {activities.map((activity) => {
+                                                    if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "summative"){
+                                                        return(                                                   
+                                                                <td className="text-center border border-black" key={activity.id}>{activity.scores[account.username] ? activity.scores[account.username] : 0}</td>
+                                                                
+                                                        )
+                                                    }                                      
+                                                })}
+                                            </tr>
+                                        )
+                                    }
+                                }
+                            })}
+                        </tbody>
+                    </table>
+                </div>
+                <div className="grid gap-2 grid-cols-2 m-1">
+                    <button className="bg-green-400 rounded-lg font-bold p-2" onClick={handlePrint}>PRINT</button>
+                    <button className="bg-green-400 rounded-lg font-bold p-2" onClick={onClose}>CLOSE</button>
+                </div>
             </div>
-        </div>,
+        </div>
+        </>,
     document.getElementById("portal")
     );
 }

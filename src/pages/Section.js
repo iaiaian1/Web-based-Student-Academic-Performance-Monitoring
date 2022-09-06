@@ -126,7 +126,7 @@ const Section = () => {
             <GradingScaleModal open={isOpen4} onClose={() => setIsOpen4(false)}>
 
             </GradingScaleModal>
-            <ActivityTracker open={isOpen5} onClose={() => setIsOpen5(false)} activities={activities}>
+            <ActivityTracker open={isOpen5} onClose={() => setIsOpen5(false)} activities={activities} students={students} accounts={accounts}>
 
             </ActivityTracker>
         </>

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 import { db } from "../util/firebase-config";
 import AddSectionModal from "./AddSectionModal";
 import CreateStudentAccountModal from "./CreateStudentAccountModal";
+//import SectionsArchive from "./SectionsArchive";
 import SettingsModal from "./SettingsModal";
 
 const Teacher = () => {
@@ -14,6 +15,7 @@ const Teacher = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpen2, setIsOpen2] = useState(false);
   const [isOpen3, setIsOpen3] = useState(false);
+  //const [isOpen4, setIsOpen4] = useState(false);
 
   //Populate sections
   const [sections, setSections] = useState([])
@@ -77,11 +79,11 @@ const Teacher = () => {
             <div className="grid grid-cols-2 sm:grid-cols-5 h-full w-full gap-1 rounded-lg border bg-blue-500 p-5 overflow-auto">
               {sections.map((section) => {
                 //Render data ONLY if the teacher is the same as the teacher in localstorage.
-                if(section.teacher === localStorage.getItem('user_id')){
+                if(section.teacher === localStorage.getItem('user_id') && section.status === "active"){
                   return(
-                    <div key={section.id} className="flex h-14 w-full items-center justify-center rounded-lg bg-green-400 p-1 text-sm sm:text-base" onClick={() => openSection(section.id)}>
+                    <div key={section.id} className="flex h-16 w-full items-center justify-center rounded-lg bg-green-400 p-1 text-sm sm:text-base" onClick={() => openSection(section.id)}>
                       <p className="break-words font-bold">
-                        {section.section}
+                        {section.section} ({section.year})
                       </p>
                     </div>
                   )
@@ -93,13 +95,14 @@ const Teacher = () => {
             <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-1 m-1">
               <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500" onClick={() => setIsOpen(true)}>Add a section</button>
               <button className="font-bold break-words text-xs sm:text-lg p-2 bg-green-500" onClick={() => setIsOpen2(true)}>Create student account</button>
+              {/* <button className="font-bold break-words text-xs sm:text-lg p-2 bg-green-500" onClick={() => setIsOpen4(true)}>Sections archive</button> */}
               <button className="font-bold break-words text-sm sm:text-xl p-2 bg-red-500" onClick={() => Logout()}>Logout</button>
             </div>
           </div>
         </div>
       </div>
       
-      <AddSectionModal open={isOpen} onClose={() => setIsOpen(false)} populateSection={() => getSections()}>
+      <AddSectionModal open={isOpen} onClose={() => setIsOpen(false)} populateSection={() => getSections()} sections={sections}>
         Passed data.
       </AddSectionModal>
       <CreateStudentAccountModal open={isOpen2} onClose={() => setIsOpen2(false)} getAccounts={() => getAccounts()}>
@@ -108,6 +111,9 @@ const Teacher = () => {
       <SettingsModal open={isOpen3} onClose={() => setIsOpen3(false)}>
 
       </SettingsModal>
+      {/* <SectionsArchive open={isOpen4} onClose={() => setIsOpen4(false)}>
+
+      </SectionsArchive> */}
     </>
   );
 };

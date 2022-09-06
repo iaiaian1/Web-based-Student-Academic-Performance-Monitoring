@@ -3,20 +3,22 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { db } from "../util/firebase-config";
 
-const AddSectionModal = ({ open, children, onClose, populateSection }) => {
+const AddSectionModal = ({ open, children, onClose, populateSection, sections }) => {
   //TODO add animation
 
   //Set a default section
-  const [section, setSection] = useState('1 - Rose')
+  const [sectionSelect, setSectionSelect] = useState('1 - Rose')
   const [status, setStatus] = useState('')
   const sectionsColRef = collection(db, "sections")
+  const date = new Date()
 
   //Add student
   const addSection = async () => {
-    if (section === "") {
+    if (sectionSelect === "") {
       setStatus("Please fill up required fields");
     }else{
-      await addDoc(sectionsColRef, {section: section, teacher: localStorage.getItem('user_id')})
+      let schoolYear = `${date.getFullYear()} - ${date.getFullYear()+1}`
+      await addDoc(sectionsColRef, {section: sectionSelect, teacher: localStorage.getItem('user_id'), year: schoolYear, status: "active"})
       Clear()
       alert('Added')
       populateSection()
@@ -25,10 +27,10 @@ const AddSectionModal = ({ open, children, onClose, populateSection }) => {
 
   //Clear fields
   function Clear(){
-    setSection('')
+    setSectionSelect('')
     setStatus('')
   }
-  
+
   if (!open) return null;
 
   return ReactDOM.createPortal(
@@ -38,14 +40,14 @@ const AddSectionModal = ({ open, children, onClose, populateSection }) => {
         <p>{status}</p>
         <form id="addSectionForm" onSubmit={(e) => e.preventDefault()} className="w-full">
             <p className="font-bold">Select a section</p>
-            <select className="text-sm w-full p-1" value={section} onChange={(e) => setSection(e.target.value)}>
-              <option value="1 - Rose">1 - Rose</option>
-              <option value="2 - Mango">2 - Mango</option>
-              <option value="3 - Narra">3 - Narra</option>
-              <option value="4 - Pluto">4 - Pluto</option>
-              <option value="5 - Diamond">5 - Diamond</option>
-              <option value="6 - Rizal">6 - Rizal</option>
-              <option value="Kindergarten">Kindergarten</option>
+            <select id="selectId" className="text-sm w-full p-1" value={sectionSelect} onChange={(e) => setSectionSelect(e.target.value)}>
+              <option value="1 - Rose" id="1 - Rose">1 - Rose</option>
+              <option value="2 - Mango" id="2 - Mango">2 - Mango</option>
+              <option value="3 - Narra" id="3 - Narra">3 - Narra</option>
+              <option value="4 - Pluto" id="4 - Pluto">4 - Pluto</option>
+              <option value="5 - Diamond" id="5 - Diamond">5 - Diamond</option>
+              <option value="6 - Rizal" id="6 - Rizal">6 - Rizal</option>
+              <option value="Kindergarten" id="Kindergarten">Kindergarten</option>
             </select>
             <div className="mt-3 flex justify-around flex-col gap-y-2 sm:flex-row">
               <input

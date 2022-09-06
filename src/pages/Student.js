@@ -15,6 +15,7 @@ const Student = () => {
     const [section, setSection] = useState('')
     const [activities, setActivities] = useState([])
     const [sections, setSections] = useState([])
+    const [subject, setSubject] = useState('filipino')
 
     //Modal
     const [isOpen, setIsOpen] = useState(false)
@@ -68,8 +69,6 @@ const Student = () => {
                             <option value="3">3rd grading</option>
                             <option value="4">4th grading</option>
                         </select>
-                    </div>
-                    <div className="bg-blue-500 rounded-lg p-2 w-full mt-3">
                         <p className="font-bold">Section</p>
                         <select className="text-sm w-full p-1" value={section} onChange={(e) => {setSection(e.target.value);}}>
                             <option value="">Select</option>
@@ -77,13 +76,22 @@ const Student = () => {
                                 if(section.students){
                                     if(section.students.includes(localStorage.getItem('user_id'))){
                                         return(
-                                            <option key={section.id} value={section.id}>{ section.level } - { section.section } - { section.subject }</option>
+                                            <option key={section.id} value={section.id}>{ section.section } ({section.year})</option>
                                         )
                                     }
                                 }
                             })}
                         </select>
-                        
+                        <p className="font-bold">Subject</p>
+                        <select className="text-sm w-full p-1" value={subject} onChange={(e) => {setSubject(e.target.value);}}>
+                            <option value="filipino">Filipino</option>
+                            <option value="english">English</option>
+                            <option value="mathematics">Mathematics</option>
+                            <option value="ap">Araling Panlipunan</option>
+                            <option value="mapeh">MAPEH</option>
+                            <option value="science">Science</option>
+                            <option value="mtb">MTB</option>
+                        </select>
                     </div>
                     <Tabs className="h-full w-full m-2 overflow-y-auto self-center text-sm sm:text-base">
                         <TabList>
@@ -97,7 +105,7 @@ const Student = () => {
                         {/* Performance */}
                         <div>
                             { activities.map((activity) => {
-                            if(activity.quarter === quarter && activity.type === "performance" && activity.section === section){
+                            if(activity.quarter === quarter && activity.type === "performance" && activity.section === section && activity.subject === subject){
                                 return(
                                 <div key={ activity.id } className="flex justify-between px-10 mb-1 w-full rounded-lg py-1 bg-blue-500">
                                     <p className="break-words">{ activity.name } - { activity.scores[localStorage.getItem("user_id")] }/{ activity.total }</p>                                                                                                                                
@@ -111,7 +119,7 @@ const Student = () => {
                         {/* Periodical Test */}
                         <div>
                             { activities.map((activity) => {
-                            if(activity.quarter === quarter && activity.type === "periodical" && activity.section === section){
+                            if(activity.quarter === quarter && activity.type === "periodical" && activity.section === section && activity.subject === subject){
                                 return(
                                 <div key={ activity.id } className="flex justify-between px-10 mb-1 w-full rounded-lg py-1 bg-blue-500">
                                     <p>{ activity.name } - { activity.scores[localStorage.getItem("user_id")] }/{ activity.total }</p>                                                                                                                                
@@ -125,7 +133,7 @@ const Student = () => {
                         {/* Project */}
                         <div>
                             { activities.map((activity) => {
-                            if(activity.quarter === quarter && activity.type === "project" && activity.section === section){
+                            if(activity.quarter === quarter && activity.type === "project" && activity.section === section && activity.subject === subject){
                                 return(
                                 <div key={ activity.id } className="flex justify-between px-10 mb-1 w-full rounded-lg py-1 bg-blue-500">
                                     <p>{ activity.name } - { activity.scores[localStorage.getItem("user_id")] }/{ activity.total }</p>                                                                                                                                
@@ -139,7 +147,7 @@ const Student = () => {
                         {/* Recitations */}
                         <div>
                             { activities.map((activity) => {
-                            if(activity.quarter === quarter && activity.type === "recitation" && activity.section === section){
+                            if(activity.quarter === quarter && activity.type === "recitation" && activity.section === section && activity.subject === subject){
                                 return(
                                 <div key={ activity.id } className="flex justify-between px-10 mb-1 w-full rounded-lg py-1 bg-blue-500">
                                     <p>{ activity.name } - { activity.scores[localStorage.getItem("user_id")] }/{ activity.total }</p>                                                                                                                                
@@ -153,7 +161,7 @@ const Student = () => {
                         {/* Summative Test */}
                         <div>
                             { activities.map((activity) => {
-                            if(activity.quarter === quarter && activity.type === "summative" && activity.section === section){
+                            if(activity.quarter === quarter && activity.type === "summative" && activity.section === section && activity.subject === subject){
                                 return(
                                 <div key={ activity.id } className="flex justify-between px-10 mb-1 w-full rounded-lg py-1 bg-blue-500">
                                     <p>{ activity.name } - { activity.scores[localStorage.getItem("user_id")] }/{ activity.total }</p>                                                                                                                                
