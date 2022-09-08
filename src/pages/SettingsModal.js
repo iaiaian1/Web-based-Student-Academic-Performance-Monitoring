@@ -6,8 +6,8 @@ import { db } from "../util/firebase-config";
 
 const SettingsModal = ({ open, onClose }) => {
 
-    const [newName, setNewName] = useState('')
-    const [newId, setNewId] = useState('')
+    // const [newName, setNewName] = useState('')
+    // const [newId, setNewId] = useState('')
     const [oldPassword, setOldPassword] = useState('')
     const [newPassword, setNewPassword] = useState('')
     const [status, setStatus] = useState('')
@@ -25,115 +25,130 @@ const SettingsModal = ({ open, onClose }) => {
     }
 
     function clear(){
-        setNewId('')
-        setNewName('')
+        // setNewId('')
+        // setNewName('')
         setOldPassword('')
         setNewPassword('')
     }
 
     const updateInfo = async() => {
-        //If name is blank, update only the id and password.
-        if(newName === ""){
-            //Check if newid state has a value
-            if(newId === ""){
-                if(oldPassword === "" || newPassword === ""){
-                    setStatus('No new ID, name or passwords provided.')
-                    clear()
-                }else if(oldPassword === newPassword){
-                    setStatus('Old and new password matches!')
-                }else if(oldPassword === account.password){
-                    //Update password only
-                    await updateDoc(accountRef, {
-                        password : newPassword
-                    })
-                    setStatus('Password updated!')
-                    clear()
-                }else{
-                    setStatus('Old password dont match')
-                    clear()
-                }
-            }else{
-                //If newId state has content, include it with password update.
-                if(oldPassword === "" || newPassword === ""){
-                    //Update ID only!
-                    await updateDoc(accountRef, {
-                        username : newId.toLowerCase()
-                    })
-                    setStatus('ID updated')
-                    clear()
-                }else if(oldPassword === newPassword){
-                    setStatus('Old and new password matches!')
-                    clear()
-                }else if(oldPassword === account.password){
-                    //Update ID and password.
-                    await updateDoc(accountRef, {
-                        username : newId.toLowerCase(),
-                        password : newPassword
-                    })
-                    setStatus('ID and password updated!')
-                    clear()
-                }else{
-                    setStatus('Old password dont match')
-                    clear()
-                }
-            }
+        if(oldPassword === "" || newPassword === ""){
+            setStatus('No new passwords provided.')
+            clear()
+        }else if(oldPassword === newPassword){
+            setStatus('Old and new password matches!')
+        }else if(oldPassword === account.password){
+            await updateDoc(accountRef, {
+                password : newPassword
+            })
+            setStatus('Password updated!')
+            clear()
         }else{
-            //Else, if newname state has a value.
-            //Check if id state has a value
-            if(newId === ""){
-                if(oldPassword === "" || newPassword === ""){
-                    await updateDoc(accountRef, {
-                        name : newName,
-                    })
-                    localStorage.setItem("user_name", newName)
-                    setStatus('Name updated')
-                    clear()
-                }else if(oldPassword === newPassword){
-                    setStatus('Old and new password matches!')
-                    clear()
-                }else if(oldPassword === account.password){
-                    //Update password and name only
-                    await updateDoc(accountRef, {
-                        name : newName,
-                        password : newPassword
-                    })
-                    localStorage.setItem("user_name", newName)
-                    setStatus('Name and password updated!')
-                    clear()
-                }else{
-                    setStatus('Old password dont match')
-                    clear()
-                }
-            }else{
-                //If newId state has content, include it with password update.
-                if(oldPassword === "" || newPassword === ""){
-                    //Update ID and name only!
-                    await updateDoc(accountRef, {
-                        name : newName,
-                        username : newId.toLowerCase()
-                    })
-                    localStorage.setItem("user_name", newName)
-                    setStatus('ID and name updated')
-                    clear()
-                }else if(oldPassword === newPassword){
-                    setStatus('Old and new password matches!')
-                    clear()
-                }else if(oldPassword === account.password){
-                    //Update ID, name and password.
-                    await updateDoc(accountRef, {
-                        name : newName,
-                        username : newId.toLowerCase(),
-                        password : newPassword
-                    })
-                    localStorage.setItem("user_name", newName)
-                    setStatus('ID, username and password updated!')
-                    clear()
-                }else{
-                    setStatus('Old password dont match')
-                    clear()
-                }
-            }
+            setStatus('Old password dont match')
         }
+
+        // //If name is blank, update only the id and password.
+        // if(newName === ""){
+        //     //Check if newid state has a value
+        //     if(newId === ""){
+        //         if(oldPassword === "" || newPassword === ""){
+        //             setStatus('No new ID, name or passwords provided.')
+        //             clear()
+        //         }else if(oldPassword === newPassword){
+        //             setStatus('Old and new password matches!')
+        //         }else if(oldPassword === account.password){
+        //             //Update password only
+        //             await updateDoc(accountRef, {
+        //                 password : newPassword
+        //             })
+        //             setStatus('Password updated!')
+        //             clear()
+        //         }else{
+        //             setStatus('Old password dont match')
+        //             clear()
+        //         }
+        //     }else{
+        //         //If newId state has content, include it with password update.
+        //         if(oldPassword === "" || newPassword === ""){
+        //             //Update ID only!
+        //             await updateDoc(accountRef, {
+        //                 username : newId.toLowerCase()
+        //             })
+        //             setStatus('ID updated')
+        //             clear()
+        //         }else if(oldPassword === newPassword){
+        //             setStatus('Old and new password matches!')
+        //             clear()
+        //         }else if(oldPassword === account.password){
+        //             //Update ID and password.
+        //             await updateDoc(accountRef, {
+        //                 username : newId.toLowerCase(),
+        //                 password : newPassword
+        //             })
+        //             setStatus('ID and password updated!')
+        //             clear()
+        //         }else{
+        //             setStatus('Old password dont match')
+        //             clear()
+        //         }
+        //     }
+        // }else{
+        //     //Else, if newname state has a value.
+        //     //Check if id state has a value
+        //     if(newId === ""){
+        //         if(oldPassword === "" || newPassword === ""){
+        //             await updateDoc(accountRef, {
+        //                 name : newName,
+        //             })
+        //             localStorage.setItem("user_name", newName)
+        //             setStatus('Name updated')
+        //             clear()
+        //         }else if(oldPassword === newPassword){
+        //             setStatus('Old and new password matches!')
+        //             clear()
+        //         }else if(oldPassword === account.password){
+        //             //Update password and name only
+        //             await updateDoc(accountRef, {
+        //                 name : newName,
+        //                 password : newPassword
+        //             })
+        //             localStorage.setItem("user_name", newName)
+        //             setStatus('Name and password updated!')
+        //             clear()
+        //         }else{
+        //             setStatus('Old password dont match')
+        //             clear()
+        //         }
+        //     }else{
+        //         //If newId state has content, include it with password update.
+        //         if(oldPassword === "" || newPassword === ""){
+        //             //Update ID and name only!
+        //             await updateDoc(accountRef, {
+        //                 name : newName,
+        //                 username : newId.toLowerCase()
+        //             })
+        //             localStorage.setItem("user_name", newName)
+        //             setStatus('ID and name updated')
+        //             clear()
+        //         }else if(oldPassword === newPassword){
+        //             setStatus('Old and new password matches!')
+        //             clear()
+        //         }else if(oldPassword === account.password){
+        //             //Update ID, name and password.
+        //             await updateDoc(accountRef, {
+        //                 name : newName,
+        //                 username : newId.toLowerCase(),
+        //                 password : newPassword
+        //             })
+        //             localStorage.setItem("user_name", newName)
+        //             setStatus('ID, username and password updated!')
+        //             clear()
+        //         }else{
+        //             setStatus('Old password dont match')
+        //             clear()
+        //         }
+        //     }
+        // }
     }
 
     useEffect(() => {
@@ -148,7 +163,7 @@ const SettingsModal = ({ open, onClose }) => {
                 <p className="text-xl sm:text-2xl font-bold mb-2">Edit account</p>
                 <p>{ status }</p>
                 <form onSubmit={(e) => e.preventDefault()} className="w-full">
-                    <p className="font-bold">ID</p>
+                    {/* <p className="font-bold">ID</p>
                     <input 
                         type="text"
                         value={newId}
@@ -161,7 +176,7 @@ const SettingsModal = ({ open, onClose }) => {
                         value={newName}
                         onChange={(e) => setNewName(e.target.value)}
                         className="w-full"
-                    />
+                    /> */}
                     <p className="font-bold">Old password</p>
                     <input 
                         type="password"

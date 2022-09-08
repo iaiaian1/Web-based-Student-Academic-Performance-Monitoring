@@ -12,7 +12,7 @@ const ActivityTracker = ({ open, children, onClose, activities, students, accoun
     });
 
     if (!open) return null;
-    console.log(activities)
+    //console.log(activities)
 
     return ReactDOM.createPortal(
         <>    
@@ -29,6 +29,7 @@ const ActivityTracker = ({ open, children, onClose, activities, students, accoun
                 </select>
                 <p className="text-2xl font-bold">Activities</p>
                 <div className="overflow-auto bg-white w-full h-full" ref={componentRef}>
+                    <p>Section: {localStorage.getItem("section")}({localStorage.getItem("section_id")})</p>
                     <p className="font-bold text-lg">Performance</p>
                     <table className=" border border-black w-full">
                         <thead>
