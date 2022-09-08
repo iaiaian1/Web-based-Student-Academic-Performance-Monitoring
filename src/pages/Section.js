@@ -85,7 +85,7 @@ const Section = () => {
                         <p>Section ID: {localStorage.getItem("section_id")}</p>
                     </div>
 
-                    <div className="mt-5 flex h-5/6 w-full flex-col items-center justify-center">
+                    <div className="mt-5 flex h-5/6 w-full flex-col items-center justify-center overflow-auto">
                         <p className="self-start text-xl font-bold">Students</p>
                     
 
