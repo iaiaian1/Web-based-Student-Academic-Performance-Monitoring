@@ -25,6 +25,7 @@ const Section = () => {
     const [isOpen4, setIsOpen4] = useState(false)
     const [isOpen5, setIsOpen5] = useState(false)
 
+    //Functions
     //Load accounts
     const getAccounts = async () => {
         const colRef = collection(db, "accounts")
@@ -47,27 +48,26 @@ const Section = () => {
         ...activity.data(), id: activity.id
         })))
     }
-    //Functions
-    const deleteSection = () => {
-        confirmAlert({
-            title: 'Delete section',
-            message: 'Are you sure to do this?',
-            buttons: [
-                {
-                    label: 'Yes',
-                    onClick: () => {
-                        const sectionDoc = doc(db, "sections", localStorage.getItem('section_id'));
-                        deleteDoc(sectionDoc)
-                        navigate('/teacher')
-                    }
-                },
-                {
-                    label: 'No',
-                    //onClick: () => console.log('no')
-                }
-            ]
-        });
-    };
+    // const deleteSection = () => {
+    //     confirmAlert({
+    //         title: 'Delete section',
+    //         message: 'Are you sure to do this?',
+    //         buttons: [
+    //             {
+    //                 label: 'Yes',
+    //                 onClick: () => {
+    //                     const sectionDoc = doc(db, "sections", localStorage.getItem('section_id'));
+    //                     deleteDoc(sectionDoc)
+    //                     navigate('/teacher')
+    //                 }
+    //             },
+    //             {
+    //                 label: 'No',
+    //                 //onClick: () => console.log('no')
+    //             }
+    //         ]
+    //     });
+    // };
     
     useEffect(() => {
         getAccounts();
@@ -81,7 +81,8 @@ const Section = () => {
                 <div className="flex gap-y-2 h-5/6 w-11/12 flex-col items-center rounded-lg bg-blue-400 p-5">
                     <div className="flex justify-between w-full">
                         <p className="text-xl sm:text-3xl font-bold">SECTION: {section}</p>
-                        <button className="w-1/5 font-bold text-xs sm:text-xl bg-red-500 rounded-lg" onClick={() => deleteSection()}>DELETE SECTION</button>
+                        {/* <button className="w-1/5 font-bold text-xs sm:text-xl bg-red-500 rounded-lg" onClick={() => deleteSection()}>DELETE SECTION</button> */}
+                        <p>Section ID: {localStorage.getItem("section_id")}</p>
                     </div>
 
                     <div className="mt-5 flex h-5/6 w-full flex-col items-center justify-center">
