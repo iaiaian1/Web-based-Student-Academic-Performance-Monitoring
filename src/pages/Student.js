@@ -180,7 +180,7 @@ const Student = () => {
                     </div>
                 </div>
             </div>
-            <GradeModal open={isOpen} quarter={quarter} section={section} onClose={() => setIsOpen(false)}>
+            <GradeModal open={isOpen} quarter={quarter} section={section} onClose={() => setIsOpen(false)} subject={subject}>
                 { activities }
             </GradeModal>
             <SettingsModal open={isOpen2} onClose={() => setIsOpen2(false)}>
