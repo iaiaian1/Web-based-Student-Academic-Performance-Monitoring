@@ -92,14 +92,14 @@ const CreateStudentAccount = ({ open, children, onClose }) => {
                         required
                         className="w-full"
                     />
-                    <div className="mt-5 w-full flex justify-around flex-col gap-y-2 sm:flex-row">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 mt-5 gap-1">
                         <input
                             type="submit"
                             value="ADD"
-                            className="w-2/3 sm:w-1/4 self-center rounded-lg bg-green-300 py-2 px-5 font-bold"
+                            className="rounded-lg bg-green-300 font-bold"
                             onClick={() => addTeacher()}
                         />
-                        <button className="bg-green-400 py-1 px-5 rounded-lg font-bold mt-2" onClick={onClose}>CLOSE</button>
+                        <button className="bg-green-400 rounded-lg font-bold" onClick={onClose}>CLOSE</button>
                     </div>
                 </form>
             </div>

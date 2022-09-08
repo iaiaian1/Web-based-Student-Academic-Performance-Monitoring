@@ -61,7 +61,7 @@ const ResetAccount = ({ open, children, onClose }) => {
                         <input
                             type="submit"
                             value="ADD"
-                            className="self-center rounded-lg bg-green-300 font-bold"
+                            className="rounded-lg bg-green-300 font-bold"
                             onClick={() => resetAccount()}
                         />
                         <button className="bg-green-400 rounded-lg font-bold" onClick={() => {onClose(); setId(''); setStatus('')}}>CLOSE</button>
