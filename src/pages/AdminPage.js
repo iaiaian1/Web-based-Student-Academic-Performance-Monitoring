@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import CreateStudentAccount from "./CreateTeacherAccount";
 import DeactivateSection from "./DeactivateSection";
 import ResetAccount from "./ResetAccount";
+import DropoutStudent from "./DropoutStudent";
 
 const AdminPage = () => {
 
@@ -12,6 +13,7 @@ const AdminPage = () => {
     const [isOpen, setIsOpen] = useState(false)
     const [isOpen2, setIsOpen2] = useState(false)
     const [isOpen3, setIsOpen3] = useState(false)
+    const [isOpen4, setIsOpen4] = useState(false)
 
     const logout = async() => {
         localStorage.clear()
@@ -33,6 +35,7 @@ const AdminPage = () => {
                         <button className="font-bold break-words text-xs sm:text-lg p-2 bg-green-500" onClick={() => setIsOpen(true)}>Create teacher account</button>
                         <button className="font-bold break-words text-xs sm:text-lg p-2 bg-green-500" onClick={() => setIsOpen2(true)}>Deactivate / Activate section</button>
                         <button className="font-bold break-words text-xs sm:text-lg p-2 bg-green-500" onClick={() => setIsOpen3(true)}>Reset account</button>
+                        <button className="font-bold break-words text-xs sm:text-lg p-2 bg-green-500" onClick={() => setIsOpen4(true)}>Dropout Student</button>
                         <button className="font-bold break-words text-xs sm:text-lg p-2 bg-red-500" onClick={() => logout()}>Logout</button>
                     </div>
                 </div>
@@ -46,6 +49,9 @@ const AdminPage = () => {
             <ResetAccount open={isOpen3} onClose={() => setIsOpen3(false)}>
 
             </ResetAccount>
+            <DropoutStudent open={isOpen4} onClose={() => setIsOpen4(false)}>
+
+            </DropoutStudent>
         </>
      );
 }

@@ -167,10 +167,10 @@ const StudentFocusModal = ({ open, children, onClose, populateActivities, popula
                 </TabPanel>
               </Tabs>
 
-              <div className="mt-3 flex justify-around flex-col gap-y-2 sm:flex-row">
-                <button onClick={() => {setIsOpen2(true);}} className="w-2/3 sm:w-1/4 self-center rounded-lg bg-green-300 py-2 px-3 font-bold text-xs sm:text-lg">GRADES</button>
-                <button onClick={() => {dropStudent();}} className="w-2/3 sm:w-1/4 self-center rounded-lg bg-red-500 py-2 px-1 font-bold text-xs sm:text-lg">DROPOUT</button>
-                <button onClick={() => {onClose();}} className="w-2/3 sm:w-1/4 self-center rounded-lg bg-green-300 py-2 px-3 font-bold text-xs sm:text-lg">CLOSE</button>
+              <div className="grid grid-rows-2 sm:grid-cols-2 gap-2 m-1">
+                <button onClick={() => {setIsOpen2(true);}} className="rounded-lg bg-green-300 font-bold text-lg">GRADES</button>
+                {/* <button onClick={() => {dropStudent();}} className="w-2/3 sm:w-1/4 self-center rounded-lg bg-red-500 py-2 px-1 font-bold text-xs sm:text-lg">DROPOUT</button> */}
+                <button onClick={() => {onClose();}} className="rounded-lg bg-green-300 font-bold text-lg">CLOSE</button>
               </div>
           </form>
         </div>
