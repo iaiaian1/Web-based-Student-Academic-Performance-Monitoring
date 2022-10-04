@@ -59,7 +59,7 @@ const Student = () => {
                 <div className="flex flex-col items-center justify-center h-5/6 w-11/12 rounded-lg bg-blue-400 p-5">
                     <div className="flex justify-between w-full">
                         <p className="text-xl sm:text-3xl font-bold">Hello, {localStorage.getItem("user_name").toUpperCase()}!</p>
-                        <button className="w-1/5 font-bold text-xs sm:text-xl bg-red-500 rounded-lg" onClick={() => setIsOpen2(true)}>Settings</button>
+                        {/* <button className="w-1/5 font-bold text-xs sm:text-xl bg-red-500 rounded-lg" onClick={() => setIsOpen2(true)}>Settings</button> */}
                     </div>
                     <div className="bg-blue-500 rounded-lg p-2 w-full mt-3">
                         <p className="font-bold">Quarter</p>
@@ -183,9 +183,9 @@ const Student = () => {
             <GradeModal open={isOpen} quarter={quarter} section={section} onClose={() => setIsOpen(false)} subject={subject}>
                 { activities }
             </GradeModal>
-            <SettingsModal open={isOpen2} onClose={() => setIsOpen2(false)}>
+            {/* <SettingsModal open={isOpen2} onClose={() => setIsOpen2(false)}>
 
-            </SettingsModal>
+            </SettingsModal> */}
             <GradingScaleModal open={isOpen3} onClose={() => setIsOpen3(false)}>
 
             </GradingScaleModal>
