@@ -60,7 +60,7 @@ const ResetAccount = ({ open, children, onClose }) => {
                     <div className="grid grid-cols-1 sm:grid-cols-2 mt-5 gap-1">
                         <input
                             type="submit"
-                            value="ADD"
+                            value="RESET"
                             className="rounded-lg bg-green-300 font-bold"
                             onClick={() => resetAccount()}
                         />
