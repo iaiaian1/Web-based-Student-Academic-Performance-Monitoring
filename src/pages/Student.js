@@ -62,15 +62,16 @@ const Student = () => {
                         {/* <button className="w-1/5 font-bold text-xs sm:text-xl bg-red-500 rounded-lg" onClick={() => setIsOpen2(true)}>Settings</button> */}
                     </div>
                     <div className="bg-blue-500 rounded-lg p-2 w-full mt-3">
-                        <p className="font-bold">Quarter</p>
-                        <select className="text-sm w-full p-1" value={quarter} onChange={(e) => {setQuarter(e.target.value);}}>
+                        <p className="sm:text-lg font-bold">Quarter</p>
+                        <select className="text-sm sm:text-base w-full p-1" value={quarter} onChange={(e) => {setQuarter(e.target.value);}}>
                             <option value="1">1st grading</option>
                             <option value="2">2nd grading</option>
                             <option value="3">3rd grading</option>
                             <option value="4">4th grading</option>
                         </select>
-                        <p className="font-bold">Section</p>
-                        <select className="text-sm w-full p-1" value={section} onChange={(e) => {setSection(e.target.value);}}>
+
+                        <p className="sm:text-lg font-bold">Section</p>
+                        <select className="text-sm sm:text-base w-full p-1" value={section} onChange={(e) => {setSection(e.target.value);}}>
                             <option value="">Select</option>
                             {sections.map((section) => {
                                 if(section.students){
@@ -82,8 +83,9 @@ const Student = () => {
                                 }
                             })}
                         </select>
-                        <p className="font-bold">Subject</p>
-                        <select className="text-sm w-full p-1" value={subject} onChange={(e) => {setSubject(e.target.value);}}>
+
+                        <p className="sm:text-lg font-bold">Subject</p>
+                        <select className="text-sm sm:text-base w-full p-1" value={subject} onChange={(e) => {setSubject(e.target.value);}}>
                             <option value="filipino">Filipino</option>
                             <option value="english">English</option>
                             <option value="mathematics">Mathematics</option>
@@ -93,90 +95,84 @@ const Student = () => {
                             <option value="mtb">MTB</option>
                         </select>
                     </div>
-                    <Tabs className="h-full w-full m-2 overflow-y-auto self-center text-sm sm:text-base">
-                        <TabList>
-                            <Tab>Performance</Tab>
-                            <Tab>Periodical Test</Tab>
-                            <Tab>Project</Tab>
-                            <Tab>Recitations</Tab>
-                            <Tab>Summative Test</Tab>
-                        </TabList>
-                        <TabPanel className="break-words">
+
+                    {/* Activities wrapper */}
+                    <div className="h-full w-full m-2 overflow-y-auto self-center text-sm sm:text-lg">
                         {/* Performance */}
-                        <div>
+                        <div className="p-2 bg-blue-500 rounded-lg">
+                            <p className="text-lg sm:text-xl underline font-bold mb-1">Performance</p>
                             { activities.map((activity) => {
                             if(activity.quarter === quarter && activity.type === "performance" && activity.section === section && activity.subject === subject){
                                 return(
-                                <div key={ activity.id } className="flex justify-between px-10 mb-1 w-full rounded-lg py-1 bg-blue-500">
+                                <div key={ activity.id } className="flex justify-between px-2 mb-1 w-full">
                                     <p className="break-words">{ activity.name } - { activity.scores[localStorage.getItem("user_id")] }/{ activity.total }</p>                                                                                                                                
                                 </div>
                                 )
                             }
                             }) }
                         </div>
-                        </TabPanel>
-                        <TabPanel>
+
                         {/* Periodical Test */}
-                        <div>
+                        <div className="p-2 bg-blue-500 rounded-lg mt-2">
+                            <p className="text-lg sm:text-xl underline font-bold mb-1">Periodical</p>
                             { activities.map((activity) => {
                             if(activity.quarter === quarter && activity.type === "periodical" && activity.section === section && activity.subject === subject){
                                 return(
-                                <div key={ activity.id } className="flex justify-between px-10 mb-1 w-full rounded-lg py-1 bg-blue-500">
+                                <div key={ activity.id } className="flex justify-between px-2 mb-1 w-full">
                                     <p>{ activity.name } - { activity.scores[localStorage.getItem("user_id")] }/{ activity.total }</p>                                                                                                                                
                                 </div>
                                 )
                             }
                             }) }
                         </div>
-                        </TabPanel>
-                        <TabPanel>
+
                         {/* Project */}
-                        <div>
+                        <div className="p-2 bg-blue-500 rounded-lg mt-2">
+                            <p className="text-lg sm:text-xl underline font-bold mb-1">Project</p>
                             { activities.map((activity) => {
                             if(activity.quarter === quarter && activity.type === "project" && activity.section === section && activity.subject === subject){
                                 return(
-                                <div key={ activity.id } className="flex justify-between px-10 mb-1 w-full rounded-lg py-1 bg-blue-500">
+                                <div key={ activity.id } className="flex justify-between px-2 mb-1 w-full">
                                     <p>{ activity.name } - { activity.scores[localStorage.getItem("user_id")] }/{ activity.total }</p>                                                                                                                                
                                 </div>
                                 )
                             }
                             }) }
                         </div>
-                        </TabPanel>
-                        <TabPanel>
+
                         {/* Recitations */}
-                        <div>
+                        <div className="p-2 bg-blue-500 rounded-lg mt-2">
+                            <p className="text-lg sm:text-xl underline font-bold mb-1">Recitations</p>
                             { activities.map((activity) => {
                             if(activity.quarter === quarter && activity.type === "recitation" && activity.section === section && activity.subject === subject){
                                 return(
-                                <div key={ activity.id } className="flex justify-between px-10 mb-1 w-full rounded-lg py-1 bg-blue-500">
+                                <div key={ activity.id } className="flex justify-between px-2 mb-1 w-full">
                                     <p>{ activity.name } - { activity.scores[localStorage.getItem("user_id")] }/{ activity.total }</p>                                                                                                                                
                                 </div>
                                 )
                             }
                             }) }
                         </div>
-                        </TabPanel>
-                        <TabPanel>
+
                         {/* Summative Test */}
-                        <div>
+                        <div className="p-2 bg-blue-500 rounded-lg mt-2">
+                            <p className="text-lg sm:text-xl underline font-bold mb-1">Summative test</p>
                             { activities.map((activity) => {
                             if(activity.quarter === quarter && activity.type === "summative" && activity.section === section && activity.subject === subject){
                                 return(
-                                <div key={ activity.id } className="flex justify-between px-10 mb-1 w-full rounded-lg py-1 bg-blue-500">
+                                <div key={ activity.id } className="flex justify-between px-2 mb-1 w-full">
                                     <p>{ activity.name } - { activity.scores[localStorage.getItem("user_id")] }/{ activity.total }</p>                                                                                                                                
                                 </div>
                                 )
                             }
                             }) }
                         </div>
-                        </TabPanel>
-                    </Tabs>
+                    </div>
                     {/* Buttons */}
-                    <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-1 m-1">
-                        <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500" onClick={() => setIsOpen(true)}>GRADES</button>
-                        <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500" onClick={() => setIsOpen3(true)}>GRADING SCALE</button>   
-                        <button className="font-bold break-words text-sm sm:text-xl p-2 bg-red-500" onClick={() => Logout()}>LOGOUT</button>
+                    <div className="w-1/2 sm:w-fit grid grid-cols-1 sm:grid-cols-3 gap-1 m-1">
+                        <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500 rounded-lg" onClick={() => setIsOpen(true)}>GRADES</button>
+                        <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500 rounded-lg" onClick={() => setIsOpen3(true)}>GRADING SCALE</button>   
+                        <button className="font-bold break-words text-sm sm:text-xl p-2 bg-red-500 rounded-lg" onClick={() => Logout()}>LOGOUT</button>
                     </div>
                 </div>
             </div>
