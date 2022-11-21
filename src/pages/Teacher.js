@@ -6,6 +6,7 @@ import AddSectionModal from "./AddSectionModal";
 import CreateStudentAccountModal from "./CreateStudentAccountModal";
 //import SectionsArchive from "./SectionsArchive";
 import SettingsModal from "./SettingsModal";
+import searchImage from "../pictures/search.png"
 
 const Teacher = () => {
 
@@ -40,6 +41,9 @@ const Teacher = () => {
     })))
   }
 
+  //Search function
+  const [searchTerm, setSearchTerm] = useState('')
+
   //Logout
   function Logout(){
     localStorage.clear()
@@ -73,30 +77,57 @@ const Teacher = () => {
             <button className="w-1/5 font-bold text-xs sm:text-xl bg-red-500 rounded-lg" onClick={() => setIsOpen3(true)}>Settings</button>
           </div>
           <div className="mt-5 flex h-5/6 w-full flex-col items-center justify-center">
-            <p className="self-start text-xl font-bold">Sections</p>
+            <p className="self-start text-xl sm:text-2xl font-bold underline">Sections</p>
             
+            {/* Search div */}
+            <div className="self-start flex justify-center items-center gap-x-1 text-md font-bold py-2 ">
+              <img src={searchImage} className="object-cover w-5 h-5" alt="search"/>
+              <input
+                type="text"
+                placeholder="Search..." 
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="p-1 rounded-sm"
+              />
+            </div>
+
             {/* Section box */}
-            <div className="grid grid-cols-2 sm:grid-cols-5 h-full w-full gap-1 rounded-lg border bg-blue-500 p-5 overflow-auto">
+            <div className="grid grid-cols-1 gap-3 w-full h-full items-center justify-center rounded-lg border bg-blue-500 overflow-y-scroll p-2 px-5 sm:px-32">
               {sections.map((section) => {
                 //Render data ONLY if the teacher is the same as the teacher in localstorage.
-                if(section.teacher === localStorage.getItem('user_id') && section.status === "active"){
-                  return(
-                    <div key={section.id} className="flex h-16 w-full items-center justify-center rounded-lg bg-green-400 p-1 text-sm sm:text-base" onClick={() => openSection(section.id)}>
-                      <p className="break-words font-bold">
-                        {section.section} ({section.year})
-                      </p>
-                    </div>
-                  )
+                if(searchTerm === ""){
+                  //SHOW ALL ITEMS
+                  if(section.teacher === localStorage.getItem('user_id') && section.status === "active"){
+                    return(
+                      <div key={section.id} className="flex items-center justify-center rounded-lg bg-green-400 p-5 text-sm sm:text-base" onClick={() => openSection(section.id)}>
+                        <p className="break-words font-bold">
+                          {section.section} ({section.year})
+                        </p>
+                      </div>
+                    )
+                  } 
+                }else{
+                  //Show matching
+                  if(section.teacher === localStorage.getItem('user_id') && section.status === "active" && section.section.toLowerCase().replace(/ /g, '').includes(searchTerm.toLowerCase())){
+                    return(
+                      <div key={section.id} className="flex items-center justify-center rounded-lg bg-green-400 p-5 text-sm sm:text-base" onClick={() => openSection(section.id)}>
+                        <p className="break-words font-bold">
+                          {section.section} ({section.year})
+                        </p>
+                      </div>
+                    )
+                  } 
                 }
+                
               })}
             </div>
 
             {/* Buttons */}
-            <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-1 m-1">
-              <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500" onClick={() => setIsOpen(true)}>Add a section</button>
-              <button className="font-bold break-words text-xs sm:text-lg p-2 bg-green-500" onClick={() => setIsOpen2(true)}>Create student account</button>
+            <div className="w-1/2 sm:w-fit grid grid-cols-1 sm:grid-cols-3 gap-1 m-1">
+              <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500 rounded-lg" onClick={() => setIsOpen(true)}>Add a section</button>
+              <button className="font-bold break-words text-xs sm:text-lg p-2 bg-green-500 rounded-lg" onClick={() => setIsOpen2(true)}>Create student account</button>
               {/* <button className="font-bold break-words text-xs sm:text-lg p-2 bg-green-500" onClick={() => setIsOpen4(true)}>Sections archive</button> */}
-              <button className="font-bold break-words text-sm sm:text-xl p-2 bg-red-500" onClick={() => Logout()}>Logout</button>
+              <button className="font-bold break-words text-sm sm:text-xl p-2 bg-red-500 rounded-lg" onClick={() => Logout()}>Logout</button>
             </div>
           </div>
         </div>
