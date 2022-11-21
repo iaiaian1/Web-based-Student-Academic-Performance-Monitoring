@@ -35,7 +35,7 @@ const AddSectionModal = ({ open, children, onClose, populateSection, sections })
 
   return ReactDOM.createPortal(
   <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-black/[.54]">
-      <div className="flex flex-col items-start justify-center h-2/4 sm:h-1/3 w-2/3 rounded-lg bg-blue-400 p-5">
+      <div className="flex flex-col items-start justify-center h-1/3 sm:h-1/4 w-2/3 sm:w-1/4 rounded-lg bg-blue-400 p-5">
         <p className="text-2xl font-bold mb-5">Add section</p>
         <p>{status}</p>
         <form id="addSectionForm" onSubmit={(e) => e.preventDefault()} className="w-full">
@@ -49,14 +49,14 @@ const AddSectionModal = ({ open, children, onClose, populateSection, sections })
               <option value="6 - Rizal" id="6 - Rizal">6 - Rizal</option>
               <option value="Kindergarten" id="Kindergarten">Kindergarten</option>
             </select>
-            <div className="mt-3 flex justify-around flex-col gap-y-2 sm:flex-row">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
               <input
                 type="submit"
                 value="ADD"
-                className="w-2/3 sm:w-1/4 self-center rounded-lg bg-green-300 py-2 px-5 font-bold"
+                className="rounded-lg bg-green-500 py-2 font-bold"
                 onClick={() => addSection()}
               />
-              <button onClick={() => {onClose();Clear();}} className="w-2/3 sm:w-1/4 self-center rounded-lg bg-green-300 py-2 px-5 font-bold">CLOSE</button>
+              <button onClick={() => {onClose();Clear();}} className="rounded-lg bg-red-500 py-2 font-bold">CLOSE</button>
             </div>
         </form>
       </div>
