@@ -28,17 +28,20 @@ const ActivityTracker = ({ open, children, onClose, activities, students, accoun
                     <option value="mtb">MTB</option>
                 </select>
                 <p className="text-2xl font-bold">Activities</p>
-                <div className="overflow-auto bg-white w-full h-full" ref={componentRef}>
-                    <p>Section: {localStorage.getItem("section")}({localStorage.getItem("section_id")})</p>
+                <div className="overflow-auto bg-white w-full h-full p-1" ref={componentRef}>
+                    <p className="font-bold underline">Section: {localStorage.getItem("section")}({localStorage.getItem("section_id")})</p>
+                    <p className="font-bold">{subject.toLocaleUpperCase()}</p>
+                    <br />
+                    
                     <p className="font-bold text-lg">Performance</p>
                     <table className=" border border-black w-full">
                         <thead>
                             <tr className="border border-black">
-                                <th className="border border-black p-1" key="name">Name</th>
+                                <th className="border border-black p-1 bg-gray-300" key="name">Name</th>
                                 {activities.map((activity) => {
                                     if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "performance"){
                                         return(                                        
-                                                <th className="border border-black p-1" key={activity.id}>{ activity.name }</th>                                     
+                                                <th className="border border-black p-1 bg-gray-300" key={activity.id}>{ activity.name }</th>                                     
                                         )
                                     }
                                 })}
@@ -66,15 +69,17 @@ const ActivityTracker = ({ open, children, onClose, activities, students, accoun
                             })}
                         </tbody>
                     </table>
+                    <br />
+
                     <p className="font-bold text-lg">Periodical test</p>
                     <table className=" border border-black w-full">
                         <thead>
                             <tr className="border border-black">
-                                <th className="border border-black p-1" key="name">Name</th>
+                                <th className="border border-black p-1 bg-gray-300" key="name">Name</th>
                                 {activities.map((activity) => {
                                     if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "periodical"){
                                         return(                                        
-                                                <th className="border border-black p-1" key={activity.id}>{ activity.name }</th>                                     
+                                                <th className="border border-black p-1 bg-gray-300" key={activity.id}>{ activity.name }</th>                                     
                                         )
                                     }
                                 })}
@@ -102,15 +107,17 @@ const ActivityTracker = ({ open, children, onClose, activities, students, accoun
                             })}
                         </tbody>
                     </table>
+                    <br />
+
                     <p className="font-bold text-lg">Project</p>
                     <table className=" border border-black w-full">
                         <thead>
                             <tr className="border border-black">
-                                <th className="border border-black p-1" key="name">Name</th>
+                                <th className="border border-black p-1 bg-gray-300" key="name">Name</th>
                                 {activities.map((activity) => {
                                     if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "project"){
                                         return(                                        
-                                                <th className="border border-black p-1" key={activity.id}>{ activity.name }</th>                                     
+                                                <th className="border border-black p-1 bg-gray-300" key={activity.id}>{ activity.name }</th>                                     
                                         )
                                     }
                                 })}
@@ -138,15 +145,17 @@ const ActivityTracker = ({ open, children, onClose, activities, students, accoun
                             })}
                         </tbody>
                     </table>
+                    <br />
+
                     <p className="font-bold text-lg">Recitation</p>
                     <table className=" border border-black w-full">
                         <thead>
                             <tr className="border border-black">
-                                <th className="border border-black p-1" key="name">Name</th>
+                                <th className="border border-black p-1 bg-gray-300" key="name">Name</th>
                                 {activities.map((activity) => {
                                     if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "recitation"){
                                         return(                                        
-                                                <th className="border border-black p-1" key={activity.id}>{ activity.name }</th>                                     
+                                                <th className="border border-black p-1 bg-gray-300" key={activity.id}>{ activity.name }</th>                                     
                                         )
                                     }
                                 })}
@@ -174,15 +183,17 @@ const ActivityTracker = ({ open, children, onClose, activities, students, accoun
                             })}
                         </tbody>
                     </table>
+                    <br />
+
                     <p className="font-bold text-lg">Summative test</p>
                     <table className=" border border-black w-full">
                         <thead>
                             <tr className="border border-black">
-                                <th className="border border-black p-1" key="name">Name</th>
+                                <th className="border border-black p-1 bg-gray-300" key="name">Name</th>
                                 {activities.map((activity) => {
                                     if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "summative"){
                                         return(                                        
-                                                <th className="border border-black p-1" key={activity.id}>{ activity.name }</th>                                     
+                                                <th className="border border-black p-1 bg-gray-300" key={activity.id}>{ activity.name }</th>                                     
                                         )
                                     }
                                 })}
@@ -212,8 +223,8 @@ const ActivityTracker = ({ open, children, onClose, activities, students, accoun
                     </table>
                 </div>
                 <div className="grid gap-2 grid-cols-2 m-1">
-                    <button className="bg-green-400 rounded-lg font-bold p-2" onClick={handlePrint}>PRINT</button>
-                    <button className="bg-green-400 rounded-lg font-bold p-2" onClick={onClose}>CLOSE</button>
+                    <button className="bg-green-500 rounded-lg font-bold p-2" onClick={handlePrint}>PRINT</button>
+                    <button className="bg-red-500 rounded-lg font-bold p-2" onClick={onClose}>CLOSE</button>
                 </div>
             </div>
         </div>

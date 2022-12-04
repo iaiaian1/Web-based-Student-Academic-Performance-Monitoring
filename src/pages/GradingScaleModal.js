@@ -30,7 +30,7 @@ const GradingScaleModal = ({ open, children, onClose }) => {
                         <p>Did not meet expectations &gt;75</p>
                     </div>
                 </div>
-                <button className="bg-green-500 py-1 px-5 rounded-lg font-bold mt-2" onClick={onClose}>CLOSE</button>
+                <button className="bg-red-500 py-1 px-5 rounded-lg font-bold mt-2" onClick={onClose}>CLOSE</button>
             </div>
         </div>,
     document.getElementById("portal")

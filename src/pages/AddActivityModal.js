@@ -42,7 +42,7 @@ const AddActivityModal = ({ open, children, onClose, populateActivities }) => {
   return ReactDOM.createPortal(
   <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-black/[.54]">
       <div className="flex flex-col items-start justify-center w-2/3 sm:w-2/5 rounded-lg bg-blue-400 p-5">
-        <p className="text-2xl font-bold mb-5">Add activity</p>
+        <p className="text-2xl font-bold mb-5 underline">Add activity</p>
         <p>{ status }</p>
         <form id="addSectionForm" onSubmit={(e) => e.preventDefault()} className="w-full">
             {/* QUARTER */}
@@ -95,10 +95,10 @@ const AddActivityModal = ({ open, children, onClose, populateActivities }) => {
               <input
                 type="submit"
                 value="ADD"
-                className="w-2/3 sm:w-1/4 self-center rounded-lg bg-green-300 py-1 px-1 font-bold"
+                className="w-2/3 sm:w-1/4 self-center rounded-lg bg-green-500 py-1 px-1 font-bold"
                 onClick={() => addActivity()}
               />
-              <button onClick={() => {onClose();}} className="w-2/3 sm:w-1/4 self-center rounded-lg bg-green-300 py-1 px-1 font-bold">CLOSE</button>
+              <button onClick={() => {onClose();}} className="w-2/3 sm:w-1/4 self-center rounded-lg bg-red-500 py-1 px-1 font-bold">CLOSE</button>
             </div>
         </form>
       </div>
