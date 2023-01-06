@@ -71,10 +71,10 @@ const CreateStudentAccountModal = ({ open, children, onClose, getAccounts }) => 
                         <input
                             type="submit"
                             value="Create account"
-                            className="self-center rounded-lg bg-green-300 py-2 px-5 font-bold"
+                            className="self-center rounded-lg bg-green-500 py-2 px-5 font-bold"
                             onClick={() => createAccount()}
                         />
-                        <button onClick={() => {onClose();}} className=" rounded-lg bg-green-300 py-2 px-5 font-bold">CLOSE</button>
+                        <button onClick={() => {onClose();}} className=" rounded-lg bg-red-500 py-2 px-5 font-bold">CLOSE</button>
                     </div>
                 </form>
             </div>
