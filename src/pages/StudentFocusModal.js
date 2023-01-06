@@ -64,7 +64,7 @@ const StudentFocusModal = ({ open, children, onClose, populateActivities, popula
           <form id="addSectionForm" onSubmit={(e) => e.preventDefault()} className="flex flex-col justify-between w-full h-full p-2">
               <div className="bg-blue-500 rounded-lg p-2">
                 <p className="font-bold">Subject</p>
-                <select className="text-sm w-full p-1" value={subject} onChange={(e) => {setSubject(e.target.value);populateActivities();}}>
+                <select className="text-sm sm:text-base w-full p-1" value={subject} onChange={(e) => {setSubject(e.target.value);populateActivities();}}>
                   <option value="filipino">Filipino</option>
                   <option value="english">English</option>
                   <option value="mathematics">Mathematics</option>
@@ -74,7 +74,7 @@ const StudentFocusModal = ({ open, children, onClose, populateActivities, popula
                   <option value="mtb">MTB</option>
                 </select>
                 <p className="font-bold">Quarter</p>
-                <select className="text-sm w-full p-1" value={quarter} onChange={(e) => {setQuarter(e.target.value);populateActivities();}}>
+                <select className="text-sm sm:text-base w-full p-1" value={quarter} onChange={(e) => {setQuarter(e.target.value);populateActivities();}}>
                   <option value="1">1st grading</option>
                   <option value="2">2nd grading</option>
                   <option value="3">3rd grading</option>
@@ -82,7 +82,85 @@ const StudentFocusModal = ({ open, children, onClose, populateActivities, popula
                 </select>
               </div>
 
-              <Tabs className="h-full w-full m-2 overflow-y-auto self-center text-sm sm:text-base">
+              <div className="ActivityTypeWrapper h-full w-full m-2 overflow-y-auto self-center text-sm sm:text-lg">
+                {/* Performance */}
+                <div className="p-2 bg-blue-500 rounded-lg">
+                  <p className="text-lg sm:text-xl underline font-bold mb-1">Performance</p>
+                  { children.map((activity) => {
+                    if(activity.quarter === quarter && activity.type === "performance" && activity.section === localStorage.getItem("section_id") && activity.subject === subject){
+                      return(
+                        <div key={ activity.id } className="flex justify-between px-2 mb-1 w-full">
+                          <p className="break-words">{ activity.name } - { activity.scores[localStorage.getItem("student_id")] }/{ activity.total }</p>                                                                                                                           
+                          <button className="bg-green-500 px-2 rounded-lg font-bold" onClick={() => {setIsOpen(true);localStorage.setItem("activity_id", activity.id)}}>Edit</button>
+                        </div>
+                      )
+                    }
+                  }) }
+                </div>
+
+                {/* Periodical Test */}
+                <div className="p-2 bg-blue-500 rounded-lg mt-2">
+                  <p className="text-lg sm:text-xl underline font-bold mb-1">Periodical Test</p>
+                  { children.map((activity) => {
+                    if(activity.quarter === quarter && activity.type === "periodical" && activity.section === localStorage.getItem("section_id") && activity.subject === subject){
+                      return(
+                        <div key={ activity.id } className="flex justify-between px-2 mb-1 w-full">
+                          <p className="break-words">{ activity.name } - { activity.scores[localStorage.getItem("student_id")] }/{ activity.total }</p>                                                                                                                                
+                          <button className="bg-green-500 px-2 rounded-lg font-bold" onClick={() => {setIsOpen(true);localStorage.setItem("activity_id", activity.id)}}>Edit</button>
+                        </div>
+                      )
+                    }
+                  }) }
+                </div>
+
+                {/* Project */}
+                <div className="p-2 bg-blue-500 rounded-lg mt-2">
+                  <p className="text-lg sm:text-xl underline font-bold mb-1">Periodical Test</p>
+                  { children.map((activity) => {
+                    if(activity.quarter === quarter && activity.type === "project" && activity.section === localStorage.getItem("section_id") && activity.subject === subject){
+                      return(
+                        <div key={ activity.id } className="flex justify-between px-2 mb-1 w-full">
+                          <p className="break-words">{ activity.name } - { activity.scores[localStorage.getItem("student_id")] }/{ activity.total }</p>                                                                                                                                
+                          <button className="bg-green-500 px-2 rounded-lg font-bold" onClick={() => {setIsOpen(true);localStorage.setItem("activity_id", activity.id)}}>Edit</button>
+                        </div>
+                      )
+                    }
+                  }) }
+                </div>
+
+                {/* Recitations */}
+                <div className="p-2 bg-blue-500 rounded-lg mt-2">
+                  <p className="text-lg sm:text-xl underline font-bold mb-1">Periodical Test</p>
+                  { children.map((activity) => {
+                    if(activity.quarter === quarter && activity.type === "recitation" && activity.section === localStorage.getItem("section_id") && activity.subject === subject){
+                      return(
+                        <div key={ activity.id } className="flex justify-between px-2 mb-1 w-full">
+                          <p className="break-words">{ activity.name } - { activity.scores[localStorage.getItem("student_id")] }/{ activity.total }</p>                                                                                                                                
+                          <button className="bg-green-500 px-2 rounded-lg font-bold" onClick={() => {setIsOpen(true);localStorage.setItem("activity_id", activity.id)}}>Edit</button>
+                        </div>
+                      )
+                    }
+                  }) }
+                </div>
+
+                {/* Summative test */}
+                <div className="p-2 bg-blue-500 rounded-lg mt-2">
+                  <p className="text-lg sm:text-xl underline font-bold mb-1">Periodical Test</p>
+                  { children.map((activity) => {
+                    if(activity.quarter === quarter && activity.type === "summative" && activity.section === localStorage.getItem("section_id") && activity.subject === subject){
+                      return(
+                        <div key={ activity.id } className="flex justify-between px-2 mb-1 w-full">
+                          <p className="break-words">{ activity.name } - { activity.scores[localStorage.getItem("student_id")] }/{ activity.total }</p>                                                                                                                                
+                          <button className="bg-green-500 px-2 rounded-lg font-bold" onClick={() => {setIsOpen(true);localStorage.setItem("activity_id", activity.id)}}>Edit</button>
+                        </div>
+                      )
+                    }
+                  }) }
+                </div>
+
+              </div>
+
+              {/* <Tabs className="h-full w-full m-2 overflow-y-auto self-center text-sm sm:text-base">
                 <TabList>
                     <Tab>Performance</Tab>
                     <Tab>Periodical Test</Tab>
@@ -91,7 +169,7 @@ const StudentFocusModal = ({ open, children, onClose, populateActivities, popula
                     <Tab>Summative Test</Tab>
                 </TabList>
                 <TabPanel className="break-words">
-                  {/* Performance */}
+                  
                   <div>
                     { children.map((activity) => {
                       if(activity.quarter === quarter && activity.type === "performance" && activity.section === localStorage.getItem("section_id") && activity.subject === subject){
@@ -106,7 +184,7 @@ const StudentFocusModal = ({ open, children, onClose, populateActivities, popula
                   </div>
                 </TabPanel>
                 <TabPanel>
-                  {/* Periodical Test */}
+                  
                   <div>
                     { children.map((activity) => {
                       if(activity.quarter === quarter && activity.type === "periodical" && activity.section === localStorage.getItem("section_id") && activity.subject === subject){
@@ -121,7 +199,7 @@ const StudentFocusModal = ({ open, children, onClose, populateActivities, popula
                   </div>
                 </TabPanel>
                 <TabPanel>
-                  {/* Project */}
+                  
                   <div>
                     { children.map((activity) => {
                       if(activity.quarter === quarter && activity.type === "project" && activity.section === localStorage.getItem("section_id") && activity.subject === subject){
@@ -136,7 +214,7 @@ const StudentFocusModal = ({ open, children, onClose, populateActivities, popula
                   </div>
                 </TabPanel>
                 <TabPanel>
-                  {/* Recitations */}
+                  
                   <div>
                     { children.map((activity) => {
                       if(activity.quarter === quarter && activity.type === "recitation" && activity.section === localStorage.getItem("section_id") && activity.subject === subject){
@@ -151,7 +229,7 @@ const StudentFocusModal = ({ open, children, onClose, populateActivities, popula
                   </div>
                 </TabPanel>
                 <TabPanel>
-                  {/* Summative Test */}
+                  
                   <div>
                     { children.map((activity) => {
                       if(activity.quarter === quarter && activity.type === "summative" && activity.section === localStorage.getItem("section_id") && activity.subject === subject){
@@ -165,12 +243,12 @@ const StudentFocusModal = ({ open, children, onClose, populateActivities, popula
                     }) }
                   </div>
                 </TabPanel>
-              </Tabs>
+              </Tabs> */}
 
-              <div className="grid grid-rows-2 sm:grid-cols-2 gap-2 m-1">
-                <button onClick={() => {setIsOpen2(true);}} className="rounded-lg bg-green-300 font-bold text-lg">GRADES</button>
+              <div className="grid grid-rows-2 sm:grid-cols-2 gap-2 m-1 w-1/2 self-center">
+                <button onClick={() => {setIsOpen2(true);}} className="rounded-lg bg-green-500 font-bold text-lg">GRADES</button>
                 {/* <button onClick={() => {dropStudent();}} className="w-2/3 sm:w-1/4 self-center rounded-lg bg-red-500 py-2 px-1 font-bold text-xs sm:text-lg">DROPOUT</button> */}
-                <button onClick={() => {onClose();}} className="rounded-lg bg-green-300 font-bold text-lg">CLOSE</button>
+                <button onClick={() => {onClose();}} className="rounded-lg bg-red-500 font-bold text-lg">CLOSE</button>
               </div>
           </form>
         </div>
