@@ -96,10 +96,10 @@ const CreateStudentAccount = ({ open, children, onClose }) => {
                         <input
                             type="submit"
                             value="ADD"
-                            className="rounded-lg bg-green-300 font-bold"
+                            className="rounded-lg bg-green-500 font-bold"
                             onClick={() => addTeacher()}
                         />
-                        <button className="bg-green-400 rounded-lg font-bold" onClick={onClose}>CLOSE</button>
+                        <button className="bg-red-500 rounded-lg font-bold" onClick={onClose}>CLOSE</button>
                     </div>
                 </form>
             </div>
