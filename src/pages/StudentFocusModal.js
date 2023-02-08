@@ -115,7 +115,7 @@ const StudentFocusModal = ({ open, children, onClose, populateActivities, popula
 
                 {/* Project */}
                 <div className="p-2 bg-blue-500 rounded-lg mt-2">
-                  <p className="text-lg sm:text-xl underline font-bold mb-1">Periodical Test</p>
+                  <p className="text-lg sm:text-xl underline font-bold mb-1">Project</p>
                   { children.map((activity) => {
                     if(activity.quarter === quarter && activity.type === "project" && activity.section === localStorage.getItem("section_id") && activity.subject === subject){
                       return(
@@ -130,7 +130,7 @@ const StudentFocusModal = ({ open, children, onClose, populateActivities, popula
 
                 {/* Recitations */}
                 <div className="p-2 bg-blue-500 rounded-lg mt-2">
-                  <p className="text-lg sm:text-xl underline font-bold mb-1">Periodical Test</p>
+                  <p className="text-lg sm:text-xl underline font-bold mb-1">Recitations</p>
                   { children.map((activity) => {
                     if(activity.quarter === quarter && activity.type === "recitation" && activity.section === localStorage.getItem("section_id") && activity.subject === subject){
                       return(
@@ -145,7 +145,7 @@ const StudentFocusModal = ({ open, children, onClose, populateActivities, popula
 
                 {/* Summative test */}
                 <div className="p-2 bg-blue-500 rounded-lg mt-2">
-                  <p className="text-lg sm:text-xl underline font-bold mb-1">Periodical Test</p>
+                  <p className="text-lg sm:text-xl underline font-bold mb-1">Summative Test</p>
                   { children.map((activity) => {
                     if(activity.quarter === quarter && activity.type === "summative" && activity.section === localStorage.getItem("section_id") && activity.subject === subject){
                       return(

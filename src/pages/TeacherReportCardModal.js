@@ -14,8 +14,15 @@ const TeacherReportCardModal = ({ open, children, onClose , activities, students
     const [grades, setGrades] = useState()
     const [section, setSection] = useState()
     const subjects = ['filipino', 'english', 'mathematics', 'ap', 'mapeh', 'science', 'mtb']
-    let subjectAverage
     let totalAverage = 0
+    let firstTotal = 0
+    let secondTotal = 0
+    let thirdTotal = 0
+    let fourthTotal = 0 
+    let firstTotalAverage = 0
+    let secondTotalAverage = 0
+    let thirdTotalAverage = 0
+    let fourthTotalAverage = 0 
 
     const calculate = async() => {     
 
@@ -179,77 +186,111 @@ const TeacherReportCardModal = ({ open, children, onClose , activities, students
         <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-black/[.54]">
             <div className="flex flex-col items-center justify-center rounded-lg bg-blue-400 p-5 h-3/4 sm:h-1/2 w-5/6 sm:w-1/2">
                 <div className="p-2 overflow-y-auto w-full h-full bg-white" ref={componentRef}>
-                    <p className="self-start text-2xl font-bold mb-5 underline">Report card</p>
+                    {/* <p className="self-start text-2xl font-bold mb-5 underline">Report card</p> */}
                     {accounts.map((account) => {
+                        totalAverage = 0
+                        firstTotal = 0
+                        secondTotal = 0
+                        thirdTotal = 0
+                        fourthTotal = 0 
+                        firstTotalAverage = 0
+                        secondTotalAverage = 0
+                        thirdTotalAverage = 0
+                        fourthTotalAverage = 0 
                         return(
                             grades.map((grade) => {
                                 if(account.username === grade.id){
                                     totalAverage = 0
                                     return(
-                                        <>
-                                            <p className="font-bold underline mt-5">{account.name} {section.section}</p>
+                                        <>  
+                                            <p className="self-start text-2xl font-bold mb-5 underline pagebreak">Report card</p>
+                                            <p className="font-bold underline">{account.name} {section.section}</p>
                                             <div className="w-full h-full p-2">
                                                 <table className="table-auto border border-black w-full mb-10">
-                                                <thead className="border border-black bg-gray-300">
-                                                    <tr>
-                                                        <th className="border border-black px-5">
-                                                            Subject
-                                                        </th>
-                                                        <th className="border border-black px-2">
-                                                            1st
-                                                        </th>
-                                                        <th className="border border-black px-2">
-                                                            2nd
-                                                        </th>
-                                                        <th className="border border-black px-2" >
-                                                            3rd
-                                                        </th>
-                                                        <th className="border border-black px-2">
-                                                            4th
-                                                        </th>
-                                                        <th className="border border-black px-2">
-                                                            Average
-                                                        </th>
-                                                    </tr>
-                                                </thead>
-                                                {subjects.map((subject) => {
-                                                    subjectAverage = (grade[subject].firstQuarter + grade[subject].secondQuarter + grade[subject].thirdQuarter + grade[subject].fourthQuarter) / 4
-                                                    totalAverage += subjectAverage / 7
-                                                    return(
-                                                        <tbody>
-                                                            <tr>
-                                                                <td className="border border-black px-2">
-                                                                    {subject.toUpperCase()}
-                                                                </td>
-                                                                <td className="border border-black px-2">
-                                                                    {grade[subject].firstQuarter.toFixed(1)}
-                                                                </td>
-                                                                <td className="border border-black px-2">
-                                                                    {grade[subject].secondQuarter.toFixed(1)}
-                                                                </td>
-                                                                <td className="border border-black px-2">
-                                                                    {grade[subject].thirdQuarter.toFixed(1)}
-                                                                </td>
-                                                                <td className="border border-black px-2">
-                                                                    {grade[subject].fourthQuarter.toFixed(1)}
-                                                                </td>
-                                                                <td className="border border-black px-2">
-                                                                    {subjectAverage.toFixed(1)}
-                                                                </td>                                               
-                                                            </tr>
-                                                        </tbody>
-                                                    );
-                                                })}
-                                                    <tr>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td className="border border-black px-2">
-                                                            {totalAverage.toFixed(1)}
-                                                        </td>
-                                                    </tr>
+                                                    <thead className="border border-black bg-gray-300">
+                                                        <tr>
+                                                            <th className="border border-black px-5">
+                                                                Subject
+                                                            </th>
+                                                            <th className="border border-black px-2">
+                                                                1st
+                                                            </th>
+                                                            <th className="border border-black px-2">
+                                                                2nd
+                                                            </th>
+                                                            <th className="border border-black px-2" >
+                                                                3rd
+                                                            </th>
+                                                            <th className="border border-black px-2">
+                                                                4th
+                                                            </th>
+                                                            <th className="border border-black px-2">
+                                                                Final Average
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    {subjects.map((subject) => {
+                                                        //subjectAverage = (grade[subject].firstQuarter + grade[subject].secondQuarter + grade[subject].thirdQuarter + grade[subject].fourthQuarter) / 4
+                                                        //totalAverage += subjectAverage / 7
+                                                        totalAverage = 0
+                                                        firstTotal += grade[subject].firstQuarter
+                                                        secondTotal += grade[subject].secondQuarter
+                                                        thirdTotal += grade[subject].thirdQuarter
+                                                        fourthTotal += grade[subject].fourthQuarter
+
+                                                        firstTotalAverage = firstTotal / 7
+                                                        secondTotalAverage = secondTotal / 7
+                                                        thirdTotalAverage = thirdTotal / 7
+                                                        fourthTotalAverage = fourthTotal / 7
+
+                                                        totalAverage = (firstTotalAverage + secondTotalAverage + thirdTotalAverage + fourthTotalAverage) / 4
+                                                        // console.log(totalAverage)
+
+                                                        return(
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td className="border border-black px-2">
+                                                                        {subject.toUpperCase()}
+                                                                    </td>
+                                                                    <td className="border border-black px-2">
+                                                                        {grade[subject].firstQuarter.toFixed(1)}
+                                                                    </td>
+                                                                    <td className="border border-black px-2">
+                                                                        {grade[subject].secondQuarter.toFixed(1)}
+                                                                    </td>
+                                                                    <td className="border border-black px-2">
+                                                                        {grade[subject].thirdQuarter.toFixed(1)}
+                                                                    </td>
+                                                                    <td className="border border-black px-2">
+                                                                        {grade[subject].fourthQuarter.toFixed(1)}
+                                                                    </td>        
+                                                                    <td className="border-black px-2">
+
+                                                                    </td>                                 
+                                                                </tr>
+                                                            </tbody>
+                                                        );
+                                                    })}
+                                                    <tbody>
+                                                        <tr>
+                                                            <td className="border border-black px-2 bg-gray-300 font-bold">Average</td>
+                                                            <td className="border border-black px-2 font-bold">
+                                                                {firstTotalAverage.toFixed(1)}
+                                                            </td>
+                                                            <td className="border border-black px-2 font-bold">
+                                                                {secondTotalAverage.toFixed(1)}
+                                                            </td>
+                                                            <td className="border border-black px-2 font-bold">
+                                                                {thirdTotalAverage.toFixed(1)}
+                                                            </td>
+                                                            <td className="border border-black px-2 font-bold">
+                                                                {fourthTotalAverage.toFixed(1)}
+                                                            </td>
+                                                            <td className="border border-black px-2 text-center font-bold">
+                                                                {totalAverage.toFixed(1)}
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
                                                 </table>
                                             </div>
                                         </>
