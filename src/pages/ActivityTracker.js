@@ -5,6 +5,8 @@ import { useRef } from "react";
 
 const ActivityTracker = ({ open, children, onClose, activities, students, accounts }) => {
 
+    //TODO: SEPERATE QUARTERS OR SOMETHING. ALL ACTIVITIES ARE ON THE SAME PAGE REGARDLESS OF QUARTER. MIGHT POSE PROBLEM IF THERES A LOT OF ACTIVITIES.
+
     const [subject, setSubject] = useState('filipino')
     let componentRef = useRef()
     const handlePrint = useReactToPrint({
@@ -71,7 +73,7 @@ const ActivityTracker = ({ open, children, onClose, activities, students, accoun
                     </table>
                     <br />
 
-                    <p className="font-bold text-lg">Periodical test</p>
+                    <p className="font-bold text-lg pagebreak">Periodical test</p>
                     <table className=" border border-black w-full">
                         <thead>
                             <tr className="border border-black">
@@ -109,7 +111,7 @@ const ActivityTracker = ({ open, children, onClose, activities, students, accoun
                     </table>
                     <br />
 
-                    <p className="font-bold text-lg">Project</p>
+                    <p className="font-bold text-lg pagebreak">Project</p>
                     <table className=" border border-black w-full">
                         <thead>
                             <tr className="border border-black">
@@ -147,7 +149,7 @@ const ActivityTracker = ({ open, children, onClose, activities, students, accoun
                     </table>
                     <br />
 
-                    <p className="font-bold text-lg">Recitation</p>
+                    <p className="font-bold text-lg pagebreak">Recitation</p>
                     <table className=" border border-black w-full">
                         <thead>
                             <tr className="border border-black">
@@ -185,7 +187,7 @@ const ActivityTracker = ({ open, children, onClose, activities, students, accoun
                     </table>
                     <br />
 
-                    <p className="font-bold text-lg">Summative test</p>
+                    <p className="font-bold text-lg pagebreak">Summative test</p>
                     <table className=" border border-black w-full">
                         <thead>
                             <tr className="border border-black">

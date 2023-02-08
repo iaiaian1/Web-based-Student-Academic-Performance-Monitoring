@@ -190,17 +190,17 @@ const GradeModal = ({ open, children, onClose, quarter, section, activities, sub
 
     useEffect(() => {
         if(currentSubjectGrade >= 90){
-            setRemarks('Outstanding')
+            setRemarks('💯 Outstanding')
         }else if(currentSubjectGrade >= 85   ){
-            setRemarks('Very satisfactory')
+            setRemarks('🌟 Very satisfactory')
         }else if(currentSubjectGrade >= 80){
-            setRemarks('Satisfactory')
+            setRemarks('🥳 Satisfactory')
         }else if(currentSubjectGrade >= 75){
-            setRemarks('Fairly satisfactory')
+            setRemarks('😄 Fairly satisfactory')
         }else if(isNaN(currentSubjectGrade)){
-            setRemarks('Input more grades')
+            setRemarks('🙂 Input more grades')
         }else{
-            setRemarks('Did not meet expectations')
+            setRemarks('😬 Did not meet expectations')
         }
     }, [currentSubjectGrade])
 
