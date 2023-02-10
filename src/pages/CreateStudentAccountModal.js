@@ -43,7 +43,7 @@ const CreateStudentAccountModal = ({ open, children, onClose, getAccounts }) => 
                 <p className="text-xl sm:text-2xl font-bold mb-5">Create student account</p>
                 <p>{status}</p>
                 <form id="addSectionForm" onSubmit={(e) => e.preventDefault()} className="w-full">
-                    <p className="font-bold">ID</p>
+                    <p className="font-bold">LRN</p>
                     <input 
                         type="text"
                         value={id}
