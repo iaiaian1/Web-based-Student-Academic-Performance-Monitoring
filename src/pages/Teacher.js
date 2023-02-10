@@ -99,7 +99,7 @@ const Teacher = () => {
                   //SHOW ALL ITEMS
                   if(section.teacher === localStorage.getItem('user_id') && section.status === "active"){
                     return(
-                      <div key={section.id} className="flex items-center justify-center rounded-lg bg-green-400 p-5 text-sm sm:text-base" onClick={() => openSection(section.id)}>
+                      <div key={section.id} className="flex items-center justify-center rounded-lg bg-green-400 p-5 text-sm sm:text-base" onClick={() => {openSection(section.id); localStorage.setItem('school_year', section.year)}}>
                         <p className="break-words font-bold">
                           {section.section} ({section.year})
                         </p>
@@ -110,7 +110,7 @@ const Teacher = () => {
                   //Show matching
                   if(section.teacher === localStorage.getItem('user_id') && section.status === "active" && section.section.toLowerCase().replace(/ /g, '').includes(searchTerm.toLowerCase())){
                     return(
-                      <div key={section.id} className="flex items-center justify-center rounded-lg bg-green-400 p-5 text-sm sm:text-base" onClick={() => openSection(section.id)}>
+                      <div key={section.id} className="flex items-center justify-center rounded-lg bg-green-400 p-5 text-sm sm:text-base" onClick={() => {openSection(section.id); localStorage.setItem('school_year', section.year)}}>
                         <p className="break-words font-bold">
                           {section.section} ({section.year})
                         </p>

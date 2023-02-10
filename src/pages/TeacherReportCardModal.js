@@ -204,7 +204,8 @@ const TeacherReportCardModal = ({ open, children, onClose , activities, students
                                     return(
                                         <>  
                                             <p className="self-start text-2xl font-bold mb-5 underline pagebreak">Report card</p>
-                                            <p className="font-bold underline">{account.name} {section.section}</p>
+                                            <p className="font-bold underline">{account.name} Grade {section.section}</p>
+                                            <p className="font-bold underline">{localStorage.getItem('school_year')}</p>
                                             <div className="w-full h-full p-2">
                                                 <table className="table-auto border border-black w-full mb-10">
                                                     <thead className="border border-black bg-gray-300">
@@ -253,16 +254,16 @@ const TeacherReportCardModal = ({ open, children, onClose , activities, students
                                                                         {subject.toUpperCase()}
                                                                     </td>
                                                                     <td className="border border-black px-2">
-                                                                        {grade[subject].firstQuarter.toFixed(1)}
+                                                                        {grade[subject].firstQuarter.toFixed(0)}
                                                                     </td>
                                                                     <td className="border border-black px-2">
-                                                                        {grade[subject].secondQuarter.toFixed(1)}
+                                                                        {grade[subject].secondQuarter.toFixed(0)}
                                                                     </td>
                                                                     <td className="border border-black px-2">
-                                                                        {grade[subject].thirdQuarter.toFixed(1)}
+                                                                        {grade[subject].thirdQuarter.toFixed(0)}
                                                                     </td>
                                                                     <td className="border border-black px-2">
-                                                                        {grade[subject].fourthQuarter.toFixed(1)}
+                                                                        {grade[subject].fourthQuarter.toFixed(0)}
                                                                     </td>        
                                                                     <td className="border-black px-2">
 
