@@ -91,7 +91,7 @@ const Section = () => {
             <div className="flex h-screen items-center justify-center bg-gradient-to-tl from-blue-100 via-blue-300 to-blue-500">
                 <div className="flex gap-y-2 h-5/6 w-11/12 flex-col items-center rounded-lg bg-blue-400 p-5">
                     <div className="flex justify-between w-full">
-                        <p className="text-xl sm:text-3xl font-bold">SECTION: {section}</p>
+                        <p className="text-xl sm:text-3xl font-bold">GRADE {section} ({localStorage.getItem('school_year')})</p>
                         {/* <button className="w-1/5 font-bold text-xs sm:text-xl bg-red-500 rounded-lg" onClick={() => deleteSection()}>DELETE SECTION</button> */}
                         <p>Section ID: {localStorage.getItem("section_id")}</p>
                     </div>
