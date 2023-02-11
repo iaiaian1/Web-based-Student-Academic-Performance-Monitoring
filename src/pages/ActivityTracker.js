@@ -5,9 +5,12 @@ import { useRef } from "react";
 
 const ActivityTracker = ({ open, children, onClose, activities, students, accounts }) => {
 
-    //TODO: SEPERATE QUARTERS OR SOMETHING. ALL ACTIVITIES ARE ON THE SAME PAGE REGARDLESS OF QUARTER. MIGHT POSE PROBLEM IF THERES A LOT OF ACTIVITIES.
+    //TODO: SEPERATE QUARTERS OR SOMETHING. ALL ACTIVITIES ARE ON THE SAME PAGE REGARDLESS OF QUARTER. MIGHT POSE PROBLEM IF THERES A LOT OF ACTIVITIES. DONE
+    //TODO: Handle overflow on print. hard
 
     const [subject, setSubject] = useState('filipino')
+    const [term, setTerm] = useState('1')
+
     let componentRef = useRef()
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
@@ -29,21 +32,28 @@ const ActivityTracker = ({ open, children, onClose, activities, students, accoun
                     <option value="science">Science</option>
                     <option value="mtb">MTB</option>
                 </select>
+                <select className="text-sm w-full p-1 mt-1" value={term} onChange={(e) => setTerm(e.target.value)}>
+                    <option value="1">1st grading</option>
+                    <option value="2">2nd grading</option>
+                    <option value="3">3rd grading</option>
+                    <option value="4">4th grading</option>
+                </select>
                 <p className="text-2xl font-bold">Activities</p>
                 <div className="overflow-auto bg-white w-full h-full p-1" ref={componentRef}>
                     <p className="font-bold underline">Section: {localStorage.getItem("section")}({localStorage.getItem("section_id")})</p>
                     <p className="font-bold">{subject.toLocaleUpperCase()}</p>
+                    <p className="font-bold">Grading quarter: {term}</p>
                     <br />
                     
                     <p className="font-bold text-lg">Performance</p>
-                    <table className=" border border-black w-full">
+                    <table className=" border border-black w-full table-fixed">
                         <thead>
                             <tr className="border border-black">
-                                <th className="border border-black p-1 bg-gray-300" key="name">Name</th>
+                                <th className="border border-black p-1 bg-gray-300 w-32 text-sm" key="name">Name</th>
                                 {activities.map((activity) => {
-                                    if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "performance"){
+                                    if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "performance" && activity.quarter === term){
                                         return(                                        
-                                                <th className="border border-black p-1 bg-gray-300" key={activity.id}>{ activity.name }</th>                                     
+                                                <th className="border border-black p-1 bg-gray-300 w-24 text-sm" key={activity.id}>{ activity.name }</th>                                     
                                         )
                                     }
                                 })}
@@ -57,9 +67,9 @@ const ActivityTracker = ({ open, children, onClose, activities, students, accoun
                                             <tr key={account.id}>
                                                 <td key={account.id} className="border border-black">{account.name}</td>
                                                 {activities.map((activity) => {
-                                                    if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "performance"){
+                                                    if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "performance" && activity.quarter === term){
                                                         return(                                                   
-                                                                <td className="text-center border border-black" key={activity.id}>{activity.scores[account.username] ? activity.scores[account.username] : 0}</td>
+                                                                <td className="text-center border border-black" key={activity.id}>{activity.scores[account.username] ? activity.scores[account.username] : 0}/{activity.total}</td>
                                                                 
                                                         )
                                                     }                                      
@@ -77,11 +87,11 @@ const ActivityTracker = ({ open, children, onClose, activities, students, accoun
                     <table className=" border border-black w-full">
                         <thead>
                             <tr className="border border-black">
-                                <th className="border border-black p-1 bg-gray-300" key="name">Name</th>
+                                <th className="border border-black p-1 bg-gray-300 w-32" key="name">Name</th>
                                 {activities.map((activity) => {
-                                    if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "periodical"){
+                                    if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "periodical" && activity.quarter === term){
                                         return(                                        
-                                                <th className="border border-black p-1 bg-gray-300" key={activity.id}>{ activity.name }</th>                                     
+                                                <th className="border border-black p-1 bg-gray-300 w-24" key={activity.id}>{ activity.name }</th>                                     
                                         )
                                     }
                                 })}
@@ -95,9 +105,9 @@ const ActivityTracker = ({ open, children, onClose, activities, students, accoun
                                             <tr key={account.id}>
                                                 <td key={account.id} className="border border-black">{account.name}</td>
                                                 {activities.map((activity) => {
-                                                    if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "periodical"){
+                                                    if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "periodical" && activity.quarter === term){
                                                         return(                                                   
-                                                                <td className="text-center border border-black" key={activity.id}>{activity.scores[account.username] ? activity.scores[account.username] : 0}</td>
+                                                                <td className="text-center border border-black" key={activity.id}>{activity.scores[account.username] ? activity.scores[account.username] : 0}/{activity.total}</td>
                                                                 
                                                         )
                                                     }                                      
@@ -115,11 +125,11 @@ const ActivityTracker = ({ open, children, onClose, activities, students, accoun
                     <table className=" border border-black w-full">
                         <thead>
                             <tr className="border border-black">
-                                <th className="border border-black p-1 bg-gray-300" key="name">Name</th>
+                                <th className="border border-black p-1 bg-gray-300 w-32" key="name">Name</th>
                                 {activities.map((activity) => {
-                                    if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "project"){
+                                    if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "project" && activity.quarter === term){
                                         return(                                        
-                                                <th className="border border-black p-1 bg-gray-300" key={activity.id}>{ activity.name }</th>                                     
+                                                <th className="border border-black p-1 bg-gray-300 w-24" key={activity.id}>{ activity.name }</th>                                     
                                         )
                                     }
                                 })}
@@ -133,9 +143,9 @@ const ActivityTracker = ({ open, children, onClose, activities, students, accoun
                                             <tr key={account.id}>
                                                 <td key={account.id} className="border border-black">{account.name}</td>
                                                 {activities.map((activity) => {
-                                                    if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "project"){
+                                                    if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "project" && activity.quarter === term){
                                                         return(                                                   
-                                                                <td className="text-center border border-black" key={activity.id}>{activity.scores[account.username] ? activity.scores[account.username] : 0}</td>
+                                                                <td className="text-center border border-black" key={activity.id}>{activity.scores[account.username] ? activity.scores[account.username] : 0}/{activity.total}</td>
                                                                 
                                                         )
                                                     }                                      
@@ -153,11 +163,11 @@ const ActivityTracker = ({ open, children, onClose, activities, students, accoun
                     <table className=" border border-black w-full">
                         <thead>
                             <tr className="border border-black">
-                                <th className="border border-black p-1 bg-gray-300" key="name">Name</th>
+                                <th className="border border-black p-1 bg-gray-300 w-32" key="name">Name</th>
                                 {activities.map((activity) => {
-                                    if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "recitation"){
+                                    if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "recitation" && activity.quarter === term){
                                         return(                                        
-                                                <th className="border border-black p-1 bg-gray-300" key={activity.id}>{ activity.name }</th>                                     
+                                                <th className="border border-black p-1 bg-gray-300 w-24" key={activity.id}>{ activity.name }</th>                                     
                                         )
                                     }
                                 })}
@@ -171,9 +181,9 @@ const ActivityTracker = ({ open, children, onClose, activities, students, accoun
                                             <tr key={account.id}>
                                                 <td key={account.id} className="border border-black">{account.name}</td>
                                                 {activities.map((activity) => {
-                                                    if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "recitation"){
+                                                    if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "recitation" && activity.quarter === term){
                                                         return(                                                   
-                                                                <td className="text-center border border-black" key={activity.id}>{activity.scores[account.username] ? activity.scores[account.username] : 0}</td>
+                                                                <td className="text-center border border-black" key={activity.id}>{activity.scores[account.username] ? activity.scores[account.username] : 0}/{activity.total}</td>
                                                                 
                                                         )
                                                     }                                      
@@ -191,11 +201,11 @@ const ActivityTracker = ({ open, children, onClose, activities, students, accoun
                     <table className=" border border-black w-full">
                         <thead>
                             <tr className="border border-black">
-                                <th className="border border-black p-1 bg-gray-300" key="name">Name</th>
+                                <th className="border border-black p-1 bg-gray-300 w-32" key="name">Name</th>
                                 {activities.map((activity) => {
-                                    if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "summative"){
+                                    if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "summative" && activity.quarter === term){
                                         return(                                        
-                                                <th className="border border-black p-1 bg-gray-300" key={activity.id}>{ activity.name }</th>                                     
+                                                <th className="border border-black p-1 bg-gray-300 w-24" key={activity.id}>{ activity.name }</th>                                     
                                         )
                                     }
                                 })}
@@ -209,9 +219,9 @@ const ActivityTracker = ({ open, children, onClose, activities, students, accoun
                                             <tr key={account.id}>
                                                 <td key={account.id} className="border border-black">{account.name}</td>
                                                 {activities.map((activity) => {
-                                                    if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "summative"){
+                                                    if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "summative" && activity.quarter === term){
                                                         return(                                                   
-                                                                <td className="text-center border border-black" key={activity.id}>{activity.scores[account.username] ? activity.scores[account.username] : 0}</td>
+                                                                <td className="text-center border border-black" key={activity.id}>{activity.scores[account.username] ? activity.scores[account.username] : 0}/{activity.total}</td>
                                                                 
                                                         )
                                                     }                                      
