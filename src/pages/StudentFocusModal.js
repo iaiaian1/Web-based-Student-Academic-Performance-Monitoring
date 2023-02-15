@@ -8,11 +8,13 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import ChangeScoreModal from "./ChangeScoreModal";
 import GradeModal from "./GradeModal";
+import EditScoresModal from "./EditScoresModal";
 
 const StudentFocusModal = ({ open, children, onClose, populateActivities, populateStudents, activities }) => {
 
   const [isOpen, setIsOpen] = useState(false)
   const [isOpen2, setIsOpen2] = useState(false)
+  const [isOpen3, setIsOpen3] = useState(false)
   const [quarter, setQuarter] = useState('1')
   const [subject, setSubject] = useState('filipino')
 
@@ -60,7 +62,7 @@ const StudentFocusModal = ({ open, children, onClose, populateActivities, popula
   <>
     <div className="fixed inset-0 z-10 flex h-full w-full items-center justify-center bg-black/[.54]">
         <div className="flex flex-col items-center justify-center h-5/6 w-5/6 sm:w-2/3 rounded-lg bg-blue-400 p-5">
-          <p className="text-lg sm:text-2xl self-center font-bold">{ localStorage.getItem("student_id").toUpperCase() } - { localStorage.getItem("student_name").toUpperCase() }</p>
+          <p className="text-lg sm:text-2xl font-bold">{ localStorage.getItem("student_id").toUpperCase() } - { localStorage.getItem("student_name").toUpperCase() }</p>
           <form id="addSectionForm" onSubmit={(e) => e.preventDefault()} className="flex flex-col justify-between w-full h-full p-2">
               <div className="bg-blue-500 rounded-lg p-2">
                 <p className="font-bold">Subject</p>
@@ -91,7 +93,7 @@ const StudentFocusModal = ({ open, children, onClose, populateActivities, popula
                       return(
                         <div key={ activity.id } className="flex justify-between px-2 mb-1 w-full">
                           <p className="break-words">{ activity.name } - { activity.scores[localStorage.getItem("student_id")] }/{ activity.total }</p>                                                                                                                           
-                          <button className="bg-green-500 px-2 rounded-lg font-bold" onClick={() => {setIsOpen(true);localStorage.setItem("activity_id", activity.id)}}>Edit</button>
+                          {/* <button className="bg-green-500 px-2 rounded-lg font-bold" onClick={() => {setIsOpen(true);localStorage.setItem("activity_id", activity.id)}}>Edit</button> */}
                         </div>
                       )
                     }
@@ -106,7 +108,7 @@ const StudentFocusModal = ({ open, children, onClose, populateActivities, popula
                       return(
                         <div key={ activity.id } className="flex justify-between px-2 mb-1 w-full">
                           <p className="break-words">{ activity.name } - { activity.scores[localStorage.getItem("student_id")] }/{ activity.total }</p>                                                                                                                                
-                          <button className="bg-green-500 px-2 rounded-lg font-bold" onClick={() => {setIsOpen(true);localStorage.setItem("activity_id", activity.id)}}>Edit</button>
+                          {/* <button className="bg-green-500 px-2 rounded-lg font-bold" onClick={() => {setIsOpen(true);localStorage.setItem("activity_id", activity.id)}}>Edit</button> */}
                         </div>
                       )
                     }
@@ -121,7 +123,7 @@ const StudentFocusModal = ({ open, children, onClose, populateActivities, popula
                       return(
                         <div key={ activity.id } className="flex justify-between px-2 mb-1 w-full">
                           <p className="break-words">{ activity.name } - { activity.scores[localStorage.getItem("student_id")] }/{ activity.total }</p>                                                                                                                                
-                          <button className="bg-green-500 px-2 rounded-lg font-bold" onClick={() => {setIsOpen(true);localStorage.setItem("activity_id", activity.id)}}>Edit</button>
+                          {/* <button className="bg-green-500 px-2 rounded-lg font-bold" onClick={() => {setIsOpen(true);localStorage.setItem("activity_id", activity.id)}}>Edit</button> */}
                         </div>
                       )
                     }
@@ -136,7 +138,7 @@ const StudentFocusModal = ({ open, children, onClose, populateActivities, popula
                       return(
                         <div key={ activity.id } className="flex justify-between px-2 mb-1 w-full">
                           <p className="break-words">{ activity.name } - { activity.scores[localStorage.getItem("student_id")] }/{ activity.total }</p>                                                                                                                                
-                          <button className="bg-green-500 px-2 rounded-lg font-bold" onClick={() => {setIsOpen(true);localStorage.setItem("activity_id", activity.id)}}>Edit</button>
+                          {/* <button className="bg-green-500 px-2 rounded-lg font-bold" onClick={() => {setIsOpen(true);localStorage.setItem("activity_id", activity.id)}}>Edit</button> */}
                         </div>
                       )
                     }
@@ -151,7 +153,7 @@ const StudentFocusModal = ({ open, children, onClose, populateActivities, popula
                       return(
                         <div key={ activity.id } className="flex justify-between px-2 mb-1 w-full">
                           <p className="break-words">{ activity.name } - { activity.scores[localStorage.getItem("student_id")] }/{ activity.total }</p>                                                                                                                                
-                          <button className="bg-green-500 px-2 rounded-lg font-bold" onClick={() => {setIsOpen(true);localStorage.setItem("activity_id", activity.id)}}>Edit</button>
+                          {/* <button className="bg-green-500 px-2 rounded-lg font-bold" onClick={() => {setIsOpen(true);localStorage.setItem("activity_id", activity.id)}}>Edit</button> */}
                         </div>
                       )
                     }
@@ -245,10 +247,11 @@ const StudentFocusModal = ({ open, children, onClose, populateActivities, popula
                 </TabPanel>
               </Tabs> */}
 
-              <div className="grid grid-rows-2 sm:grid-cols-2 gap-2 m-1 w-1/2 self-center">
-                <button onClick={() => {setIsOpen2(true);}} className="rounded-lg bg-green-500 font-bold text-lg">GRADES</button>
+              <div className="grid grid-rows-1 sm:grid-cols-3 gap-2 m-1 w-1/2 self-center">
+                <button onClick={() => {setIsOpen3(true);}} className="bg-blue-500 font-bold text-lg rounded-lg ">Edit scores</button>
+                <button onClick={() => {setIsOpen2(true);}} className="rounded-lg bg-green-500 font-bold text-lg">Grades</button>
                 {/* <button onClick={() => {dropStudent();}} className="w-2/3 sm:w-1/4 self-center rounded-lg bg-red-500 py-2 px-1 font-bold text-xs sm:text-lg">DROPOUT</button> */}
-                <button onClick={() => {onClose();}} className="rounded-lg bg-red-500 font-bold text-lg">CLOSE</button>
+                <button onClick={() => {onClose();}} className="rounded-lg bg-red-500 font-bold text-lg">Close</button>
               </div>
           </form>
         </div>
@@ -259,6 +262,9 @@ const StudentFocusModal = ({ open, children, onClose, populateActivities, popula
       <GradeModal open={isOpen2} quarter={quarter} activities={activities} section={localStorage.getItem("section_id")} subject={subject} onClose={() => setIsOpen2(false)}>
         { children }
       </GradeModal>
+      <EditScoresModal open={isOpen3} onClose={() => setIsOpen3(false)} activities={activities} populateActivities={ () => populateActivities()}>
+
+      </EditScoresModal>
     </>,
     document.getElementById("portal")
   );
