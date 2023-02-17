@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { db } from "../util/firebase-config";
 import { collection, addDoc } from "firebase/firestore";
 
-const AddActivityModal = ({ open, children, onClose, populateActivities }) => {
+const AddActivityModal = ({ open, children, onClose, populateActivities, students }) => {
 
   const [term, setTerm] = useState('1')
   const [type, setType] = useState('performance')
@@ -19,10 +19,10 @@ const AddActivityModal = ({ open, children, onClose, populateActivities }) => {
       setStatus("Please fill up required fields");
     }else{
       //Check if null
-      if(children.length !== 0){
+      if(students.length !== 0){
         //Initialize object
         const scores = {}
-        await children.forEach((element) => {
+        await students.forEach((element) => {
           scores[element] = 0
         })
         await addDoc(colRef, { subject: subject, quarter: term, type: type, name: activity, total: parseInt(total), section: localStorage.getItem("section_id"), scores: scores })
