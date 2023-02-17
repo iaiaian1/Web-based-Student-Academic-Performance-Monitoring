@@ -2,26 +2,36 @@ import { useState } from "react";
 import { useReactToPrint } from 'react-to-print'
 import ReactDOM from "react-dom";
 import { useRef } from "react";
+import EditActivity from "./EditActivity";
+import AddActivityModal from "./AddActivityModal";
 
-const ActivityTracker = ({ open, children, onClose, activities, students, accounts }) => {
+const ActivityTracker = ({ open, children, onClose, activities, students, accounts, populateActivities }) => {
 
     //TODO: SEPERATE QUARTERS OR SOMETHING. ALL ACTIVITIES ARE ON THE SAME PAGE REGARDLESS OF QUARTER. MIGHT POSE PROBLEM IF THERES A LOT OF ACTIVITIES. DONE
     //TODO: Handle overflow on print. hard
 
     const [subject, setSubject] = useState('filipino')
     const [term, setTerm] = useState('1')
+    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen2, setIsOpen2] = useState(false);
 
     let componentRef = useRef()
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
     });
 
+    const openModal = (id, total) =>{
+        setIsOpen(true)
+        localStorage.setItem("activity_id", id)
+        localStorage.setItem("activity_total", total)
+    }
+
     if (!open) return null;
     //console.log(activities)
 
     return ReactDOM.createPortal(
         <>    
-        <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-black/[.54]">
+        <div className="fixed inset-0 z-40 flex h-full w-full items-center justify-center bg-black/[.54]">
             <div className="w-5/6 h-2/3 flex flex-col items-center justify-center rounded-lg bg-blue-400 p-5">
                 <select className="text-sm w-full p-1" value={subject} onChange={(e) => {setSubject(e.target.value);}}>
                     <option value="filipino">Filipino</option>
@@ -53,7 +63,7 @@ const ActivityTracker = ({ open, children, onClose, activities, students, accoun
                                 {activities.map((activity) => {
                                     if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "performance" && activity.quarter === term){
                                         return(                                        
-                                                <th className="border border-black p-1 bg-gray-300 w-24 text-sm" key={activity.id}>{ activity.name }</th>                                     
+                                                <th className="border border-black p-1 bg-gray-300 w-24 text-sm" key={activity.id} onClick={() => openModal(activity.id, activity.total)}>{ activity.name }</th>                                     
                                         )
                                     }
                                 })}
@@ -91,7 +101,7 @@ const ActivityTracker = ({ open, children, onClose, activities, students, accoun
                                 {activities.map((activity) => {
                                     if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "periodical" && activity.quarter === term){
                                         return(                                        
-                                                <th className="border border-black p-1 bg-gray-300 w-24" key={activity.id}>{ activity.name }</th>                                     
+                                                <th className="border border-black p-1 bg-gray-300 w-24" key={activity.id} onClick={() => openModal(activity.id, activity.total)}>{ activity.name }</th>                                     
                                         )
                                     }
                                 })}
@@ -129,7 +139,7 @@ const ActivityTracker = ({ open, children, onClose, activities, students, accoun
                                 {activities.map((activity) => {
                                     if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "project" && activity.quarter === term){
                                         return(                                        
-                                                <th className="border border-black p-1 bg-gray-300 w-24" key={activity.id}>{ activity.name }</th>                                     
+                                                <th className="border border-black p-1 bg-gray-300 w-24" key={activity.id} onClick={() => openModal(activity.id, activity.total)}>{ activity.name }</th>                                     
                                         )
                                     }
                                 })}
@@ -167,7 +177,7 @@ const ActivityTracker = ({ open, children, onClose, activities, students, accoun
                                 {activities.map((activity) => {
                                     if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "recitation" && activity.quarter === term){
                                         return(                                        
-                                                <th className="border border-black p-1 bg-gray-300 w-24" key={activity.id}>{ activity.name }</th>                                     
+                                                <th className="border border-black p-1 bg-gray-300 w-24" key={activity.id} onClick={() => openModal(activity.id, activity.total)}>{ activity.name }</th>                                     
                                         )
                                     }
                                 })}
@@ -205,7 +215,7 @@ const ActivityTracker = ({ open, children, onClose, activities, students, accoun
                                 {activities.map((activity) => {
                                     if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "summative" && activity.quarter === term){
                                         return(                                        
-                                                <th className="border border-black p-1 bg-gray-300 w-24" key={activity.id}>{ activity.name }</th>                                     
+                                                <th className="border border-black p-1 bg-gray-300 w-24" key={activity.id} onClick={() => openModal(activity.id, activity.total)}>{ activity.name }</th>                                     
                                         )
                                     }
                                 })}
@@ -234,12 +244,20 @@ const ActivityTracker = ({ open, children, onClose, activities, students, accoun
                         </tbody>
                     </table>
                 </div>
-                <div className="grid gap-2 grid-cols-2 m-1">
-                    <button className="bg-green-500 rounded-lg font-bold p-2" onClick={handlePrint}>PRINT</button>
-                    <button className="bg-red-500 rounded-lg font-bold p-2" onClick={onClose}>CLOSE</button>
+                <div className="grid gap-2 grid-cols-3 m-1">
+                    <button className="bg-green-500 rounded-lg font-bold p-2" onClick={() => setIsOpen2(true)}>Add Activity</button>
+                    <button className="bg-green-500 rounded-lg font-bold p-2" onClick={handlePrint}>Print</button>
+                    <button className="bg-red-500 rounded-lg font-bold p-2" onClick={onClose}>Close</button>
                 </div>
             </div>
         </div>
+        
+        <EditActivity open={isOpen} onClose={() => setIsOpen(false)} activities={activities} populateActivities={ () => populateActivities()}>
+
+        </EditActivity>
+        <AddActivityModal open={isOpen2} onClose={() => setIsOpen2(false)} populateActivities={() => populateActivities()} students={students}>
+
+        </AddActivityModal>
         </>,
     document.getElementById("portal")
     );
