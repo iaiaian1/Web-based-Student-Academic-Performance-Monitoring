@@ -12,6 +12,7 @@ import ActivityTracker from "./ActivityTracker";
 import searchImage from "../pictures/search.png";
 import returnImage from "../pictures/return.png";
 import TeacherReportCardModal from "./TeacherReportCardModal";
+import TopnotchersModal from "./TopnotchersModal";
 
 const Section = () => {
 
@@ -159,7 +160,7 @@ const Section = () => {
                     {/* Buttons */}
                     <div className="w-full grid grid-cols-2 sm:grid-cols-5 gap-1 m-1">
                         <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500 rounded-lg" onClick={() => setIsOpen(true)}>Add student</button>
-                        <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500 rounded-lg" onClick={() => setIsOpen2(true)}>Topnotchers</button>
+                        <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500 rounded-lg" onClick={() => setIsOpen2(true)}>Rankings</button>
                         <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500 rounded-lg" onClick={() => setIsOpen4(true)}>Grading Scale</button>
                         <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500 rounded-lg" onClick={() => setIsOpen5(true)}>Activities</button>
                         <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500 rounded-lg" onClick={() => setIsOpen6(true)}>Report Card</button>
@@ -169,9 +170,9 @@ const Section = () => {
             <AddStudentModal open={isOpen} onClose={() => setIsOpen(false)} populateStudents={() => getStudents()}>
                 {accounts}{students}
             </AddStudentModal>
-            <AddActivityModal open={isOpen2} onClose={() => setIsOpen2(false)} populateActivities={() => getActivities()}>
-                { students }
-            </AddActivityModal>
+            <TopnotchersModal open={isOpen2} onClose={() => setIsOpen2(false)} activities={activities} students={students} accounts={accounts}>
+
+            </TopnotchersModal>
             <StudentFocusModal open={isOpen3} activities={activities} onClose={() => setIsOpen3(false)} populateActivities={() => getActivities()} populateStudents={ () => getStudents() }>
                 { activities }
             </StudentFocusModal>
