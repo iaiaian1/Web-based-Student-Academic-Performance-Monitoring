@@ -141,6 +141,8 @@ const TeacherReportCardModal = ({ open, children, onClose , activities, students
         //console.log(`name: ${student} subject: ${subject} 1: ${firstQuarter} 2: ${secondQuarter} 3: ${thirdQuarter} 4: ${fourthQuarter}`)
         const section = localStorage.getItem("section_id")
         const colRef = doc(db, "grades", student)
+
+        let subjectAverage = (firstQuarter + secondQuarter + thirdQuarter + fourthQuarter) / 4
         
         await setDoc(colRef, {
             [subject] : {
@@ -150,7 +152,8 @@ const TeacherReportCardModal = ({ open, children, onClose , activities, students
                 firstQuarter : firstQuarter,
                 secondQuarter : secondQuarter,
                 thirdQuarter : thirdQuarter,
-                fourthQuarter : fourthQuarter
+                fourthQuarter : fourthQuarter,
+                subjectAverage : subjectAverage,
             }
         }, {merge : true})
 
@@ -304,7 +307,7 @@ const TeacherReportCardModal = ({ open, children, onClose , activities, students
                 <div className="w-1/2 sm:w-fit gap-1 m-1 grid grid-cols-1 sm:grid-cols-3">
                     <button className="bg-green-500 rounded-lg font-bold p-2" onClick={calculate}>Refresh</button>
                     <button className="bg-green-500 rounded-lg font-bold p-2" onClick={handlePrint}>Print</button>
-                    <button className="bg-red-500 rounded-lg font-bold p-2" onClick={onClose}>CLOSE</button>
+                    <button className="bg-red-500 rounded-lg font-bold p-2" onClick={onClose}>Close</button>
                 </div>
             </div>
         </div>,
