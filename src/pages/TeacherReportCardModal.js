@@ -183,6 +183,10 @@ const TeacherReportCardModal = ({ open, children, onClose , activities, students
         getSection()
     },[])
 
+    useEffect(() => {
+        calculate()
+    }, [activities])
+
     if (!open) return null;
     
     return ReactDOM.createPortal( 
@@ -205,8 +209,8 @@ const TeacherReportCardModal = ({ open, children, onClose , activities, students
                                 if(account.username === grade.id){
                                     totalAverage = 0
                                     return(
-                                        <>  
-                                            <p className="self-start text-2xl font-bold mb-5 underline pagebreak">Report card</p>
+                                        <div key={account.id}>  
+                                            <p className="self-start text-2xl font-bold mb-5 underline pagebreak" key={account.id}>Report card</p>
                                             <p className="font-bold underline">{account.name} Grade {section.section}</p>
                                             <p className="font-bold underline">{localStorage.getItem('school_year')}</p>
                                             <div className="w-full h-full p-2">
@@ -251,7 +255,7 @@ const TeacherReportCardModal = ({ open, children, onClose , activities, students
                                                         // console.log(totalAverage)
 
                                                         return(
-                                                            <tbody>
+                                                            <tbody key={subject}>
                                                                 <tr>
                                                                     <td className="border border-black px-2">
                                                                         {subject.toUpperCase()}
@@ -297,7 +301,7 @@ const TeacherReportCardModal = ({ open, children, onClose , activities, students
                                                     </tbody>
                                                 </table>
                                             </div>
-                                        </>
+                                        </div>
                                     )
                                 }
                             })

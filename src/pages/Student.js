@@ -8,6 +8,7 @@ import { db } from "../util/firebase-config";
 import GradeModal from "./GradeModal";
 import GradingScaleModal from "./GradingScaleModal";
 import SettingsModal from "./SettingsModal";
+import StudentReportCardModal from "./StudentReportCardModal";
 
 const Student = () => {
 
@@ -170,15 +171,18 @@ const Student = () => {
                     </div>
                     {/* Buttons */}
                     <div className="w-1/2 sm:w-fit grid grid-cols-1 sm:grid-cols-3 gap-1 m-1">
-                        <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500 rounded-lg" onClick={() => setIsOpen(true)}>GRADES</button>
-                        <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500 rounded-lg" onClick={() => setIsOpen3(true)}>GRADING SCALE</button>   
-                        <button className="font-bold break-words text-sm sm:text-xl p-2 bg-red-500 rounded-lg" onClick={() => Logout()}>LOGOUT</button>
+                        <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500 rounded-lg" onClick={() => setIsOpen(true)}>Report Card</button>
+                        <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500 rounded-lg" onClick={() => setIsOpen3(true)}>Grading Scale</button>   
+                        <button className="font-bold break-words text-sm sm:text-xl p-2 bg-red-500 rounded-lg" onClick={() => Logout()}>Logout</button>
                     </div>
                 </div>
             </div>
-            <GradeModal open={isOpen} quarter={quarter} section={section} onClose={() => setIsOpen(false)} subject={subject}>
+            {/* <GradeModal open={isOpen} quarter={quarter} section={section} onClose={() => setIsOpen(false)} subject={subject}>
                 { activities }
-            </GradeModal>
+            </GradeModal> */}
+            <StudentReportCardModal open={isOpen} onClose={() => setIsOpen(false)}>
+
+            </StudentReportCardModal>
             {/* <SettingsModal open={isOpen2} onClose={() => setIsOpen2(false)}>
 
             </SettingsModal> */}
