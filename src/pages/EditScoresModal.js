@@ -49,7 +49,7 @@ const EditScoresModal = ({ open, children, onClose, activities, populateActiviti
         })
         populateActivities()
         formRef.current.reset()
-        console.log('submitted')
+        //console.log('submitted')
     }
 
     if (!open) return null;

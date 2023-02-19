@@ -9,6 +9,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 import ChangeScoreModal from "./ChangeScoreModal";
 import GradeModal from "./GradeModal";
 import EditScoresModal from "./EditScoresModal";
+import StudentReportCardModal from "./StudentReportCardModal";
 
 const StudentFocusModal = ({ open, children, onClose, populateActivities, populateStudents, activities }) => {
 
@@ -259,9 +260,12 @@ const StudentFocusModal = ({ open, children, onClose, populateActivities, popula
       <ChangeScoreModal open={isOpen} onClose={() => setIsOpen(false)} populateActivities={ () => populateActivities()}>
         { children }
       </ChangeScoreModal>
-      <GradeModal open={isOpen2} quarter={quarter} activities={activities} section={localStorage.getItem("section_id")} subject={subject} onClose={() => setIsOpen2(false)}>
+      {/* <GradeModal open={isOpen2} quarter={quarter} activities={activities} section={localStorage.getItem("section_id")} subject={subject} onClose={() => setIsOpen2(false)}>
         { children }
-      </GradeModal>
+      </GradeModal> */}
+      <StudentReportCardModal open={isOpen2} onClose={() => setIsOpen2(false)}>
+
+      </StudentReportCardModal>
       <EditScoresModal open={isOpen3} onClose={() => setIsOpen3(false)} activities={activities} populateActivities={ () => populateActivities()}>
 
       </EditScoresModal>

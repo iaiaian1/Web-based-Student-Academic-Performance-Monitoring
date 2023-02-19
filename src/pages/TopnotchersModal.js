@@ -84,7 +84,7 @@ const TopnotchersModal = ({ open, children, onClose, activities, students, accou
 
         const sortedArray = studentsWithAverages.sort((a, b) => b.average - a.average);
         setStudentWithGrades(sortedArray);
-        console.log('calculate ran')
+        //console.log('calculate ran')
     }, [grades, students, subjects, accounts, quarter]);
 
     useEffect(() => {
