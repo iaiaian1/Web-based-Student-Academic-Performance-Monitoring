@@ -48,7 +48,7 @@ const ActivityTracker = ({ open, children, onClose, activities, students, accoun
                     <option value="3">3rd grading</option>
                     <option value="4">4th grading</option>
                 </select>
-                <p className="text-2xl font-bold">Activities</p>
+                <p className="text-2xl font-bold underline">Activities</p>
                 <div className="overflow-auto bg-white w-full h-full p-1" ref={componentRef}>
                     <p className="font-bold underline">Section: {localStorage.getItem("section")}({localStorage.getItem("section_id")})</p>
                     <p className="font-bold">{subject.toLocaleUpperCase()}</p>
@@ -63,7 +63,7 @@ const ActivityTracker = ({ open, children, onClose, activities, students, accoun
                                 {activities.map((activity) => {
                                     if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "performance" && activity.quarter === term){
                                         return(                                        
-                                                <th className="border border-black p-1 bg-gray-300 w-24 text-sm" key={activity.id} onClick={() => openModal(activity.id, activity.total)}>{ activity.name }</th>                                     
+                                                <th className="border border-black p-1 bg-gray-300 hover:bg-gray-400 cursor-pointer duration-200 w-24 text-sm" key={activity.id} onClick={() => openModal(activity.id, activity.total)}>{ activity.name }</th>                                     
                                         )
                                     }
                                 })}
@@ -101,7 +101,7 @@ const ActivityTracker = ({ open, children, onClose, activities, students, accoun
                                 {activities.map((activity) => {
                                     if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "periodical" && activity.quarter === term){
                                         return(                                        
-                                                <th className="border border-black p-1 bg-gray-300 w-24" key={activity.id} onClick={() => openModal(activity.id, activity.total)}>{ activity.name }</th>                                     
+                                                <th className="border border-black p-1 bg-gray-300 w-24 hover:bg-gray-400 cursor-pointer duration-200" key={activity.id} onClick={() => openModal(activity.id, activity.total)}>{ activity.name }</th>                                     
                                         )
                                     }
                                 })}
@@ -139,7 +139,7 @@ const ActivityTracker = ({ open, children, onClose, activities, students, accoun
                                 {activities.map((activity) => {
                                     if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "project" && activity.quarter === term){
                                         return(                                        
-                                                <th className="border border-black p-1 bg-gray-300 w-24" key={activity.id} onClick={() => openModal(activity.id, activity.total)}>{ activity.name }</th>                                     
+                                                <th className="border border-black p-1 bg-gray-300 w-24 hover:bg-gray-400 cursor-pointer duration-200" key={activity.id} onClick={() => openModal(activity.id, activity.total)}>{ activity.name }</th>                                     
                                         )
                                     }
                                 })}
@@ -177,7 +177,7 @@ const ActivityTracker = ({ open, children, onClose, activities, students, accoun
                                 {activities.map((activity) => {
                                     if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "recitation" && activity.quarter === term){
                                         return(                                        
-                                                <th className="border border-black p-1 bg-gray-300 w-24" key={activity.id} onClick={() => openModal(activity.id, activity.total)}>{ activity.name }</th>                                     
+                                                <th className="border border-black p-1 bg-gray-300 w-24 hover:bg-gray-400 cursor-pointer duration-200" key={activity.id} onClick={() => openModal(activity.id, activity.total)}>{ activity.name }</th>                                     
                                         )
                                     }
                                 })}
@@ -215,7 +215,7 @@ const ActivityTracker = ({ open, children, onClose, activities, students, accoun
                                 {activities.map((activity) => {
                                     if(activity.section === localStorage.getItem("section_id") && activity.subject === subject && activity.type === "summative" && activity.quarter === term){
                                         return(                                        
-                                                <th className="border border-black p-1 bg-gray-300 w-24" key={activity.id} onClick={() => openModal(activity.id, activity.total)}>{ activity.name }</th>                                     
+                                                <th className="border border-black p-1 bg-gray-300 w-24 hover:bg-gray-400 cursor-pointer duration-200" key={activity.id} onClick={() => openModal(activity.id, activity.total)}>{ activity.name }</th>                                     
                                         )
                                     }
                                 })}
@@ -245,9 +245,9 @@ const ActivityTracker = ({ open, children, onClose, activities, students, accoun
                     </table>
                 </div>
                 <div className="grid gap-2 grid-cols-3 m-1">
-                    <button className="bg-green-500 rounded-lg font-bold p-2" onClick={() => setIsOpen2(true)}>Add Activity</button>
-                    <button className="bg-green-500 rounded-lg font-bold p-2" onClick={handlePrint}>Print</button>
-                    <button className="bg-red-500 rounded-lg font-bold p-2" onClick={onClose}>Close</button>
+                    <button className="bg-green-500 hover:bg-green-600 duration-200 rounded-lg font-bold p-2" onClick={() => setIsOpen2(true)}>Add Activity</button>
+                    <button className="bg-green-500 hover:bg-green-600 duration-200 rounded-lg font-bold p-2" onClick={handlePrint}>Print</button>
+                    <button className="bg-red-500 hover:bg-red-600 duration-200 rounded-lg font-bold p-2" onClick={onClose}>Close</button>
                 </div>
             </div>
         </div>

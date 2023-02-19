@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { db } from "../util/firebase-config";
 import { doc, arrayUnion, updateDoc } from "firebase/firestore";
 import searchImage from "../pictures/search.png"
+import logo from "../pictures/logo.png"
 
 const AddStudentModal = ({ open, children, onClose, populateStudents }) => {
 
@@ -65,7 +66,10 @@ const AddStudentModal = ({ open, children, onClose, populateStudents }) => {
   return ReactDOM.createPortal(
   <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-black/[.54]">
       <div className="flex flex-col items-start justify-center w-2/3 sm:w-1/3 h-2/3 rounded-lg bg-blue-400 p-5">
-        <p className="text-2xl font-bold mb-5 underline">Add student</p>
+        <div className="flex items-center gap-2 mb-2">
+          <img src={logo} className="object-cover w-10 h-10 sm:w-14 sm:h-14"/>
+          <p className="text-2xl font-bold underline">Add student</p>
+        </div>
 
         {/* Search div */}
         <div className="flex justify-center items-center text-md font-bold py-2">
@@ -86,7 +90,7 @@ const AddStudentModal = ({ open, children, onClose, populateStudents }) => {
             if(searchTerm === ""){
               if(!children[1].includes(account.username) && account.type === "student"){
                 return(
-                  <div key={account.username} className="flex justify-between items-center rounded-lg bg-green-400 p-5 text-sm sm:text-base">
+                  <div key={account.username} className="flex justify-between items-center rounded-lg bg-green-500 hover:bg-green-400 duration-200 p-5 text-sm sm:text-base">
                     <p>{account.username} - {account.name}</p>
                     <button className="bg-green-500 p-2 rounded-lg font-bold" onClick={() => {addStudent(account.username)}}>Add</button>
                   </div>
@@ -113,7 +117,7 @@ const AddStudentModal = ({ open, children, onClose, populateStudents }) => {
             className="rounded-lg bg-green-500 font-bold p-2"
             onClick={() => addStudent()}
           /> */}
-          <button onClick={() => {onClose();}} className="rounded-lg bg-red-500 font-bold p-2 px-5">CLOSE</button>
+          <button onClick={() => {onClose();}} className="rounded-lg bg-red-500 hover:bg-red-600 duration-200 font-bold p-2 px-5">Close</button>
         </div>
       </div>
     </div>,

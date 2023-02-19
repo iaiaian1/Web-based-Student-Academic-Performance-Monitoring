@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { db } from "../util/firebase-config";
 import { useNavigate } from "react-router";
+import logo from "../pictures/logo.png"
 
 const CreateStudentAccount = ({ open, children, onClose }) => {
 
@@ -65,7 +66,10 @@ const CreateStudentAccount = ({ open, children, onClose }) => {
     return ReactDOM.createPortal( 
         <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-black/[.54]">
             <div className="flex flex-col items-center justify-center rounded-lg bg-blue-400 p-5">
-                <p className="text-2xl font-bold mb-5">Create Teacher Account</p>
+                <div className="flex items-center w-full mb-2">
+                    <img src={logo} className="object-cover w-14 sm:w-20 h-14 sm:h-20" alt="logo"/>
+                    <p className="text-2xl font-bold">Create Teacher Account</p>
+                </div>
                 <p>{ status }</p>
                 <form onSubmit={(e) => e.preventDefault()} className="w-full h-full flex flex-col justify-center">
                     <p className="font-bold">Teacher ID</p>
@@ -95,11 +99,11 @@ const CreateStudentAccount = ({ open, children, onClose }) => {
                     <div className="grid grid-cols-1 sm:grid-cols-2 mt-5 gap-1">
                         <input
                             type="submit"
-                            value="ADD"
-                            className="rounded-lg bg-green-500 font-bold"
+                            value="Create Teacher Account"
+                            className="rounded-lg bg-green-500 hover:bg-green-600 duration-200 font-bold p-2 cursor-pointer"
                             onClick={() => addTeacher()}
                         />
-                        <button className="bg-red-500 rounded-lg font-bold" onClick={onClose}>CLOSE</button>
+                        <button className="bg-red-500 hover:bg-red-600 duration-200 rounded-lg font-bold p-2" onClick={onClose}>CLOSE</button>
                     </div>
                 </form>
             </div>

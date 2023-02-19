@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../util/firebase-config";
 import ReactDOM from "react-dom";
+import logo from "../pictures/logo.png"
 
 const StudentReportCardModal = ({ open, children, onClose }) => {
 
@@ -84,34 +85,38 @@ const StudentReportCardModal = ({ open, children, onClose }) => {
     return ReactDOM.createPortal( 
         <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-black/[.54]">
             <div className="flex flex-col items-center justify-center rounded-lg bg-blue-400 p-5">
-                <p className="text-2xl font-bold mb-3 underline">Report Card</p>
+                <div className="flex items-center justify-evenly gap-2 mb-2">
+                    <img src={logo} className="object-cover w-12 h-12 sm:w-16 sm:h-16"/>
+                    <p className="text-2xl font-bold underline">Report Card</p>
+                    <img src={logo} className="object-cover w-12 h-12 sm:w-16 sm:h-16 opacity-0"/>
+                </div>
                 <div className="flex flex-col w-full mb-3">
                     <p className="capitalize"><b>Name:</b> {localStorage.getItem("student_name")}</p>
                     {/* Cant section. ongoing todo with database management */}
                     {/* <p><b>Section:</b> {localStorage.getItem("section")}</p> */}
                     <p><b>LRN:</b> {localStorage.getItem("student_id")}</p>
                 </div>
-                <div className="w-full h-full flex flex-col items-center">
+                <div className="flex flex-col items-center">
                     <table className="bg-white">
                         <thead className="border border-black bg-gray-300">
                             <tr>
-                                <th className="border border-black px-5">
+                                <th className="border border-black px-1">
                                     Subject
                                 </th>
-                                <th className="border border-black px-2">
+                                <th className="border border-black px-1">
                                     1st
                                 </th>
-                                <th className="border border-black px-2">
+                                <th className="border border-black px-1">
                                     2nd
                                 </th>
-                                <th className="border border-black px-2" >
+                                <th className="border border-black px-1" >
                                     3rd
                                 </th>
-                                <th className="border border-black px-2">
+                                <th className="border border-black px-1">
                                     4th
                                 </th>
                                 <th className="border border-black px-2">
-                                    Final Average
+                                    Average
                                 </th>
                             </tr>
                         </thead>
@@ -134,22 +139,22 @@ const StudentReportCardModal = ({ open, children, onClose }) => {
 
                                         return(
                                             <tr key={subject}>
-                                                <td className="border border-black px-2">
+                                                <td className="border border-black px-1">
                                                     {subject.toUpperCase()}
                                                 </td>
-                                                <td className="border border-black px-2">
+                                                <td className="border border-black px-1">
                                                     {grade[subject].firstQuarter.toFixed(0)}
                                                 </td>
-                                                <td className="border border-black px-2">
+                                                <td className="border border-black px-1">
                                                     {grade[subject].secondQuarter.toFixed(0)}
                                                 </td>
-                                                <td className="border border-black px-2">
+                                                <td className="border border-black px-1">
                                                     {grade[subject].thirdQuarter.toFixed(0)}
                                                 </td>
-                                                <td className="border border-black px-2">
+                                                <td className="border border-black px-1">
                                                     {grade[subject].fourthQuarter.toFixed(0)}
                                                 </td>        
-                                                <td className="border-r border-black px-2">
+                                                <td className="border-r border-black px-1">
 
                                                 </td>                                 
                                             </tr>
@@ -183,7 +188,7 @@ const StudentReportCardModal = ({ open, children, onClose }) => {
                     </table>
                     <p className="m-2 text-xl">{ remarks()}</p>
                 </div>
-                <button className="bg-red-500 py-1 px-5 rounded-lg font-bold mt-2" onClick={onClose}>Close</button>
+                <button className="bg-red-500 hover:bg-red-600 duration-200 py-1 px-5 rounded-lg font-bold mt-2" onClick={onClose}>Close</button>
             </div>
         </div>,
     document.getElementById("portal")
