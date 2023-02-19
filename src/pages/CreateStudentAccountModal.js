@@ -2,6 +2,7 @@ import { addDoc, collection } from "firebase/firestore";
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { db } from "../util/firebase-config";
+import logo from "../pictures/logo.png"
 
 const CreateStudentAccountModal = ({ open, children, onClose, getAccounts }) => {
 
@@ -40,7 +41,10 @@ const CreateStudentAccountModal = ({ open, children, onClose, getAccounts }) => 
     return ReactDOM.createPortal(
         <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-black/[.54]">
             <div className="flex flex-col items-start justify-center rounded-lg bg-blue-400 p-5">
-                <p className="text-xl sm:text-2xl font-bold mb-5">Create student account</p>
+                <div className="flex items-center w-full mb-2">
+                    <img src={logo} className="object-cover w-14 sm:w-20 h-14 sm:h-20" alt="logo"/>  
+                    <p className="text-xl sm:text-2xl font-bold underline">Create student account</p>
+                </div>
                 <p>{status}</p>
                 <form id="addSectionForm" onSubmit={(e) => e.preventDefault()} className="w-full">
                     <p className="font-bold">LRN</p>
@@ -71,10 +75,10 @@ const CreateStudentAccountModal = ({ open, children, onClose, getAccounts }) => 
                         <input
                             type="submit"
                             value="Create account"
-                            className="self-center rounded-lg bg-green-500 py-2 px-5 font-bold"
+                            className="self-center rounded-lg bg-green-500 hover:bg-green-600 duration-200 py-2 px-5 font-bold cursor-pointer"
                             onClick={() => createAccount()}
                         />
-                        <button onClick={() => {onClose();}} className=" rounded-lg bg-red-500 py-2 px-5 font-bold">CLOSE</button>
+                        <button onClick={() => {onClose();}} className=" rounded-lg bg-red-500 hover:bg-red-600 duration-200 py-2 px-5 font-bold">Close</button>
                     </div>
                 </form>
             </div>

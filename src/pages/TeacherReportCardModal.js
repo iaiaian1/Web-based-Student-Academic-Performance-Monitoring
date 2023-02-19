@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { useReactToPrint } from 'react-to-print'
 import { addDoc, collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
 import { db } from "../util/firebase-config";
+import logo from "../pictures/logo.png"
 
 const TeacherReportCardModal = ({ open, children, onClose , activities, students, accounts}) => {
 
@@ -209,8 +210,11 @@ const TeacherReportCardModal = ({ open, children, onClose , activities, students
                                 if(account.username === grade.id){
                                     totalAverage = 0
                                     return(
-                                        <div key={account.id}>  
-                                            <p className="self-start text-2xl font-bold mb-5 underline pagebreak" key={account.id}>Report card</p>
+                                        <div key={account.id}>
+                                            <div className="flex items-center gap-2 mb-2">
+                                                <img src={logo} className="object-cover w-12 h-12 sm:w-16 sm:h-16"/>
+                                                <p className="text-2xl font-bold underline pagebreak" key={account.id}>Report card</p>
+                                            </div>
                                             <p className="font-bold underline">{account.name} Grade {section.section}</p>
                                             <p className="font-bold underline">{localStorage.getItem('school_year')}</p>
                                             <div className="w-full h-full p-2">
@@ -309,9 +313,9 @@ const TeacherReportCardModal = ({ open, children, onClose , activities, students
                     })}
                 </div>
                 <div className="w-1/2 sm:w-fit gap-1 m-1 grid grid-cols-1 sm:grid-cols-3">
-                    <button className="bg-green-500 rounded-lg font-bold p-2" onClick={calculate}>Refresh</button>
-                    <button className="bg-green-500 rounded-lg font-bold p-2" onClick={handlePrint}>Print</button>
-                    <button className="bg-red-500 rounded-lg font-bold p-2" onClick={onClose}>Close</button>
+                    <button className="bg-green-500 hover:bg-green-600 duration-200 rounded-lg font-bold p-2" onClick={calculate}>Refresh</button>
+                    <button className="bg-green-500 hover:bg-green-600 duration-200 rounded-lg font-bold p-2" onClick={handlePrint}>Print</button>
+                    <button className="bg-red-500 hover:bg-red-600 duration-200 rounded-lg font-bold p-2" onClick={onClose}>Close</button>
                 </div>
             </div>
         </div>,

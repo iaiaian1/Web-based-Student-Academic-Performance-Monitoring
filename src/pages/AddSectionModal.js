@@ -2,6 +2,7 @@ import { addDoc, collection } from "firebase/firestore";
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { db } from "../util/firebase-config";
+import logo from "../pictures/logo.png"
 
 const AddSectionModal = ({ open, children, onClose, populateSection, sections }) => {
   //TODO add animation
@@ -36,8 +37,11 @@ const AddSectionModal = ({ open, children, onClose, populateSection, sections })
   return ReactDOM.createPortal(
   <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-black/[.54]">
       <div className="flex flex-col items-start justify-center h-1/3 sm:h-1/4 w-2/3 sm:w-1/4 rounded-lg bg-blue-400 p-5">
-        <p className="text-2xl font-bold mb-5">Add section</p>
-        <p>{status}</p>
+        <div className="flex items-center w-full mb-2">
+          <img src={logo} className="object-cover w-14 sm:w-20 h-14 sm:h-20" alt="logo"/>       
+          <p className="text-2xl font-bold underline">Add section</p>
+          <img src={logo} className="object-cover w-14 sm:w-20 h-14 sm:h-20 opacity-0" alt="logo"/>       
+        </div>
         <form id="addSectionForm" onSubmit={(e) => e.preventDefault()} className="w-full">
             <p className="font-bold">Select a section</p>
             <select id="selectId" className="text-sm w-full p-1" value={sectionSelect} onChange={(e) => setSectionSelect(e.target.value)}>
@@ -52,11 +56,11 @@ const AddSectionModal = ({ open, children, onClose, populateSection, sections })
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
               <input
                 type="submit"
-                value="ADD"
-                className="rounded-lg bg-green-500 py-2 font-bold"
+                value="Add section"
+                className="rounded-lg bg-green-500 hover:bg-green-600 duration-200 py-2 font-bold"
                 onClick={() => addSection()}
               />
-              <button onClick={() => {onClose();Clear();}} className="rounded-lg bg-red-500 py-2 font-bold">CLOSE</button>
+              <button onClick={() => {onClose();Clear();}} className="rounded-lg bg-red-500 hover:bg-red-600 duration-200 py-2 font-bold">Close</button>
             </div>
         </form>
       </div>

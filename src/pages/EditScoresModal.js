@@ -2,6 +2,7 @@ import ReactDOM from "react-dom";
 import { useRef, useState } from "react";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../util/firebase-config";
+import logo from "../pictures/logo.png"
 
 const EditScoresModal = ({ open, children, onClose, activities, populateActivities }) => {
 
@@ -57,7 +58,11 @@ const EditScoresModal = ({ open, children, onClose, activities, populateActiviti
     return ReactDOM.createPortal( 
         <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-black/[.54]">
             <div className="flex flex-col items-center justify-center rounded-lg bg-blue-400 p-5">
-                <p className="text-2xl font-bold underline mb-1 w-full">Edit scores</p>
+                <div className="flex items-center justify-evenly mb-2 w-full">
+                    <img src={logo} className="object-cover w-12 h-12 sm:w-16 sm:h-16"/>
+                    <p className="text-2xl font-bold underline">Edit scores</p>
+                    <img src={logo} className="object-cover w-12 h-12 sm:w-16 sm:h-16 opacity-0"/>
+                </div>
                 <div className="bg-blue-500 rounded-lg p-2 mb-2 w-full">
                     <p className="font-bold">Subject</p>
                     <select className="text-sm sm:text-base w-full p-1" value={subject} onChange={(e) => {setSubject(e.target.value);}}>
@@ -179,8 +184,8 @@ const EditScoresModal = ({ open, children, onClose, activities, populateActiviti
                     
                     {/* Buttons */}
                     <div className="grid grid-rows-1 sm:grid-cols-2 gap-2 w-full self-center">
-                        <button type="submit" className="bg-green-500 font-bold rounded-lg ">Submit</button>
-                        <button className="bg-red-500 rounded-lg font-bold " onClick={onClose}>Close</button>
+                        <button type="submit" className="bg-green-500 hover:bg-green-600 duration-200 font-bold rounded-lg ">Submit</button>
+                        <button className="bg-red-500 hover:bg-red-600 duration-200 rounded-lg font-bold " onClick={onClose}>Close</button>
                     </div>
                 </form>
             </div>

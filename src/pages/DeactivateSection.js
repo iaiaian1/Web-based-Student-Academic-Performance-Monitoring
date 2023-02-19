@@ -53,14 +53,14 @@ const DeactivateSection = ({ open, children, onClose }) => {
                                     <p className="text-white">{section.id}</p>
                                 </div>
                                 <div className="flex flex-col sm:flex-row gap-1">
-                                    <button className="bg-green-400 py-1 px-2 rounded-lg font-bold text-xs sm:text-base" onClick={() => activate(section.id)}>Activate</button>
-                                    <button className="bg-red-400 py-1 px-2 rounded-lg font-bold text-xs sm:text-base" onClick={() => deactivate(section.id)}>Deactivate</button>
+                                    <button className="bg-green-400 hover:bg-green-500 duration-200 py-1 px-2 rounded-lg font-bold text-xs sm:text-base" onClick={() => activate(section.id)}>Activate</button>
+                                    <button className="bg-red-400 hover:bg-red-500 duration-200 py-1 px-2 rounded-lg font-bold text-xs sm:text-base" onClick={() => deactivate(section.id)}>Deactivate</button>
                                 </div>
                             </div>                         
                         )
                     })}
                 </div>
-                <button className="bg-green-400 py-1 px-5 rounded-lg font-bold mt-2" onClick={onClose}>CLOSE</button>
+                <button className="bg-red-500 hover:bg-red-600 duration-200 py-1 px-5 rounded-lg font-bold mt-2" onClick={onClose}>CLOSE</button>
             </div>
         </div>,
     document.getElementById("portal")

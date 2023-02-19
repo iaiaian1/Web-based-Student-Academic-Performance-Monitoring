@@ -3,6 +3,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../util/firebase-config";
 import ReactDOM from "react-dom";
 import AllStudentsModal from "./AllStudentsModal";
+import logo from "../pictures/logo.png"
 
 const TopnotchersModal = ({ open, children, onClose, activities, students, accounts }) => {
 
@@ -103,7 +104,10 @@ const TopnotchersModal = ({ open, children, onClose, activities, students, accou
         <>
             <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-black/[.54]">
                 <div className="flex flex-col items-center justify-center rounded-lg bg-blue-400 p-5">
-                    <p className="text-2xl font-bold mb-5 underline">Performance Rankings</p>
+                    <div className="flex items-center gap-2 mb-2">
+                        <img src={logo} className="object-cover w-10 h-10 sm:w-14 sm:h-14"/>
+                        <p className="text-2xl font-bold underline">Performance Rankings</p>
+                    </div>
                     <div className="bg-blue-500 rounded-lg p-3 mb-2 w-full">
                         <p className="font-bold">Quarter</p>
                         <select className="text-sm sm:text-base w-full p-1" value={quarter} onChange={(e) => {setQuarter(e.target.value);}}>
@@ -125,8 +129,8 @@ const TopnotchersModal = ({ open, children, onClose, activities, students, accou
                         })}
                     </div>
                     <div className="grid grid-rows-1 sm:grid-cols-2 gap-2 self-center">
-                        <button onClick={() => {setIsOpen(true);}} className="bg-blue-500 font-bold text-lg rounded-lg p-1">Student list</button>
-                        <button className="bg-red-500 rounded-lg font-bold p-1" onClick={onClose}>Close</button>
+                        <button onClick={() => {setIsOpen(true);}} className="bg-blue-500 hover:bg-blue-600 duration-200 font-bold text-lg rounded-lg p-1">Student list</button>
+                        <button className="bg-red-500 hover:bg-red-600 duration-200 rounded-lg font-bold p-1" onClick={onClose}>Close</button>
                     </div>
 
                 </div>

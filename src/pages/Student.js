@@ -9,6 +9,7 @@ import GradeModal from "./GradeModal";
 import GradingScaleModal from "./GradingScaleModal";
 import SettingsModal from "./SettingsModal";
 import StudentReportCardModal from "./StudentReportCardModal";
+import logo from "../pictures/logo.png"
 
 const Student = () => {
 
@@ -58,7 +59,8 @@ const Student = () => {
         <>
             <div className="flex h-screen items-center justify-center bg-gradient-to-tl from-blue-100 via-blue-300 to-blue-500">
                 <div className="flex flex-col items-center justify-center h-5/6 w-11/12 rounded-lg bg-blue-400 p-5">
-                    <div className="flex justify-between w-full">
+                    <div className="flex items-center w-full">
+                        <img src={logo} className="object-cover w-14 sm:w-20 h-14 sm:h-20" alt="logo"/>
                         <p className="text-xl sm:text-3xl font-bold">Hello, {localStorage.getItem("user_name").toUpperCase()}!</p>
                         {/* <button className="w-1/5 font-bold text-xs sm:text-xl bg-red-500 rounded-lg" onClick={() => setIsOpen2(true)}>Settings</button> */}
                     </div>
@@ -171,9 +173,9 @@ const Student = () => {
                     </div>
                     {/* Buttons */}
                     <div className="w-1/2 sm:w-fit grid grid-cols-1 sm:grid-cols-3 gap-1 m-1">
-                        <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500 rounded-lg" onClick={() => setIsOpen(true)}>Report Card</button>
-                        <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500 rounded-lg" onClick={() => setIsOpen3(true)}>Grading Scale</button>   
-                        <button className="font-bold break-words text-sm sm:text-xl p-2 bg-red-500 rounded-lg" onClick={() => Logout()}>Logout</button>
+                        <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500 hover:bg-green-600 duration-200 rounded-lg" onClick={() => setIsOpen(true)}>Report Card</button>
+                        <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500 hover:bg-green-600 duration-200 rounded-lg" onClick={() => setIsOpen3(true)}>Grading Scale</button>   
+                        <button className="font-bold break-words text-sm sm:text-xl p-2 bg-red-500 hover:bg-red-600 duration-200 rounded-lg" onClick={() => Logout()}>Logout</button>
                     </div>
                 </div>
             </div>

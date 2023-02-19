@@ -75,7 +75,7 @@ const Login = () => {
           <input
             type="submit"
             value="Login"
-            className="mt-7 w-3/4 sm:w-1/4 self-center justify-self-center rounded-lg bg-green-500 p-5 font-bold"
+            className="mt-7 w-3/4 sm:w-1/4 self-center justify-self-center rounded-lg bg-green-500 hover:bg-green-600 duration-200 p-5 font-bold"
             onClick={() => Auth()}
           />
           {/* <button type="submit" className="mt-7 w-1/4 self-center bg-green-300 py-2 px-5 font-bold" onSubmit={console.log('foo')}>

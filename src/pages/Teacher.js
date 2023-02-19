@@ -7,6 +7,7 @@ import CreateStudentAccountModal from "./CreateStudentAccountModal";
 //import SectionsArchive from "./SectionsArchive";
 import SettingsModal from "./SettingsModal";
 import searchImage from "../pictures/search.png"
+import logo from "../pictures/logo.png"
 
 const Teacher = () => {
 
@@ -59,6 +60,10 @@ const Teacher = () => {
     })
     navigate('section')
   }
+
+  function goHome(){
+    navigate('/teacher')
+  }
   
   useEffect(() => {
     if(localStorage.getItem("user_name") === null || localStorage.getItem("user_id") === null || localStorage.getItem("type") !== "teacher" || localStorage.getItem("account_id") === null){
@@ -73,8 +78,11 @@ const Teacher = () => {
       <div className="flex h-screen items-center justify-center bg-gradient-to-tl from-blue-100 via-blue-300 to-blue-500">
         <div className="flex gap-y-2 h-5/6 w-11/12 flex-col items-center rounded-lg bg-blue-400 p-5">
           <div className="flex justify-between w-full">
-            <p className="text-xl sm:text-3xl font-bold">Hello, Teacher {localStorage.getItem("user_name")}!</p>
-            <button className="w-1/5 font-bold text-xs sm:text-xl bg-red-500 rounded-lg" onClick={() => setIsOpen3(true)}>Settings</button>
+            <div className="flex items-center">
+              <img src={logo} className="object-cover w-14 sm:w-20 h-14 sm:h-20 cursor-pointer hover:opacity-75 duration-200" alt="logo" onClick={() => goHome()}/>
+              <p className="text-xl sm:text-3xl font-bold">Hello, Teacher {localStorage.getItem("user_name")}!</p>
+            </div>
+            <button className="h-14 w-14 sm:h-16 sm:w-20 font-bold text-xs sm:text-xl bg-red-500 hover:bg-red-600 duration-200 rounded-lg" onClick={() => setIsOpen3(true)}>Settings</button>
           </div>
           <div className="mt-5 flex h-5/6 w-full flex-col items-center justify-center">
             <p className="self-start text-xl sm:text-2xl font-bold underline">Sections</p>
@@ -92,14 +100,14 @@ const Teacher = () => {
             </div>
 
             {/* Section box */}
-            <div className="grid grid-cols-1 gap-3 w-full h-full items-center justify-center rounded-lg border bg-blue-500 overflow-y-scroll p-2 px-5 sm:px-32">
+            <div className="w-full h-full items-center justify-center rounded-lg border bg-blue-500 overflow-y-scroll p-2 px-5 sm:px-32">
               {sections.map((section) => {
                 //Render data ONLY if the teacher is the same as the teacher in localstorage.
                 if(searchTerm === ""){
                   //SHOW ALL ITEMS
                   if(section.teacher === localStorage.getItem('user_id') && section.status === "active"){
                     return(
-                      <div key={section.id} className="flex items-center justify-center rounded-lg bg-green-400 p-5 text-sm sm:text-base" onClick={() => {openSection(section.id); localStorage.setItem('school_year', section.year)}}>
+                      <div key={section.id} className="flex items-center justify-center rounded-lg bg-green-500 hover:bg-green-400 duration-200 p-5 mb-2 text-sm sm:text-base cursor-pointer" onClick={() => {openSection(section.id); localStorage.setItem('school_year', section.year)}}>
                         <p className="break-words font-bold">
                           {section.section} ({section.year})
                         </p>
@@ -110,7 +118,7 @@ const Teacher = () => {
                   //Show matching
                   if(section.teacher === localStorage.getItem('user_id') && section.status === "active" && section.section.toLowerCase().replace(/ /g, '').includes(searchTerm.toLowerCase())){
                     return(
-                      <div key={section.id} className="flex items-center justify-center rounded-lg bg-green-400 p-5 text-sm sm:text-base" onClick={() => {openSection(section.id); localStorage.setItem('school_year', section.year)}}>
+                      <div key={section.id} className="flex items-center justify-center rounded-lg bg-green-400 p-5 mb-2 text-sm sm:text-base" onClick={() => {openSection(section.id); localStorage.setItem('school_year', section.year)}}>
                         <p className="break-words font-bold">
                           {section.section} ({section.year})
                         </p>
@@ -118,16 +126,15 @@ const Teacher = () => {
                     )
                   } 
                 }
-                
               })}
             </div>
 
             {/* Buttons */}
             <div className="w-1/2 sm:w-fit grid grid-cols-1 sm:grid-cols-3 gap-1 m-1">
-              <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500 rounded-lg" onClick={() => setIsOpen(true)}>Add a section</button>
-              <button className="font-bold break-words text-xs sm:text-lg p-2 bg-green-500 rounded-lg" onClick={() => setIsOpen2(true)}>Create student account</button>
+              <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500 hover:bg-green-600 duration-200 rounded-lg" onClick={() => setIsOpen(true)}>Add a section</button>
+              <button className="font-bold break-words text-xs sm:text-lg p-2 bg-green-500 hover:bg-green-600 duration-200 rounded-lg" onClick={() => setIsOpen2(true)}>Create student account</button>
               {/* <button className="font-bold break-words text-xs sm:text-lg p-2 bg-green-500" onClick={() => setIsOpen4(true)}>Sections archive</button> */}
-              <button className="font-bold break-words text-sm sm:text-xl p-2 bg-red-500 rounded-lg" onClick={() => Logout()}>Logout</button>
+              <button className="font-bold break-words text-sm sm:text-xl p-2 bg-red-500 hover:bg-red-600 duration-200 rounded-lg" onClick={() => Logout()}>Logout</button>
             </div>
           </div>
         </div>

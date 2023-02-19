@@ -92,8 +92,8 @@ const DropoutStudent = ({ open, children, onClose }) => {
                         <p>Student ID:</p>
                         <input type="text" value={studentId} onChange={(e) => setStudentId(e.target.value)} className="w-full"/>
                     </div>
-                    <button className="bg-orange-500 rounded-lg font-bold    " onClick={() => dropStudent()}>Drop</button>
-                    <button className="bg-red-500 rounded-lg font-bold" onClick={onClose}>CLOSE</button>
+                    <button className="bg-orange-500 hover:bg-orange-600 duration-200 rounded-lg font-bold" onClick={() => dropStudent()}>Drop</button>
+                    <button className="bg-red-500 hover:bg-red-600 duration-200 rounded-lg font-bold" onClick={onClose}>CLOSE</button>
                 </div>
                 
             </div>
