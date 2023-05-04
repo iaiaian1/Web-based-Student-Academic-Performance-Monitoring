@@ -92,7 +92,7 @@ const AddStudentModal = ({ open, children, onClose, populateStudents }) => {
                 return(
                   <div key={account.username} className="flex justify-between items-center rounded-lg bg-green-500 hover:bg-green-400 duration-200 p-5 text-sm sm:text-base">
                     <p>{account.username} - {account.name}</p>
-                    <button className="bg-green-500 p-2 rounded-lg font-bold" onClick={() => {addStudent(account.username)}}>Add</button>
+                    <button className="bg-green-600 p-2 rounded-lg font-bold" onClick={() => {addStudent(account.username)}}>Add</button>
                   </div>
                 )
               }

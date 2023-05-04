@@ -35,7 +35,7 @@ const AdminPage = () => {
                         <button className="font-bold break-words text-xs sm:text-lg p-2 bg-green-500 hover:bg-green-600 duration-200" onClick={() => setIsOpen(true)}>Create teacher account</button>
                         <button className="font-bold break-words text-xs sm:text-lg p-2 bg-green-500 hover:bg-green-600 duration-200" onClick={() => setIsOpen2(true)}>Deactivate / Activate section</button>
                         <button className="font-bold break-words text-xs sm:text-lg p-2 bg-green-500 hover:bg-green-600 duration-200" onClick={() => setIsOpen3(true)}>Reset account</button>
-                        <button className="font-bold break-words text-xs sm:text-lg p-2 bg-green-500 hover:bg-green-600 duration-200" onClick={() => setIsOpen4(true)}>Dropout Student</button>
+                        {/* <button className="font-bold break-words text-xs sm:text-lg p-2 bg-green-500 hover:bg-green-600 duration-200" onClick={() => setIsOpen4(true)}>Dropout Student</button> */}
                         <button className="font-bold break-words text-xs sm:text-lg p-2 bg-red-500 hover:bg-red-600 duration-200" onClick={() => logout()}>Logout</button>
                     </div>
                 </div>

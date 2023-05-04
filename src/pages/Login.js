@@ -2,6 +2,8 @@ import { collection, getDocs } from "firebase/firestore";
 import { useState } from "react";
 import { db } from "../util/firebase-config";
 import { useNavigate } from "react-router";
+import logo from "../pictures/logo.png"
+import deped from "../pictures/deped.png"
 
 const Login = () => {
   //Forms state
@@ -48,7 +50,12 @@ const Login = () => {
   }
 
   return (
-    <div className="flex h-screen items-center justify-center bg-gradient-to-tl from-blue-100 via-blue-300 to-blue-500">
+    <div className="flex flex-col h-screen items-center justify-center bg-gradient-to-tl from-blue-100 via-blue-300 to-blue-500">
+      <div className="flex gap-5">
+        <img src={logo} alt="" className="w-24 object-contain" />
+        <img src={deped} alt="" className="w-28 object-contain"/>
+      </div>
+      <p className="text-xl sm:text-4xl font-bold mb-5">Agtatacay Sur Elementary School</p>
       <div className="w-2/3 rounded-lg bg-blue-300 p-3 xl:w-2/4">
         <p>{status}</p>
         <form
