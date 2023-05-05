@@ -28,11 +28,11 @@ const GradingScaleModal = ({ open, children, onClose }) => {
                         </div>
                     </div>
                     <div className="font-bold flex flex-col mt-5 gap-y-2">
-                        <p>💯 Outsanding 90-100</p>
-                        <p>🌟 Very satisfactory 85-89</p>
-                        <p>🥳 Satisfactory 80-84</p>
-                        <p>😄 Fairly satisfactory 75-79</p>
-                        <p>😬 Did not meet expectations &gt;75</p>
+                        <p>💯 Outsanding (90-100)</p>
+                        <p>🌟 Very satisfactory (85-89)</p>
+                        <p>🥳 Satisfactory (80-84)</p>
+                        <p>😄 Fairly satisfactory (75-79)</p>
+                        <p>😬 Did not meet expectations (&lt;75)</p>
                     </div>
                 </div>
                 <button className="bg-red-500 hover:bg-red-600 duration-200 py-1 px-5 rounded-lg font-bold mt-2" onClick={onClose}>CLOSE</button>
