@@ -14,6 +14,8 @@ const CreateStudentAccount = ({ open, children, onClose }) => {
     const [password, setPassword] = useState('')
     const [status, setStatus] = useState('')
     const [accounts, setAccounts] = useState([])
+    // dirty code. :(
+    const [accounts2, setAccounts2] = useState([])
     const accountsRef = collection(db, "accounts")
 
     const getAccounts = async() => {
@@ -21,6 +23,10 @@ const CreateStudentAccount = ({ open, children, onClose }) => {
         setAccounts(snapshot.docs.map((account) => (
             account.data().username
         )))
+        setAccounts2(snapshot.docs.map((account) => ({
+            ...account.data(), id: account.id
+            // account.data().username
+        })))
     }
 
     const addTeacher = async() => {
@@ -96,7 +102,20 @@ const CreateStudentAccount = ({ open, children, onClose }) => {
                         required
                         className="w-full"
                     />
-                    <div className="grid grid-cols-1 sm:grid-cols-2 mt-5 gap-1">
+                    <p className="font-bold mt-2">Registered teacher list</p>
+                    <div className="border-2 h-72 mb-2 px-2 overflow-auto">
+                        {accounts2 && accounts2.map((account) => {
+                            if(account.type == "teacher"){
+                                return(
+                                    <div className="flex" key={account.id}>
+                                        <p className="font-bold w-24">{account.username}</p>
+                                        <p className="">- {account.name}</p>
+                                    </div>
+                                )
+                            }
+                        })}
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-1">
                         <input
                             type="submit"
                             value="Create Teacher Account"
