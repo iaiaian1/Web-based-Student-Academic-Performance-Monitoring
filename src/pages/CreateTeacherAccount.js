@@ -45,6 +45,7 @@ const CreateStudentAccount = ({ open, children, onClose }) => {
                 setStatus('Teacher account added!')
                 clear()
             }
+            getAccounts();
         }
     }
     

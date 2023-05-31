@@ -166,11 +166,11 @@ const Section = () => {
 
                     {/* Buttons */}
                     <div className="w-full grid grid-cols-2 sm:grid-cols-5 gap-1 m-1">
-                        <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500 hover:bg-green-600 duration-200 rounded-lg" onClick={() => setIsOpen(true)}>Add student</button>
+                        <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500 hover:bg-green-600 duration-200 rounded-lg" onClick={() => setIsOpen(true)}>Enroll student</button>
                         <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500 hover:bg-green-600 duration-200 rounded-lg" onClick={() => setIsOpen2(true)}>Rankings</button>
                         <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500 hover:bg-green-600 duration-200 rounded-lg" onClick={() => setIsOpen4(true)}>Grading System</button>
                         <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500 hover:bg-green-600 duration-200 rounded-lg" onClick={() => setIsOpen5(true)}>Activities</button>
-                        <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500 hover:bg-green-600 duration-200 rounded-lg" onClick={() => setIsOpen6(true)}>Report Card</button>
+                        <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500 hover:bg-green-600 duration-200 rounded-lg" onClick={() => setIsOpen6(true)}>Grades</button>
                     </div>
                 </div>
             </div>

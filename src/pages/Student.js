@@ -173,7 +173,7 @@ const Student = () => {
                     </div>
                     {/* Buttons */}
                     <div className="w-1/2 sm:w-fit grid grid-cols-1 sm:grid-cols-3 gap-1 m-1">
-                        <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500 hover:bg-green-600 duration-200 rounded-lg" onClick={() => setIsOpen(true)}>Report Card</button>
+                        <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500 hover:bg-green-600 duration-200 rounded-lg" onClick={() => setIsOpen(true)}>Grades</button>
                         <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500 hover:bg-green-600 duration-200 rounded-lg" onClick={() => setIsOpen3(true)}>Grading System</button>   
                         <button className="font-bold break-words text-sm sm:text-xl p-2 bg-red-500 hover:bg-red-600 duration-200 rounded-lg" onClick={() => Logout()}>Logout</button>
                     </div>

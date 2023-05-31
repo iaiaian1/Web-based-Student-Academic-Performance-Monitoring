@@ -17,18 +17,28 @@ const DeactivateSection = ({ open, children, onClose }) => {
         })))
     }
 
-    const activate = async(section) =>{
-        let sectionRef = doc(db, "sections", section)
-        await updateDoc(sectionRef, {
-            status: "active"
-        })
+    const activate = async(section, status) =>{
+        if(status != "active"){
+            // console.log(status);
+            let sectionRef = doc(db, "sections", section)
+            await updateDoc(sectionRef, {
+                status: "active"
+            })
+            alert ("Activated the section.");
+            getSections();
+        }
     }
 
-    const deactivate = async(section) =>{
-        let sectionRef = doc(db, "sections", section)
-        await updateDoc(sectionRef, {
-            status: "inactive"
-        })
+    const deactivate = async(section, status) =>{
+        if(status != "inactive"){
+            // console.log(status);
+            let sectionRef = doc(db, "sections", section)
+            await updateDoc(sectionRef, {
+                status: "inactive"
+            })
+            alert ("Deactivated the section.");
+            getSections();
+        }
     }
 
     useEffect(() => {
@@ -44,17 +54,17 @@ const DeactivateSection = ({ open, children, onClose }) => {
                 <p className="text-2xl font-bold mb-2">Deactivate/Activate section</p>
                 <p className="mb-2 text-xl">Deactivate to remove a section in teacher's panel</p>
                 <div className="bg-blue-500 overflow-auto w-full p-1">
-                    {sections.map((section) => {
+                    {sections && sections.map((section) => {
                         return(
                             <div className="flex justify-between items-center p-1 border border-white" key={section.id}>
                                 <div className="font-bold text-xs sm:text-lg">
-                                    <p>Teacher: {section.teacher}</p>
+                                    <p>Teacher: {section.teacherName} ({section.teacher})</p>
                                     <p>{section.section}({section.year})</p>
                                     <p className="text-white">{section.id}</p>
                                 </div>
                                 <div className="flex flex-col sm:flex-row gap-1">
-                                    <button className="bg-green-400 hover:bg-green-500 duration-200 py-1 px-2 rounded-lg font-bold text-xs sm:text-base" onClick={() => activate(section.id)}>Activate</button>
-                                    <button className="bg-red-400 hover:bg-red-500 duration-200 py-1 px-2 rounded-lg font-bold text-xs sm:text-base" onClick={() => deactivate(section.id)}>Deactivate</button>
+                                    <button className={`bg-green-400 duration-200 py-1 px-2 rounded-lg font-bold text-xs sm:text-base ${section.status == "active" ? "cursor-not-allowed" : "hover:bg-green-500"}`} onClick={() => activate(section.id, section.status)}>Activate</button>
+                                    <button className={`bg-red-400 duration-200 py-1 px-2 rounded-lg font-bold text-xs sm:text-base ${section.status == "inactive" ? "cursor-not-allowed" : "hover:bg-red-500"}`} onClick={() => deactivate(section.id, section.status)}>Deactivate</button>
                                 </div>
                             </div>                         
                         )

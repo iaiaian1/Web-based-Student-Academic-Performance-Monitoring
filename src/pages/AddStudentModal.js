@@ -58,6 +58,7 @@ const AddStudentModal = ({ open, children, onClose, populateStudents }) => {
 
   const addStudent = async (studentId)=>{
     updateDoc(sectionArrayRef, { students: arrayUnion(studentId.toLowerCase()) })
+    alert("Student added");
     populateStudents()
   }
   
@@ -68,7 +69,7 @@ const AddStudentModal = ({ open, children, onClose, populateStudents }) => {
       <div className="flex flex-col items-start justify-center w-2/3 sm:w-1/3 h-2/3 rounded-lg bg-blue-400 p-5">
         <div className="flex items-center gap-2 mb-2">
           <img src={logo} className="object-cover w-10 h-10 sm:w-14 sm:h-14"/>
-          <p className="text-2xl font-bold underline">Add student</p>
+          <p className="text-2xl font-bold underline">Student list</p>
         </div>
 
         {/* Search div */}
@@ -83,25 +84,25 @@ const AddStudentModal = ({ open, children, onClose, populateStudents }) => {
           />
         </div>
 
-        <div className="w-full h-full grid grid-cols-1 overflow-y-auto gap-y-1 bg-blue-500 p-2 rounded-lg">
+        <div className="w-full h-full grid grid-cols-1 content-start overflow-y-auto gap-y-1 bg-blue-500 p-2 rounded-lg">
           {/* {console.log(children[0])} */}
           {children[0].map((account) => {
 
             if(searchTerm === ""){
-              if(!children[1].includes(account.username) && account.type === "student"){
+              if(!children[1]?.includes(account.username) && account.type === "student"){
                 return(
                   <div key={account.username} className="flex justify-between items-center rounded-lg bg-green-500 hover:bg-green-400 duration-200 p-5 text-sm sm:text-base">
                     <p>{account.username} - {account.name}</p>
-                    <button className="bg-green-600 p-2 rounded-lg font-bold" onClick={() => {addStudent(account.username)}}>Add</button>
+                    <button className="bg-green-600 p-2 rounded-lg font-bold" onClick={() => {addStudent(account.username)}}>Enroll</button>
                   </div>
                 )
               }
             }else{
-              if(!children[1].includes(account.username) && account.type === "student" && account.name.toLowerCase().replace(/ /g, '').includes(searchTerm.toLowerCase())){
+              if(!children[1]?.includes(account.username) && account.type === "student" && account.name.toLowerCase().replace(/ /g, '').includes(searchTerm.toLowerCase())){
                 return(
-                  <div key={account.username} className="flex justify-between items-center rounded-lg bg-green-400 p-5 text-sm sm:text-base">
+                  <div key={account.username} className="h-min flex justify-between items-center rounded-lg bg-green-400 p-5 text-sm sm:text-base">
                     <p>{account.username} - {account.name}</p>
-                    <button className="bg-green-500 p-2 rounded-lg font-bold" onClick={() => {addStudent(account.username)}}>Add</button>
+                    <button className="bg-green-500 p-2 rounded-lg font-bold" onClick={() => {addStudent(account.username)}}>Enroll</button>
                   </div>
                 )
               }

@@ -22,7 +22,7 @@ const AllStudentsModal = ({ open, children, onClose, students, accounts }) => {
                     <p className="text-xl font-bold mb-5 underline">Teacher: {localStorage.getItem("user_name")}</p>
 
                     <div className="w-full h-full flex flex-col justify-center items-center">
-                        {students.map((student, index) => {
+                        {students && students.map((student, index) => {
                             return(
                                 accounts.map((account) => {
                                     if(account.username == student){

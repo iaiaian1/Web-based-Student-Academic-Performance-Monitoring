@@ -160,7 +160,7 @@ const SettingsModal = ({ open, onClose }) => {
 
     return ReactDOM.createPortal( 
         <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-black/[.54]">
-            <div className="flex flex-col items-start justify-center h-1/3 sm:h-1/4 w-2/4 sm:w-1/4 rounded-lg bg-blue-400 p-3">
+            <div className="flex flex-col items-start justify-center rounded-lg bg-blue-400 p-3">
                 <div className="flex items-center gap-2 mb-2">
                     <img src={logo} className="object-cover w-10 h-10 sm:w-14 sm:h-14"/>
                     <p className="text-xl sm:text-2xl font-bold underline">Edit account</p>
@@ -198,7 +198,7 @@ const SettingsModal = ({ open, onClose }) => {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
                         <input
                             type="submit"
-                            value="Update password"
+                            value="Update"
                             className="rounded-lg bg-green-500 hover:bg-green-600 duration-200 py-2 font-bold"
                             onClick={() => updateInfo()}
                         />
