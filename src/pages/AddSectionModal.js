@@ -19,7 +19,7 @@ const AddSectionModal = ({ open, children, onClose, populateSection, sections })
       setStatus("Please fill up required fields");
     }else{
       let schoolYear = `${date.getFullYear()} - ${date.getFullYear()+1}`
-      await addDoc(sectionsColRef, {section: sectionSelect, teacher: localStorage.getItem('user_id'), year: schoolYear, status: "active"})
+      await addDoc(sectionsColRef, {section: sectionSelect, teacher: localStorage.getItem('user_id'), teacherName: localStorage.getItem('user_name'), year: schoolYear, status: "active"})
       Clear()
       alert('Added')
       populateSection()
@@ -56,7 +56,7 @@ const AddSectionModal = ({ open, children, onClose, populateSection, sections })
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
               <input
                 type="submit"
-                value="Add section"
+                value="Add"
                 className="rounded-lg bg-green-500 hover:bg-green-600 duration-200 py-2 font-bold"
                 onClick={() => addSection()}
               />

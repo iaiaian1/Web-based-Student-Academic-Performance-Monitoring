@@ -66,7 +66,7 @@ const TopnotchersModal = ({ open, children, onClose, activities, students, accou
 
     const calculate = useCallback(() => {
         let studentsWithAverages = grades
-            .filter((grade) => students.includes(grade.id))
+            .filter((grade) => students?.includes(grade.id))
             .map((grade) => {
                 let subjectAverages = subjects.map((subject) => grade[subject][quarter]);
                 let average = subjectAverages.reduce((sum, subjectAverage) => sum + subjectAverage, 0) / subjects.length;
@@ -83,8 +83,10 @@ const TopnotchersModal = ({ open, children, onClose, activities, students, accou
             })
         })
 
-        const sortedArray = studentsWithAverages.sort((a, b) => b.average - a.average);
-        setStudentWithGrades(sortedArray);
+        let sortedArray = studentsWithAverages.sort((a, b) => b.average - a.average);
+        if(sortedArray){
+            setStudentWithGrades(sortedArray);
+        }
         //console.log('calculate ran')
     }, [grades, students, subjects, accounts, quarter]);
 
@@ -117,7 +119,7 @@ const TopnotchersModal = ({ open, children, onClose, activities, students, accou
                             <option value="fourthQuarter">4th grading</option>
                         </select>
                     </div>
-                    <div className="overflow-auto h-80 flex flex-col justify-center items-center gap-2">
+                    <div className="overflow-auto h-92 flex flex-col justify-center items-center gap-2">
                         {studentWithGrades && studentWithGrades.map((student, index) => {
                             let emoji;
                             index == 0 ? emoji = '👑' : emoji = ''

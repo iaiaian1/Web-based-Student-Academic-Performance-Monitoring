@@ -43,7 +43,7 @@ const CreateStudentAccountModal = ({ open, children, onClose, getAccounts }) => 
             <div className="flex flex-col items-start justify-center rounded-lg bg-blue-400 p-5">
                 <div className="flex items-center w-full mb-2">
                     <img src={logo} className="object-cover w-14 sm:w-20 h-14 sm:h-20" alt="logo"/>  
-                    <p className="text-xl sm:text-2xl font-bold underline">Create student account</p>
+                    <p className="text-xl sm:text-2xl font-bold underline">New student account</p>
                 </div>
                 <p>{status}</p>
                 <form id="addSectionForm" onSubmit={(e) => e.preventDefault()} className="w-full">
@@ -74,7 +74,7 @@ const CreateStudentAccountModal = ({ open, children, onClose, getAccounts }) => 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
                         <input
                             type="submit"
-                            value="Create account"
+                            value="Create"
                             className="self-center rounded-lg bg-green-500 hover:bg-green-600 duration-200 py-2 px-5 font-bold cursor-pointer"
                             onClick={() => createAccount()}
                         />

@@ -27,7 +27,7 @@ const TeacherReportCardModal = ({ open, children, onClose , activities, students
 
     const calculate = async() => {     
 
-        students.map((student)=> {
+        students?.map((student)=> {
             let performanceTotal = 0
             let performanceScore = 0
 
@@ -207,7 +207,9 @@ const TeacherReportCardModal = ({ open, children, onClose , activities, students
                         fourthTotalAverage = 0 
                         return(
                             grades.map((grade) => {
-                                if(account.username === grade.id){
+                                //Band aid solution. i just wanna graduate ffs.
+                                if(account.username === grade.id && grade.ap.section === localStorage.getItem('section_id')){
+                                    // console.log(grade.ap.section)
                                     totalAverage = 0
                                     return(
                                         <div key={account.id}>
