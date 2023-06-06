@@ -27,7 +27,8 @@ const GradingScaleModal = ({ open, children, onClose }) => {
                             <p>&nbsp;100%</p>
                         </div>
                     </div>
-                    <div className="font-bold flex flex-col mt-5 gap-y-2">
+                    <p className="text-center font-bold text-2xl underline my-2">Grading Scale</p>
+                    <div className="font-bold flex flex-col gap-y-2">
                         <p>💯 Outsanding (90-100)</p>
                         <p>🌟 Very satisfactory (85-89)</p>
                         <p>🥳 Satisfactory (80-84)</p>
