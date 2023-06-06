@@ -51,8 +51,8 @@ const DeactivateSection = ({ open, children, onClose }) => {
     return ReactDOM.createPortal( 
         <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-black/[.54]">
             <div className="flex flex-col items-center justify-center rounded-lg bg-blue-400 p-5 w-5/6 sm:w-3/4 h-3/4">
-                <p className="text-2xl font-bold mb-2">Deactivate/Activate section</p>
-                <p className="mb-2 text-xl">Deactivate to remove a section in teacher's panel</p>
+                <p className="text-2xl font-bold mb-2">Manage sections</p>
+                <p className="mb-2 text-xl">Activate/Deactivate to remove a section in teacher's panel</p>
                 <div className="bg-blue-500 overflow-auto w-full p-1">
                     {sections && sections.map((section) => {
                         return(

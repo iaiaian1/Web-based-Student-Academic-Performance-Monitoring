@@ -131,7 +131,7 @@ const Teacher = () => {
 
             {/* Buttons */}
             <div className="w-1/2 sm:w-fit grid grid-cols-1 sm:grid-cols-3 gap-1 m-1">
-              <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500 hover:bg-green-600 duration-200 rounded-lg" onClick={() => setIsOpen(true)}>Add a section</button>
+              <button className="font-bold break-words text-sm sm:text-xl p-2 bg-green-500 hover:bg-green-600 duration-200 rounded-lg" onClick={() => setIsOpen(true)}>Add section</button>
               <button className="font-bold break-words text-xs sm:text-lg p-2 bg-green-500 hover:bg-green-600 duration-200 rounded-lg" onClick={() => setIsOpen2(true)}>Create student account</button>
               {/* <button className="font-bold break-words text-xs sm:text-lg p-2 bg-green-500" onClick={() => setIsOpen4(true)}>Sections archive</button> */}
               <button className="font-bold break-words text-sm sm:text-xl p-2 bg-red-500 hover:bg-red-600 duration-200 rounded-lg" onClick={() => Logout()}>Logout</button>

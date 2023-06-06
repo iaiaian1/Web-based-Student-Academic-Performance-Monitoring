@@ -119,7 +119,7 @@ const CreateStudentAccount = ({ open, children, onClose }) => {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-1">
                         <input
                             type="submit"
-                            value="Create Teacher Account"
+                            value="Create"
                             className="rounded-lg bg-green-500 hover:bg-green-600 duration-200 font-bold p-2 cursor-pointer"
                             onClick={() => addTeacher()}
                         />
